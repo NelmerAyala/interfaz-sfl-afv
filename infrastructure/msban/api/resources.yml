@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIDmBan:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  FinancialEntityResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/financial-entity.yml
+      Parameters:
+        ApiGatewayAPIDmBan: !Ref ApiGatewayAPIDmBan
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  InternalBankAccountResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/internal-bank-account.yml
+      Parameters:
+        ApiGatewayAPIDmBan: !Ref ApiGatewayAPIDmBan
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot

@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources freightrule
+
+Parameters:
+  ApiGatewayAPIDmFletes:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ApiGatewayResource2:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref ApiGatewayAPIDmFletes
+      PathPart: freightrule
+      ParentId: !Ref ApiGatewayRestApiRoot
+
+  ApiGatewayMethod2:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref ApiGatewayAPIDmFletes
+      ResourceId: !Ref ApiGatewayResource2
+      HttpMethod: POST
+      AuthorizationType: NONE
+      ApiKeyRequired: false
+      RequestParameters: {}
+      MethodResponses:
+        - ResponseModels:
+            application/json: Empty
+          StatusCode: "200"
+      Integration:
+        CacheNamespace: !Ref ApiGatewayResource2
+        ContentHandling: CONVERT_TO_TEXT
+        IntegrationHttpMethod: POST
+        IntegrationResponses:
+          - ResponseTemplates: {}
+            StatusCode: "200"
+        PassthroughBehavior: WHEN_NO_MATCH
+        TimeoutInMillis: 29000
+        Type: AWS
+        Uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:mave-msfle-lbda-dm-ext_freightrule/invocations"

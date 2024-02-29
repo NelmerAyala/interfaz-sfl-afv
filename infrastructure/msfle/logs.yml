@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack log groups ms fletes
+
+Resources:
+  ETLAddCompletedFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-even-etl-add-completed
+
+  ETLInactivateCompletedFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-even-etl-inactive-completed
+
+  ETLUpdateCompletedFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-even-etl-update-completed
+
+  ETLAddFailedFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-even-etl-add-failed
+
+  ETLInactivateFailedFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-even-etl-inactive-failed
+
+  ETLUpdateFailedFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-even-etl-update-failed
+
+  PullSQSAddFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-rule-pullSQS-add
+
+  PullSQSInactivateFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-rule-pullSQS-inactive
+
+  PullSQSUpdateFleLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msfle-rule-pullSQS-update
+
+Outputs:
+  ETLAddCompletedFleLogArn:
+    Value: !GetAtt ETLAddCompletedFleLog.Arn
+  ETLInactivateCompletedFleLogArn:
+    Value: !GetAtt ETLInactivateCompletedFleLog.Arn
+  ETLUpdateCompletedFleLogArn:
+    Value: !GetAtt ETLUpdateCompletedFleLog.Arn
+
+  ETLAddFailedFleLogArn:
+    Value: !GetAtt ETLAddFailedFleLog.Arn
+  ETLUpdateFailedFleLogArn:
+    Value: !GetAtt ETLUpdateFailedFleLog.Arn
+  ETLInactivateFailedFleLogArn:
+    Value: !GetAtt ETLInactivateFailedFleLog.Arn
+
+  PullSQSAddFleLogArn:
+    Value: !GetAtt PullSQSAddFleLog.Arn
+  PullSQSInactivateFleLogArn:
+    Value: !GetAtt PullSQSInactivateFleLog.Arn
+  PullSQSUpdateFleLogArn:
+    Value: !GetAtt PullSQSUpdateFleLog.Arn

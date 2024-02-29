@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIImpuesto:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: mave-msimp-api-impuestos
+      Description: API - Microservicio Impuestos
+      ApiKeySourceType: HEADER
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIImpuesto: !Ref ApiGatewayAPIImpuesto
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIImpuesto.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIImpuesto
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIImpuesto: !Ref ApiGatewayAPIImpuesto
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIImpuesto:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIImpuesto

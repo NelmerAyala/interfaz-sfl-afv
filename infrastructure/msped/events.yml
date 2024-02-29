@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msped
+
+Parameters:
+  BussPedLambdaArn:
+    Type: String
+  DMPedLambdaArn:
+    Type: String
+
+  BussAddFailedLogArn:
+    Type: String
+  BussAddSuccessLogArn:
+    Type: String
+
+Resources:
+  BussAddEvent: #EventsRule
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msped-rule-buss-add
+      EventPattern:
+        detail-type: ["completed"]
+        source: ["ped.dm.add"]
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussPedLambdaArn
+          Id: Id27da2475-1534-4515-b099-4ca363223189
+      EventBusName: default
+
+  BussAddFailedEvent: #EventsRule3
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msped-rule-buss-add-failed
+      EventPattern:
+        detail-type: ["failed"]
+        source: ["ped.buss.add"]
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussAddFailedLog
+          Id: Id1118232a-433e-4b8f-8f46-1c1cc75a547d
+      EventBusName: default
+
+  BussAddSuccessEvent: #EventsRule4
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msped-rule-buss-add-success
+      EventPattern:
+        detail-type: ["completed"]
+        source: ["ped.buss.add"]
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussAddSuccessLogArn
+          Id: Id27da2475-1534-4515-b099-4ca363223149
+      EventBusName: default
+
+Outputs:
+  BussAddEventArn:
+    Value: !GetAtt BussAddEvent.Arn
+
+  BussAddFailedEventArn:
+    Value: !GetAtt BussAddFailedEvent.Arn
+
+  BussAddSuccessEventArn:
+    Value: !GetAtt BussAddSuccessEvent.Arn

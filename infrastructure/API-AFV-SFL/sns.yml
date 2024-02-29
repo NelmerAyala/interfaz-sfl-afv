@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack sns API-SFL-AFV
+
+Resources:
+  BusPeticionesAfvSflSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: BusPeticionesSFL-AFV
+      TopicName: mave-sns-busPeticionesAFV-SFL.fifo
+      FifoTopic: true
+      ContentBasedDeduplication: false
+
+  SNSTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      PolicyDocument: !Sub '{"Version":"2008-10-17","Id":"__default_policy_ID","Statement":[{"Sid":"__default_statement_ID","Effect":"Allow","Principal":{"AWS":"*"},"Action":["SNS:GetTopicAttributes","SNS:SetTopicAttributes","SNS:AddPermission","SNS:RemovePermission","SNS:DeleteTopic","SNS:Subscribe","SNS:ListSubscriptionsByTopic","SNS:Publish"],"Resource":"${BusPeticionesAfvSflSNSTopic}","Condition":{"StringEquals":{"AWS:SourceOwner":"${AWS::AccountId}"}}}]}'
+      Topics:
+        - !Ref BusPeticionesAfvSflSNSTopic
+
+Outputs:
+  BusPeticionesAfvSflSNSTopicArn:
+    Value: !Ref BusPeticionesAfvSflSNSTopic

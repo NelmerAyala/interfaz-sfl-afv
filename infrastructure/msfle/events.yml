@@ -1,0 +1,151 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events ms fletes
+
+Parameters:
+  ETLAddFleLambdaArn:
+    Type: String
+  ETLInactiveFleLambdaArn:
+    Type: String
+  ETLUpdateFleLambdaArn:
+    Type: String
+
+  ETLAddCompletedFleLogArn:
+    Type: String
+  ETLInactivateCompletedFleLogArn:
+    Type: String
+  ETLUpdateCompletedFleLogArn:
+    Type: String
+
+  ETLAddFailedFleLogArn:
+    Type: String
+  ETLUpdateFailedFleLogArn:
+    Type: String
+  ETLInactivateFailedFleLogArn:
+    Type: String
+
+  PullSQSAddFleLogArn:
+    Type: String
+  PullSQSInactivateFleLogArn:
+    Type: String
+  PullSQSUpdateFleLogArn:
+    Type: String
+
+Resources:
+  ETLAddCompletedFleEvent: #EventsRule2:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-etl-add-completed
+      EventPattern: { "detail-type": ["completed"], "source": ["fle.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddCompletedFleLogArn
+          Id: Ide9d6612a-ae2c-41a4-87f1-a9bc63cd0f60
+      EventBusName: default
+
+  ETLUpdateCompletedFleEvent: #EventsRule9
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-etl-update-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["fle.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateCompletedFleLogArn
+          Id: Id1560bb6d-a9c9-4fb3-a62e-360585c9260a
+      EventBusName: default
+
+  ETLInactivateCompletedFleEvent: #EventsRule8
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-etl-inactive-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["fle.etl.inactivate"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLInactivateCompletedFleLogArn
+          Id: Id2b068a5b-fd1f-4db6-870c-9c9cb8960801
+      EventBusName: default
+
+  ETLAddFailedFleEvent: #EventsRule4
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-etl-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["fle.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddFailedFleLogArn
+          Id: Idf295f036-9dbe-4249-a4e9-aaef407ad4a3
+      EventBusName: default
+
+  ETLUpdateFailedFleEvent: #EventsRule6
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-etl-update-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["fle.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateFailedFleLogArn
+          Id: Ide2ad6f1e-b956-453b-bfed-1f004d1b0287
+      EventBusName: default
+
+  ETLInactivateFailedFleEvent: #EventsRule7
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-etl-inactive-failed
+      EventPattern:
+        { "detail-type": ["failed"], "source": ["fle.etl.inactivate"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLInactivateFailedFleLogArn
+          Id: Idb60e764c-256e-4f0b-82ad-e8ec3357336b
+      EventBusName: default
+
+  PullSQSAddFleEvent: #EventsRule5
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-pullSQS-add
+      EventPattern: { "detail-type": ["add"], "source": ["fle.pullSQS.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddFleLambdaArn
+          Id: Id9c2a3590-31bf-4082-9097-66ac7bb99475
+        - Arn: !Ref PullSQSAddFleLogArn
+          Id: Id9c2a3590-31bf-4082-9097-66ac7bb99470
+      EventBusName: default
+
+  PullSQSInactivateFleEvent: #EventsRule10
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-pullSQS-inactive
+      EventPattern:
+        { "detail-type": ["inactivate"], "source": ["fle.pullSQS.inactivate"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref PullSQSInactivateFleLogArn
+          Id: Id08a9580a-7413-494d-acca-f1f7c4193589
+        - Arn: !Ref ETLInactiveFleLambdaArn
+          Id: Idacf90823-9556-4eab-a00a-fa59bb480f36
+      EventBusName: default
+
+  PullSQSUpdateFleEvent: #EventsRule11
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msfle-rule-pullSQS-update
+      EventPattern:
+        { "detail-type": ["update"], "source": ["fle.pullSQS.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref PullSQSUpdateFleLogArn
+          Id: Id0f887488-6a3d-41a5-b974-876b37de380d
+        - Arn: !Ref ETLUpdateFleLambdaArn
+          Id: Id2a4a728a-86d2-4834-baa7-d512a1077ada
+      EventBusName: default
+
+Outputs:
+  PullSQSAddFleEventArn:
+    Value: !GetAtt PullSQSAddFleEvent.Arn
+  PullSQSInactivateFleEventArn:
+    Value: !GetAtt PullSQSInactivateFleEvent.Arn
+  PullSQSUpdateFleEventArn:
+    Value: !GetAtt PullSQSUpdateFleEvent.Arn

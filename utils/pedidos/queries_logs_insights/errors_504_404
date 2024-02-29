@@ -1,0 +1,7 @@
+# filtro para buscar errores 504 de la API PS y 404 cuando alguna condicion en el query SQL no se cumple y no se arma el pedido
+
+fields @timestamp, @message, @log
+| display source, detail.data.orden.PEDIDO, detail.responseAPI.innerMessage, detail.responseAPI.message, detail.error
+| filter @message like /"detail-type":"failed"|"detail-type":"error"/
+and detail.responseAPI.innerMessage not like /Violation of PRIMARY KEY constraint 'PK_PEDIDO'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_PEDIDO'. The duplicate key value is/
+and detail.responseAPI.message not like /Error: An error occurred while updating the entries. See the inner exception for details. \/ Inner Exception: Violation of PRIMARY KEY constraint 'PK_PEDIDO'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_PEDIDO'. The duplicate key value is/

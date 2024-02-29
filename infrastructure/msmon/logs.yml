@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msmon
+
+Resources:
+  ETLAddCompletedMonLog: #LogsLogGroup
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msmon-even-etl-add-completed
+
+  ETLUpdateCompletedMonLog: #LogsLogGroup2
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msmon-even-etl-update-completed
+
+  ETLAddFailedMonLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msmon-even-etl-add-failed
+
+  ETLUpdateFailedMonLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msmon-even-etl-update-failed
+
+Outputs:
+  ETLAddCompletedMonLogArn:
+    Value: !GetAtt ETLAddCompletedMonLog.Arn
+  ETLUpdateCompletedMonLogArn:
+    Value: !GetAtt ETLUpdateCompletedMonLog.Arn
+  ETLAddFailedMonLogArn:
+    Value: !GetAtt ETLAddFailedMonLog.Arn
+  ETLUpdateFailedMonLogArn:
+    Value: !GetAtt ETLUpdateFailedMonLog.Arn

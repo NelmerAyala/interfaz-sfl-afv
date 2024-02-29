@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIImpuesto:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ImpuestoregionResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/region-tax.yml
+      Parameters:
+        ApiGatewayAPIImpuesto: !Ref ApiGatewayAPIImpuesto
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  TaxruleResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/tax-rule.yml
+      Parameters:
+        ApiGatewayAPIImpuesto: !Ref ApiGatewayAPIImpuesto
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot

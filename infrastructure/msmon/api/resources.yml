@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIDmMon:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  MonedasResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/monedas.yml
+      Parameters:
+        ApiGatewayAPIDmMon: !Ref ApiGatewayAPIDmMon
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot

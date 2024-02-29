@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack SQS ms fletes
+
+Parameters:
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+Resources:
+  FletesSQS:
+    Type: AWS::SQS::Queue
+    Properties:
+      ContentBasedDeduplication: false
+      DelaySeconds: 1
+      FifoQueue: true
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 1
+      VisibilityTimeout: 600
+      QueueName: mave-msfle-sqs-fletes.fifo
+
+  SQSQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - SQS:*
+            Effect: Allow
+            Resource: !GetAtt FletesSQS.Arn
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+          - Action:
+              - SQS:SendMessage
+            Effect: Allow
+            Resource: !GetAtt FletesSQS.Arn
+            Principal:
+              AWS:
+                - "*"
+            Condition:
+              ArnLike:
+                aws:SourceArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+      Queues:
+        - !Ref FletesSQS
+
+Outputs:
+  FletesSQSArn:
+    Value: !GetAtt FletesSQS.Arn

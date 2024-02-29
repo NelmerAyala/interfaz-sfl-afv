@@ -1,0 +1,122 @@
+# Esta plantilla de AWS SAM se ha generado a partir de la configuración de su
+# función. Si su función tiene uno o más desencadenadores, tenga en cuenta que los
+# recursos de AWS asociados a estos desencadenadores no están completamente
+# especificados en esta plantilla e incluyen valores de marcadores de posición.
+# Abra esta plantilla en AWS Application Composer o en su IDE favorito y
+# modifíquela para especificar una aplicación sin servidor con otros recursos de
+# AWS.
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application Model template describing your function.
+Resources:
+  mavemspcatlbdamonit:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: >-
+        CD-AFV | Microservicio Pedido Catalogo | Monitoreo | orden_catalogo y
+        ordendetalle_catalogo | Funcion que consulta las cotizaciones mas
+        recientes de la BD de Catalogo Digital
+      MemorySize: 128
+      Timeout: 8
+      Handler: index.handler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      EphemeralStorage:
+        Size: 512
+      Environment:
+        Variables:
+          DB_HOST: >-
+            catalogo-beval-smart-catalog-db-cluster.cluster-ckzwvtbf3k5n.us-east-1.rds.amazonaws.com
+          DB_USER: smartbuilders
+          INTERVAL_DAYS: '3'
+          region: us-east-1
+          secret_folder: catalogo-beval-rds-smartcatalog
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      Layers:
+        - arn:aws:lambda:us-east-1:490598428640:layer:databaseConnection:1
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-dbconnection:1
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-send-event:1
+      PackageType: Zip
+      Policies:
+        - Statement:
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - events:PutEvents
+              Resource: arn:aws:events:us-east-1:490598428640:event-bus/*
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+                - secretsmanager:DescribeSecret
+              Resource: >-
+                arn:aws:secretsmanager:us-east-1:490598428640:secret:catalogo-beval-rds-smartcatalog-A0VhvC
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+              Resource: arn:aws:logs:us-east-1:490598428640:*
+            - Effect: Allow
+              Action:
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource:
+                - >-
+                  arn:aws:logs:us-east-1:490598428640:log-group:/aws/lambda/mave-msped-lbda-db-pedidos:*
+            - Sid: AWSLambdaVPCAccessExecutionPermissions
+              Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+                - ec2:CreateNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+                - ec2:DescribeSubnets
+                - ec2:DeleteNetworkInterface
+                - ec2:AssignPrivateIpAddresses
+                - ec2:UnassignPrivateIpAddresses
+              Resource: '*'
+            - Action:
+                - ec2:*
+              Effect: Allow
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - elasticloadbalancing:*
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - cloudwatch:*
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - autoscaling:*
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - iam:CreateServiceLinkedRole
+              Resource: '*'
+              Condition:
+                StringEquals:
+                  iam:AWSServiceName:
+                    - autoscaling.amazonaws.com
+                    - ec2scheduled.amazonaws.com
+                    - elasticloadbalancing.amazonaws.com
+                    - spot.amazonaws.com
+                    - spotfleet.amazonaws.com
+                    - transitgateway.amazonaws.com
+      SnapStart:
+        ApplyOn: None
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-037cc7285982c3514
+          - sg-0402e5365472ecb84
+        SubnetIds:
+          - subnet-01b2cdfbb1cb5469a
+          - subnet-0bf055d871cfb931c
+        Ipv6AllowedForDualStack: false
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto

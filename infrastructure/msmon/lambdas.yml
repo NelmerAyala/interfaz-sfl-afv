@@ -1,0 +1,112 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas msmon
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 600
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ETLAddMonLambda: #LambdaFunction2
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Monedas | ETL Add"
+      FunctionName: mave-msmon-lbda-etl-Add
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msmon/mave-msmon-lbda-etl-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+  ETLUpdateMonLambda: #LambdaFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Monedas | ETL Update"
+      FunctionName: mave-msmon-lbda-etl-Update
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msmon/mave-msmon-lbda-etl-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+  DMMonedasLambda: #LambdaFunction3
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Monedas | Procesamiento de Datos | monedas"
+      Environment:
+        Variables:
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretArnFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+      FunctionName: mave-msmon-lbda-dm-monedas
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msmon/mave-msmon-lbda-dm-monedas/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+  PullSQSMonLambda: #LambdaFunction4
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: SFL-AFV | Microservicio Monedas | Pull de cola SQS
+      FunctionName: mave-msmon-lbda-pullSQS
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msmon/mave-msmon-lbda-pullSQS/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+Outputs:
+  ETLAddMonLambdaArn:
+    Description: ETLAddMonLambda Arn
+    Value: !GetAtt ETLAddMonLambda.Arn
+  ETLUpdateMonLambdaArn:
+    Description: ETLUpdateMonLambda Arn
+    Value: !GetAtt ETLUpdateMonLambda.Arn
+  DMMonedasLambdaArn:
+    Description: DMMonedasLambda Arn
+    Value: !GetAtt DMMonedasLambda.Arn
+  PullSQSMonLambdaArn:
+    Description: PullSQSMonLambda Arn
+    Value: !GetAtt PullSQSMonLambda.Arn

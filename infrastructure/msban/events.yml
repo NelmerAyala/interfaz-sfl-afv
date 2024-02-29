@@ -1,0 +1,135 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events ms bancos/cuentas
+
+Parameters:
+  BussAddBanLambdaArn:
+    Type: String
+  BussUpdateBanLambdaArn:
+    Type: String
+
+  ETLAddBanLambdaArn:
+    Type: String
+  ETLUpdateBanLambdaArn:
+    Type: String
+
+  ETLAddCompletedBanLogArn:
+    Type: String
+  ETLUpdateCompletedBanLogArn:
+    Type: String
+
+  BussAddFailedBanLogArn:
+    Type: String
+  BussUpdateFailedBanLogArn:
+    Type: String
+
+  ETLAddFailedBanLogArn:
+    Type: String
+  ETLUpdateFailedBanLogArn:
+    Type: String
+
+Resources:
+  ETLAddCompletedBanEvent: #EventsRule
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-buss-add
+      EventPattern: { "detail-type": ["completed"], "source": ["ban.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussAddBanLambdaArn
+          Id: "Id6f21e8a3-8286-459b-b9e1-34dfb2c5ad8b"
+        - Arn: !Ref ETLAddCompletedBanLogArn
+          Id: "Iddc661e43-d1a8-4c50-a095-507a646bc598"
+      EventBusName: default
+
+  ETLUpdateCompletedBanEvent: #EventsRule2
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-buss-update
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["ban.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateCompletedBanLogArn
+          Id: "Id3c93903b-48d6-4759-8abe-4a679476f0ba"
+        - Arn: !Ref BussUpdateBanLambdaArn
+          Id: "Id8f580a8a-111b-4eea-9fa0-322e7fbf6c70"
+      EventBusName: default
+
+  PullSQSUpdateBanEvent: #EventsRule3
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-pullSQS-update
+      EventPattern:
+        { "detail-type": ["update"], "source": ["ban.pullSQS.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateBanLambdaArn
+          Id: "Id54aabd6c-5925-449d-a4ea-ca8dfdafbaa6"
+      EventBusName: default
+
+  PullSQSAddBanEvent: #EventsRule4
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-pullSQS-add
+      EventPattern: { "detail-type": ["add"], "source": ["ban.pullSQS.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddBanLambdaArn
+          Id: "Id53c6a978-b99b-4dde-bd33-d2199c5c55f5"
+      EventBusName: default
+
+  BussAddFailedBanEvent: #EventsRule8
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-buss-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["ban.buss.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussAddFailedBanLogArn
+          Id: "Id435bb952-ffba-4634-9942-8a61560ca3a5"
+      EventBusName: default
+
+  BussUpdateFailedBanEvent: #EventsRule10
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-buss-update-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["ban.buss.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussUpdateFailedBanLogArn
+          Id: "Id50021a29-00f9-47b7-90ad-dee491c1cb5c"
+      EventBusName: default
+
+  ETLAddFailedBanEvent: #EventsRule11
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-etl-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["ban.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddFailedBanLogArn
+          Id: "Id6d51e316-ba7a-4495-8b02-227573a29489"
+      EventBusName: default
+
+  ETLUpdateFailedBanEvent: #EventsRule13
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-etl-update-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["ban.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateFailedBanLogArn
+          Id: "Id9c63a94e-8ce6-435a-a4bc-cac7daa6e663"
+      EventBusName: default
+
+Outputs:
+  ETLAddCompletedBanEventArn:
+    Value: !GetAtt ETLAddCompletedBanEvent.Arn
+  ETLUpdateCompletedBanEventArn:
+    Value: !GetAtt ETLUpdateCompletedBanEvent.Arn
+
+  PullSQSAddBanEventArn:
+    Value: !GetAtt PullSQSAddBanEvent.Arn
+  PullSQSUpdateBanEventArn:
+    Value: !GetAtt PullSQSUpdateBanEvent.Arn

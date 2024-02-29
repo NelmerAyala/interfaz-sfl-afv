@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API-SFL-AFV
+
+Parameters:
+  LayerSendSNSSQS:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ApiTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+        LayerSendSNSSQS: !Ref LayerSendSNSSQS
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+        BusPeticionesAfvSflSNSTopic: !GetAtt SNSTemplate.Outputs.BusPeticionesAfvSflSNSTopic
+    DependsOn:
+      - SNSTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        BusSflLambdaArn: !GetAtt LambdasTemplate.Outputs.BusSflLambdaArn
+
+        ApiGatewayAPIMigrationSflAfv: !GetAtt ApiTemplate.Outputs.ApiGatewayAPIMigrationSflAfv
+
+    DependsOn:
+      - ApiTemplate
+      - LambdasTemplate
+
+Outputs:
+  BusPeticionesAfvSflSNSTopic:
+    Value: !GetAtt SNSTemplate.Outputs.BusPeticionesAfvSflSNSTopic

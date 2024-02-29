@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas API-SFL-AFV
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 90
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  LayerSendSNSSQS:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  BusSflLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: SFL-AFV | Bus de peticiones
+      Environment:
+        Variables:
+          default_schema: dbafv
+          beval_schema: dbbeval
+          SNS_ARN: !Ref BusPeticionesSflAfvSNSTopicArn
+          febeca_schema: dbfebeca
+          sillaca_schema: dbsillaca
+      FunctionName: mave-busSLF-lbda
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/API-SFL-AFV/mave-busSLF-lbda
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendSNSSQS
+
+Outputs:
+  BusSflLambdaArn:
+    Value: !GetAtt BusSflLambda.Arn

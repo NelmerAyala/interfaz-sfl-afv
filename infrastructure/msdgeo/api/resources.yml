@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIDmDistGeo:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  CityResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/city.yml
+      Parameters:
+        ApiGatewayAPIDmDistGeo: !Ref ApiGatewayAPIDmDistGeo
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  StateResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/state.yml
+      Parameters:
+        ApiGatewayAPIDmDistGeo: !Ref ApiGatewayAPIDmDistGeo
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  CountryResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/country.yml
+      Parameters:
+        ApiGatewayAPIDmDistGeo: !Ref ApiGatewayAPIDmDistGeo
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot

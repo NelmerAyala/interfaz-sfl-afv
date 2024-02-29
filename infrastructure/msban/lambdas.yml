@@ -1,0 +1,182 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas ms bancos/cuentas
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 30
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    NoEcho: true
+    Type: String
+  SubnetId1:
+    NoEcho: true
+    Type: String
+
+  SecretARNBeval:
+    NoEcho: true
+    Type: String
+  SecretArnFebeca:
+    NoEcho: true
+    Type: String
+  SecretARNSillaca:
+    NoEcho: true
+    Type: String
+
+  ApiGatewayAPIDmBan:
+    Type: String
+  StageAPIDmBan:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  DMEntidadFinancieraBanLambda: #LambdaFunction1
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Bancos/Cuentas | Procesamiento de Datos | entidadfinanciera"
+      Environment:
+        Variables:
+          SecretARNBeval: !Ref SecretARNBeval
+          SecretArnFebeca: !Ref SecretArnFebeca
+          SecretARNSillaca: !Ref SecretARNSillaca
+          TABLE: entidadfinanciera
+      FunctionName: mave-msban-lbda-dm-entidadfinanciera
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msban/mave-msban-lbda-dm-entidadfinanciera/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+  DMCuentaBancariaInternaBanLambda: #LambdaFunction2
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Bancos/Cuentas | Procesamiento de Datos | cuentabancariainterna"
+      Environment:
+        Variables:
+          SecretARNBeval: !Ref SecretARNBeval
+          SecretArnFebeca: !Ref SecretArnFebeca
+          SecretARNSillaca: !Ref SecretARNSillaca
+          TABLE: cuentabancariainterna
+      FunctionName: mave-msban-lbda-dm-cuentabancariainterna
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msban/mave-msban-lbda-dm-cuentabancariainterna/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+  ETLUpdateBanLambda: #LambdaFunction3
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Bancos/Cuentas | ETL Update"
+      FunctionName: mave-msban-lbda-etl-Update
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msban/mave-msban-lbda-etl-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+  ETLAddBanLambda: #LambdaFunction4
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Bancos/Cuentas | ETL Add"
+      FunctionName: mave-msban-lbda-etl-Add
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msban/mave-msban-lbda-etl-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+  BussAddBanLambda: #LambdaFunction5
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Bancos/Cuentas | Reglas de negocios Add"
+      Environment:
+        Variables:
+          API_BANK_V1: !Sub "https://${ApiGatewayAPIDmBan}.execute-api.${AWS::Region}.amazonaws.com/${StageAPIDmBan}/"
+      FunctionName: mave-msban-lbda-buss-Add
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msban/mave-msban-lbda-buss-Add/
+      Timeout: 30
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  BussUpdateBanLambda: #LambdaFunction6
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Bancos/Cuentas | Reglas de negocios Update"
+      Environment:
+        Variables:
+          API_BANK_V1: !Sub "https://${ApiGatewayAPIDmBan}.execute-api.${AWS::Region}.amazonaws.com/${StageAPIDmBan}/"
+      FunctionName: mave-msban-lbda-buss-Update
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msban/mave-msban-lbda-buss-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  PullSQSBanLambda: #LambdaFunction7
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Bancos/Cuentas | Pull de cola SQS"
+      FunctionName: mave-msban-lbda-pullSQS
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msban/mave-msban-lbda-pullSQS/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+Outputs:
+  DMEntidadFinancieraBanLambdaArn:
+    Value: !GetAtt DMEntidadFinancieraBanLambda.Arn
+  DMCuentaBancariaInternaBanLambdaArn:
+    Value: !GetAtt DMCuentaBancariaInternaBanLambda.Arn
+
+  ETLAddBanLambdaArn:
+    Value: !GetAtt ETLAddBanLambda.Arn
+  ETLUpdateBanLambdaArn:
+    Value: !GetAtt ETLUpdateBanLambda.Arn
+
+  BussAddBanLambdaArn:
+    Value: !GetAtt BussAddBanLambda.Arn
+  BussUpdateBanLambdaArn:
+    Value: !GetAtt BussUpdateBanLambda.Arn
+
+  PullSQSBanLambdaArn:
+    Value: !GetAtt PullSQSBanLambda.Arn

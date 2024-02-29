@@ -1,0 +1,280 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msart
+
+Parameters:
+  ETLAddArtLambdaArn:
+    Type: String
+  ETLInactiveArtLambdaArn:
+    Type: String
+  ETLUpdateArtLambdaArn:
+    Type: String
+  RuleUpdateArtLambdaArn:
+    Type: String
+  RuleAddArtLambdaArn:
+    Type: String
+  ErrorAddArticuloLogArn:
+    Type: String
+  ErrorInactiveArticuloLogArn:
+    Type: String
+  SuccessAddArticuloLogArn:
+    Type: String
+  SuccessInactiveArticuloLogArn:
+    Type: String
+  ETLAddCompletedLogArn:
+    Type: String
+  ETLAddFailedLogArn:
+    Type: String
+  ETLInactiveCompletedLogArn:
+    Type: String
+  ETLInactiveFailedLogArn:
+    Type: String
+  ETLUpdateCompletedLogArn:
+    Type: String
+  ETLUpdateFailedLogArn:
+    Type: String
+  RuleAddCompletedLogArn:
+    Type: String
+  RuleAddFailedLogArn:
+    Type: String
+  RuleUpdateCompletedLogArn:
+    Type: String
+  RuleUpdateFailedLogArn:
+    Type: String
+
+Resources:
+
+  ErrorAddArticuloEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-error-articulos-add"
+      EventPattern: '{"detail-type":["error"],"source":["art.articulos.error.add"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ErrorAddArticuloLogArn
+          Id: "ErrorAddArticuloLog"
+      EventBusName: "default"
+  
+  ETLAddCompletedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-etl-add-completed"
+      EventPattern: '{"detail-type":["completed"],"source":["art.etl.add"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref RuleAddArtLambdaArn
+          Id: "RuleAddArtLambdaArn"
+        - Arn: !Ref ETLAddCompletedLogArn
+          Id: "ETLAddCompletedLogArn"
+      EventBusName: "default"
+
+  RuleAddFailedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-etl-add-failed"
+      EventPattern: '{"detail-type":["failed"],"source":["art.etl.add"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ETLAddFailedLogArn
+          Id: "ETLAddFailedLogArn"
+      EventBusName: "default"
+
+  ETLInactiveCompletedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-etl-inactivate-completed"
+      Description: "Event rule for group of records marcas, categorias, listaPrecio"
+      EventPattern: '{"detail-type":["completed"],"source":["art.etl.inactivate"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ETLInactiveCompletedLogArn
+          Id: "ETLInactiveCompletedLogArn"
+      EventBusName: "default"
+
+  ETLUpdateFailedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-etl-update-failed"
+      EventPattern: '{"detail-type":["failed"],"source":["art.etl.update"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ETLUpdateFailedLogArn
+          Id: "ETLUpdateFailed"
+      EventBusName: "default"
+
+  TransactionInactiveEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-etl-inactive-completed"
+      EventPattern: '{"detail-type":["completed"],"source":["art.etl.inactive"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref DMTransactionInactiveArtLambdaArn
+          Id: "DMTransactionInactiveArtLambda"
+          InputPath: "$.detail"
+        - Arn: !Ref ETLInactiveCompletedLogArn
+          Id: "ETLInactiveCompletedLog"
+      EventBusName: "default"
+
+  ETLInactiveFailedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-etl-inactive-failed"
+      EventPattern: '{"detail-type":["failed"],"source":["art.etl.inactive"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ETLInactiveFailedLogArn
+          Id: "ETLInactiveFailedLog"
+      EventBusName: "default"
+
+  PullSQSAddEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-pullSQS-add"
+      EventPattern: '{"detail-type":["add"],"source":["art.pullSQS.add"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ETLAddArtLambdaArn
+          Id: "ETLAddArtLambda"
+      EventBusName: "default"
+
+  RuleAddFailedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-rules-add-failed"
+      EventPattern: '{"detail-type":["failed"],"source":["art.rule.add"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref RuleAddFailedLogArn
+          Id: "RuleAddFailed"
+      EventBusName: "default"
+
+  RuleAddCompletedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-rules-add-completed"
+      EventPattern: '{"detail-type":["completed"],"source":["art.rule.add"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref DMTransactionAddArtLambdaArn
+          Id: "DMTransactionAddArtLambda"
+          InputPath: "$.detail"
+        - Arn: !Ref RuleAddCompletedLogArn
+          Id: "RuleAddCompletedLog"
+      EventBusName: "default"
+
+  ETLUpdateCompletedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-etl-update-completed"
+      EventPattern: '{"detail-type":["completed"],"source":["art.etl.update"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ETLUpdateCompletedLogArn
+          Id: "ETLUpdateCompletedLogArn"
+        - Arn: !Ref RuleUpdateArtLambdaArn
+          Id: "RuleUpdateArtLambdaArn"
+      EventBusName: "default"
+
+  PullSQSInactiveEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-pullSQS-inactivate"
+      EventPattern: '{"detail-type":["inactivate"],"source":["art.pullSQS.inactivate"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ETLInactiveArtLambdaArn
+          Id: "ETLInactiveArtLambdaArn"
+      EventBusName: "default"
+
+  RuleUpdateFailedLogEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-rules-update-failed"
+      EventPattern: '{"detail-type":["failed"],"source":["art.rule.update"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref RuleUpdateFailedLogArn
+          Id: "RuleUpdateFailedLog"
+      EventBusName: "default"
+
+  SuccessInactiveArticuloEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-success-articulos-inactive"
+      EventPattern: '{"detail-type":["success"],"source":["art.articulos.success.inactive"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref SuccessInactiveArticuloLogArn
+          Id: "SuccessInactiveArticuloLog"
+      EventBusName: "default"
+
+  SuccessAddArticuloEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-success-articulos-add"
+      EventPattern: '{"detail-type":["success"],"source":["art.articulos.success.add"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref SuccessAddArticuloLogArn
+          Id: "SuccessAddArticuloLog"
+      EventBusName: "default"
+
+  RuleUpdateCompletedEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-rules-update-completed"
+      EventPattern: '{"detail-type":["completed"],"source":["art.rule.update"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref RuleUpdateCompletedLogArn
+          Id: "RuleUpdateCompletedLog"
+      EventBusName: "default"
+
+  PullSQSUpdateEvent:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-msart-rule-pullSQS-update"
+      EventPattern: '{"detail-type":["update"],"source":["art.pullSQS.update"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Ref ETLUpdateArtLambdaArn
+          Id: "ETLUpdateArtLambda"
+      EventBusName: "default"
+      
+
+Outputs:
+  ErrorAddArticuloEventArn:
+    Value: !GetAtt ErrorAddArticuloEvent.Arn
+  ETLAddCompletedEventArn:
+    Value: !GetAtt ETLAddCompletedEvent.Arn
+  RuleAddFailedEventArn:
+    Value: !GetAtt RuleAddFailedEvent.Arn
+  ETLInactiveCompletedEventArn:
+    Value: !GetAtt ETLInactiveCompletedEvent.Arn
+  ETLUpdateFailedEventArn:
+    Value: !GetAtt ETLUpdateFailedEvent.Arn
+  TransactionInactiveEventArn:
+    Value: !GetAtt TransactionInactiveEvent.Arn
+  ETLInactiveFailedEventArn:
+    Value: !GetAtt ETLInactiveFailedEvent.Arn
+  PullSQSAddEventArn:
+    Value: !GetAtt PullSQSAddEvent.Arn
+  RuleAddFailedEventArn:
+    Value: !GetAtt RuleAddFailedEvent.Arn
+  RuleAddCompletedEventArn:
+    Value: !GetAtt RuleAddCompletedEvent.Arn
+  ETLUpdateCompletedEventArn:
+    Value: !GetAtt ETLUpdateCompletedEvent.Arn
+  PullSQSInactiveEventArn:
+    Value: !GetAtt PullSQSInactiveEvent.Arn
+  RuleUpdateFailedLogEventArn:
+    Value: !GetAtt RuleUpdateFailedLogEvent.Arn
+  SuccessInactiveArticuloEventArn:
+    Value: !GetAtt SuccessInactiveArticuloEvent.Arn
+  SuccessAddArticuloEventArn:
+    Value: !GetAtt SuccessAddArticuloEvent.Arn
+  RuleUpdateCompletedEventArn:
+    Value: !GetAtt RuleUpdateCompletedEvent.Arn
+  PullSQSUpdateEvent Arn:
+    Value: !GetAtt PullSQSUpdateEvent.Arn

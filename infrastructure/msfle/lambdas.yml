@@ -1,0 +1,212 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas ms fletes
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 600
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  ApiGatewayAPIDmFletes:
+    Type: String
+  StageAPIDmFletes:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ETLUpdateFleLambda: #LambdaFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          API_FLETES: !Sub "https://${ApiGatewayAPIDmFletes}.execute-api.${AWS::Region}.amazonaws.com/${StageAPIDmFletes}/"
+      FunctionName: mave-msfle-lbda-etl-Update
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msfle/mave-msfle-lbda-etl-Update
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+        - !Ref LayerAxiosGraphql
+
+  ETLInactiveFleLambda: # LambdaFunction2:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          API_FLETES: !Sub "https://${ApiGatewayAPIDmFletes}.execute-api.${AWS::Region}.amazonaws.com/${StageAPIDmFletes}/"
+      FunctionName: mave-msfle-lbda-etl-Inactive
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msfle/mave-msfle-lbda-etl-Inactive
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+  ETLAddFleLambda: #LambdaFunction3
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          API_FLETES: !Sub "https://${ApiGatewayAPIDmFletes}.execute-api.${AWS::Region}.amazonaws.com/${StageAPIDmFletes}/"
+      FunctionName: mave-msfle-lbda-etl-Add
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msfle/mave-msfle-lbda-etl-Add
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Timeout: 60
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  DMReglaDescuentoFleLambda: #LambdaFunction4
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretArnFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          REGION: !Ref AWS::Region
+          TABLE: regla_descuento
+      FunctionName: mave-msfle-lbda-dm-regla_descuento
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msfle/mave-msfle-lbda-dm-regla_descuento
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+  DMExtFreightRuleFleLambda: #LambdaFunction5
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretArnFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          REGION: !Ref AWS::Region
+          TABLE: ext_freightrule
+      FunctionName: mave-msfle-lbda-dm-ext_freightrule
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msfle/mave-msfle-lbda-dm-ext_freightrule
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+  DMExtFreighrCircularLineFleLambda: #LambdaFunction6
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretArnFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          REGION: !Ref AWS::Region
+          TABLE: ext_freightcircularline
+      FunctionName: mave-msfle-lbda-dm-ext_freightcircularline
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msfle/mave-msfle-lbda-dm-ext_freightcircularline
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Timeout: 60
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+  DMReglaDescuentoDetalleFleLambda: #LambdaFunction7
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretArnFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          REGION: !Ref AWS::Region
+          TABLE: regla_descuento_detalle
+      FunctionName: mave-msfle-lbda-dm-regla_descuento_detalle
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msfle/mave-msfle-lbda-dm-regla_descuento_detalle
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+  PullSQSFleLambda: #LambdaFunction8
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      FunctionName: mave-msfle-lbda-pullSQS
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msfle/mave-msfle-lbda-pullSQS
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+Outputs:
+  ETLInactiveFleLambdaArn:
+    Value: !GetAtt ETLInactiveFleLambda.Arn
+  ETLAddFleLambdaArn:
+    Value: !GetAtt ETLAddFleLambda.Arn
+  ETLUpdateFleLambdaArn:
+    Value: !GetAtt ETLUpdateFleLambda.Arn
+
+  DMReglaDescuentoFleLambdaArn:
+    Value: !GetAtt DMReglaDescuentoFleLambda.Arn
+  DMExtFreightRuleFleLambdaArn:
+    Value: !GetAtt DMExtFreightRuleFleLambda.Arn
+  DMExtFreighrCircularLineFleLambdaArn:
+    Value: !GetAtt DMExtFreighrCircularLineFleLambda.Arn
+  DMReglaDescuentoDetalleFleLambdaArn:
+    Value: !GetAtt DMReglaDescuentoDetalleFleLambda.Arn
+
+  PullSQSFleLambdaArn:
+    Value: !GetAtt PullSQSFleLambda.Arn

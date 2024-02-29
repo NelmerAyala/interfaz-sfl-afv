@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msexist
+
+Parameters:
+  ETLUpdateCompletedExistLogArn:
+    Type: String
+
+  ETLUpdateFailedExistLogArn:
+    Type: String
+
+Resources:
+  ETLUpdateCompletedExistEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msexist-rule-PullSQS-ETL-existencia-completed
+      EventPattern:
+        { "detail-type": ["update"], "source": ["exist.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateCompletedExistLogArn
+          Id: "Id1118232a-433e-4b8f-8f46-1c1cc75a547a"
+      EventBusName: default
+
+  ETLUpdateFailedExistEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msexist-rule-PullSQS-ETL-existencia-failed
+      EventPattern:
+        { "detail-type": ["failed"], "source": ["exist.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateFailedExistLogArn
+          Id: "Id832d3b74-5c96-41c6-825b-127a2af3dcbb"
+      EventBusName: default

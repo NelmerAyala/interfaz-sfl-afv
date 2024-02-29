@@ -1,0 +1,99 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack APP roles and policies
+
+Parameters:
+  InterfaceAfvSfl:
+    Type: String
+    Default: interface-sfl-afv
+
+Resources:
+  RetrieveSecretPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: interface-sfl-afv-retrieve-secret-policy
+      Path: /interface-sfl-afv/
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "secretsmanager:GetSecretValue"
+              - "secretsmanager:DescribeSecret"
+            Resource: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:*"
+
+  PolicySNSPublish:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: interface-sfl-afv-policy-sns-publish
+      Path: /interface-sfl-afv/
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "sns:Publish"
+            Resource: !Sub "arn:aws:sns:${AWS::Region}:${AWS::AccountId}:*"
+
+  PolicyEventBridgePut:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: interface-sfl-afv-policy-event-bridge-put
+      Path: /interface-sfl-afv/
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "events:PutEvents"
+            Resource: !Sub "arn:aws:events:${AWS::Region}:${AWS::AccountId}:event-bus/**"
+
+  PolicyBasicSQS:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: interface-sfl-afv-policy-basic-sqs
+      Path: /interface-sfl-afv/
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "sqs:DeleteMessage"
+              - "sqs:ReceiveMessage"
+              - "sqs:SendMessage"
+              - "sqs:GetQueueAttributes"
+            Resource: !Sub "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:**"
+
+  RoleLambdaGlobalSflAfv:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /interface-sfl-afv/
+      RoleName: interface-sfl-afv-role-lambda-global
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      MaxSessionDuration: 3600
+      ManagedPolicyArns:
+        - !Ref RetrieveSecretPolicy
+        - !Ref PolicySNSPublish
+        - !Ref PolicyEventBridgePut
+        - !Ref PolicyBasicSQS
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaRole
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
+      Description: Allows Lambda functions to call AWS services for the Interface SFL AFV
+
+    DependsOn:
+      - RetrieveSecretPolicy
+      - PolicySNSPublish
+      - PolicyEventBridgePut
+      - PolicyBasicSQS
+
+Outputs:
+  RoleLambdaGlobalSflAfvArn:
+    Value: !GetAtt RoleLambdaGlobalSflAfv.Arn

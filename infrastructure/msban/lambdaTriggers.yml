@@ -1,0 +1,96 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers ms bancos/cuentas
+
+Parameters:
+  ETLAddBanLambdaArn:
+    Type: String
+  ETLUpdateBanLambdaArn:
+    Type: String
+
+  PullSQSAddBanEventArn:
+    Type: String
+  PullSQSUpdateBanEventArn:
+    Type: String
+
+  DMEntidadFinancieraBanLambdaArn:
+    Type: String
+  DMCuentaBancariaInternaBanLambdaArn:
+    Type: String
+
+  BussAddBanLambdaArn:
+    Type: String
+  BussUpdateBanLambdaArn:
+    Type: String
+
+  ETLAddCompletedBanEventArn:
+    Type: String
+  ETLUpdateCompletedBanEventArn:
+    Type: String
+
+  ApiGatewayAPIDmBan:
+    Type: String
+
+  PullSQSBanLambdaArn:
+    Type: String
+
+  BancosCuentasSQSArn:
+    Type: String
+
+Resources:
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLUpdateBanLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSUpdateBanEventArn
+
+  LambdaPermission2:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLAddBanLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSAddBanEventArn
+
+  LambdaPermission3:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMCuentaBancariaInternaBanLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmBan}/*/POST/internal-bank-account"
+
+  LambdaPermission5:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMEntidadFinancieraBanLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmBan}/*/POST/financial-entity"
+
+  LambdaPermission6:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref BussUpdateBanLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref ETLUpdateCompletedBanEventArn
+
+  LambdaPermission7:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref BussAddBanLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref ETLAddCompletedBanEventArn
+
+  LambdaEventSourceMapping:
+    Type: "AWS::Lambda::EventSourceMapping"
+    Properties:
+      BatchSize: 10
+      Enabled: true
+      EventSourceArn: !Ref BancosCuentasSQSArn
+      FunctionName: !Ref PullSQSBanLambdaArn
+      MaximumBatchingWindowInSeconds: 0

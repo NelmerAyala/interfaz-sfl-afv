@@ -1,0 +1,90 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack sqs msexist
+
+Resources:
+  ExistenciaBevalSQS: #SQSQueue
+    Type: AWS::SQS::Queue
+    Properties:
+      DelaySeconds: 10
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 20
+      VisibilityTimeout: 303
+      QueueName: mave-msexist-sqs-existencia-beval
+
+  ExistenciaBevalSQSPolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - SQS:*
+            Effect: Allow
+            Resource: !GetAtt ExistenciaBevalSQS.Arn
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+
+      Queues:
+        - !Ref ExistenciaBevalSQS
+
+  ExistenciaFebecaSQS: #SQSQueue
+    Type: AWS::SQS::Queue
+    Properties:
+      DelaySeconds: 10
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 20
+      VisibilityTimeout: 303
+      QueueName: mave-msexist-sqs-existencia-febeca
+
+  ExistenciaFebecaSQSPolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - SQS:*
+            Effect: Allow
+            Resource: !GetAtt ExistenciaFebecaSQS.Arn
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+
+      Queues:
+        - !Ref ExistenciaFebecaSQS
+
+  ExistenciaSillacaSQS: #SQSQueue
+    Type: AWS::SQS::Queue
+    Properties:
+      DelaySeconds: 10
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 20
+      VisibilityTimeout: 303
+      QueueName: mave-msexist-sqs-existencia-sillaca
+
+  ExistenciaSillacaSQSPolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - SQS:*
+            Effect: Allow
+            Resource: !GetAtt ExistenciaSillacaSQS.Arn
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+
+      Queues:
+        - !Ref ExistenciaSillacaSQS
+
+Outputs:
+  ExistenciaBevalSQSArn:
+    Value: !GetAtt ExistenciaBevalSQS.Arn
+  ExistenciaFebecaSQSArn:
+    Value: !GetAtt ExistenciaFebecaSQS.Arn
+  ExistenciaSillacaSQSArn:
+    Value: !GetAtt ExistenciaSillacaSQS.Arn

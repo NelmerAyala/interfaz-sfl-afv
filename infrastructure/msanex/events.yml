@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msanex
+
+Parameters:
+  BussAddFailedLogArn:
+    Type: String
+  BussAddSuccessLogArn:
+    Type: String
+
+Resources:
+  BussAddFailedEvent: #EventsRule3
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msanex-rule-buss-add-failed
+      EventPattern:
+        detail-type: ["failed"]
+        source: ["anex.buss.add"]
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussAddFailedLogArn
+          Id: Idbdd3257c-be86-46ea-8a67-a03e01f87c37
+      EventBusName: default
+
+  BussAddSuccessEvent: #EventsRule4
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msanex-rule-buss-add-success
+      EventPattern:
+        detail-type: ["completed"]
+        source: ["anex.buss.add"]
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussAddSuccessLogArn
+          Id: Id861005a2-1b84-4263-bcf1-5e8869dade1a
+      EventBusName: default
+
+Outputs:
+  BussAddFailedEventArn:
+    Value: !GetAtt BussAddFailedEvent.Arn
+  BussAddSuccessEventArn:
+    Value: !GetAtt BussAddSuccessEvent.Arn

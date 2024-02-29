@@ -1,0 +1,147 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack ms bancos/cuentas
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    NoEcho: true
+    Type: String
+  SubnetId1:
+    NoEcho: true
+    Type: String
+
+  SecretARNBeval:
+    NoEcho: true
+    Type: String
+  SecretArnFebeca:
+    NoEcho: true
+    Type: String
+  SecretARNSillaca:
+    NoEcho: true
+    Type: String
+
+  BusPeticionesSflAfvSNSTopicArn:
+    NoEcho: true
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    NoEcho: true
+    Type: String
+
+Resources:
+  ApiGatewayTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        BancosCuentasSQSArn: !GetAtt SQSTemplate.Outputs.BancosCuentasSQSArn
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+    DependsOn:
+      - SQSTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerDMFormatter: !Ref LayerDMFormatter
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretArnFebeca: !Ref SecretArnFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+
+        ApiGatewayAPIDmBan: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDmBan
+        StageAPIDmBan: !GetAtt ApiGatewayTemplate.Outputs.StageAPIDmBan
+
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+
+    DependsOn:
+      - ApiGatewayTemplate
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        BussAddBanLambdaArn: !GetAtt LambdasTemplate.Outputs.BussAddBanLambdaArn
+        BussUpdateBanLambdaArn: !GetAtt LambdasTemplate.Outputs.BussUpdateBanLambdaArn
+
+        ETLAddBanLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddBanLambdaArn
+        ETLUpdateBanLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateBanLambdaArn
+
+        ETLAddCompletedBanLogArn: !GetAtt LogsTemplate.Outputs.ETLAddCompletedBanLogArn
+        ETLUpdateCompletedBanLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateCompletedBanLogArn
+
+        BussAddFailedBanLogArn: !GetAtt LogsTemplate.Outputs.BussAddFailedBanLogArn
+        BussUpdateFailedBanLogArn: !GetAtt LogsTemplate.Outputs.BussUpdateFailedBanLogArn
+
+        ETLAddFailedBanLogArn: !GetAtt LogsTemplate.Outputs.ETLAddFailedBanLogArn
+        ETLUpdateFailedBanLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateFailedBanLogArn
+
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        DMEntidadFinancieraBanLambdaArn: !GetAtt LambdasTemplate.Outputs.DMEntidadFinancieraBanLambdaArn
+        DMCuentaBancariaInternaBanLambdaArn: !GetAtt LambdasTemplate.Outputs.DMCuentaBancariaInternaBanLambdaArn
+
+        ETLAddBanLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddBanLambdaArn
+        ETLUpdateBanLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateBanLambdaArn
+
+        BussAddBanLambdaArn: !GetAtt LambdasTemplate.Outputs.BussAddBanLambdaArn
+        BussUpdateBanLambdaArn: !GetAtt LambdasTemplate.Outputs.BussUpdateBanLambdaArn
+
+        PullSQSBanLambdaArn: !GetAtt LambdasTemplate.Outputs.PullSQSBanLambdaArn
+
+        PullSQSAddBanEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSAddBanEventArn
+        PullSQSUpdateBanEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSUpdateBanEventArn
+
+        ETLAddCompletedBanEventArn: !GetAtt EventRulesTemplate.Outputs.ETLAddCompletedBanEventArn
+        ETLUpdateCompletedBanEventArn: !GetAtt EventRulesTemplate.Outputs.ETLUpdateCompletedBanEventArn
+
+        ApiGatewayAPIDmBan: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDmBan
+        BancosCuentasSQSArn: !GetAtt SQSTemplate.Outputs.BancosCuentasSQSArn
+    DependsOn:
+      - ApiGatewayTemplate
+      - EventRulesTemplate
+      - SQSTemplate

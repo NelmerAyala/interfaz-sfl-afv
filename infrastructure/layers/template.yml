@@ -1,0 +1,97 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack layers
+
+Resources:
+  LayerSendSNSSQS:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      CompatibleArchitectures:
+        - arm64
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+      ContentUri: ../../src/layers/custom/mave-layer-send-SNS-SQS/
+      LayerName: interface-sfl-afv-mave-layer-send-SNS-SQS
+
+  LayerMySQL:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      CompatibleArchitectures:
+        - arm64
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+      ContentUri: ../../src/layers/third-party/mave-layer-mysql/
+      LayerName: interface-sfl-afv-mave-layer-mysql
+
+  LayerSecretManager:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      CompatibleArchitectures:
+        - arm64
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+      ContentUri: ../../src/layers/custom/mave-layer-secretmanager/
+      LayerName: interface-sfl-afv-mave-layer-secretmanager
+
+  LayerDMFormatter:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      CompatibleArchitectures:
+        - arm64
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+      ContentUri: ../../src/layers/custom/mave-layer-dm-formater/
+      LayerName: interface-sfl-afv-mave-layer-dm-formater
+
+  LayerSendEvent:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      CompatibleArchitectures:
+        - arm64
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+      ContentUri: ../../src/layers/custom/mave-layer-send-event/
+      LayerName: interface-sfl-afv-mave-layer-send-event
+
+  LayerAxiosGraphql:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      CompatibleArchitectures:
+        - arm64
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+      ContentUri: ../../src/layers/third-party/mave-layer-Axios-graphql/
+      LayerName: interface-sfl-afv-mave-layer-Axios-graphql
+
+  LayerJsonSchema:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      CompatibleArchitectures:
+        - arm64
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+      ContentUri: ../../src/layers/third-party/mave-layer-axios-jsonschema
+      LayerName: interface-sfl-afv-mave-layer-axios-jsonschema
+
+Outputs:
+  LayerSendSNSSQS:
+    Value: !Ref LayerSendSNSSQS
+  LayerMySQL:
+    Value: !Ref LayerMySQL
+  LayerSecretManager:
+    Value: !Ref LayerSecretManager
+  LayerDMFormatter:
+    Value: !Ref LayerDMFormatter
+  LayerSendEvent:
+    Value: !Ref LayerSendEvent
+  LayerAxiosGraphql:
+    Value: !Ref LayerAxiosGraphql
+  LayerJsonSchema:
+    Value: !Ref LayerJsonSchema

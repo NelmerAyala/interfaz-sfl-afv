@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIDmFletes:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ReglaDescuentoResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/regla_descuento.yml
+      Parameters:
+        ApiGatewayAPIDmFletes: !Ref ApiGatewayAPIDmFletes
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  ReglaDescuentoDetalleResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/regla_descuento_detalle.yml
+      Parameters:
+        ApiGatewayAPIDmFletes: !Ref ApiGatewayAPIDmFletes
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  FreigthRuleResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/circularline.yml
+      Parameters:
+        ApiGatewayAPIDmFletes: !Ref ApiGatewayAPIDmFletes
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  CircularLineResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/freightrule.yml
+      Parameters:
+        ApiGatewayAPIDmFletes: !Ref ApiGatewayAPIDmFletes
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot

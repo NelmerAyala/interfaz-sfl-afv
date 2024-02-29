@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIAnexos:
+    Type: "AWS::ApiGateway::RestApi"
+    Properties:
+      Name: mave-msanex-api-anexos
+      ApiKeySourceType: "HEADER"
+      EndpointConfiguration:
+        Types:
+          - "REGIONAL"
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIAnexos: !Ref ApiGatewayAPIAnexos
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIAnexos.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIAnexos
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIAnexos: !Ref ApiGatewayAPIAnexos
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIAnexos:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIAnexos
+  StageAPIAnexos:
+    Value: !GetAtt ApiDeploymentTemplate.Outputs.StageAPIAnexos

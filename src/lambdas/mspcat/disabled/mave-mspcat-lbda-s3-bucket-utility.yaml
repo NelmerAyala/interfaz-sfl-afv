@@ -1,0 +1,114 @@
+# Esta plantilla de AWS SAM se ha generado a partir de la configuración de su
+# función. Si su función tiene uno o más desencadenadores, tenga en cuenta que los
+# recursos de AWS asociados a estos desencadenadores no están completamente
+# especificados en esta plantilla e incluyen valores de marcadores de posición.
+# Abra esta plantilla en AWS Application Composer o en su IDE favorito y
+# modifíquela para especificar una aplicación sin servidor con otros recursos de
+# AWS.
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application Model template describing your function.
+Resources:
+  mavemspcatlbdas3bucketutility:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Handler: index.handler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      EphemeralStorage:
+        Size: 512
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      PackageType: Zip
+      Policies:
+        - Statement:
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - events:PutEvents
+              Resource: arn:aws:events:us-east-1:490598428640:event-bus/*
+            - Effect: Allow
+              Action:
+                - ec2:CreateNetworkInterface
+                - ec2:DeleteNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+              Resource: '*'
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - s3-object-lambda:List*
+                - s3-object-lambda:Get*
+                - s3-object-lambda:PutObject*
+              Resource:
+                - arn:aws:s3:::s3interfacesgalacshare
+                - arn:aws:s3:::s3interfacesxrtshare
+                - arn:aws:s3:::s3digtest
+                - arn:aws:s3:::catalogo-beval-smart-catalog
+                - arn:aws:s3:::s3catalogdigitalimages
+                - arn:aws:s3:::s3mayfactdigital
+                - arn:aws:s3:::demofacturasdigitales
+            - Sid: VisualEditor1
+              Effect: Allow
+              Action:
+                - s3:Get*
+                - s3:List*
+                - s3:PutObject*
+              Resource:
+                - arn:aws:s3:::s3interfacesgalacshare
+                - arn:aws:s3:::s3interfacesxrtshare
+                - arn:aws:s3:::s3digtest
+                - arn:aws:s3:::catalogo-beval-smart-catalog
+                - arn:aws:s3:::s3catalogdigitalimages
+                - arn:aws:s3:::s3mayfactdigital
+                - arn:aws:s3:::demofacturasdigitales
+            - Sid: Statement1
+              Effect: Allow
+              Action:
+                - s3:DeleteObject
+                - s3:GetObject
+                - s3:GetObjectAttributes
+                - s3-object-lambda:GetObject
+                - s3-object-lambda:GetObjectAttributes
+              Resource: arn:aws:s3:::s3mayfactdigital/*
+            - Sid: BACKUPMPDB
+              Effect: Allow
+              Action:
+                - s3:*
+              Resource: arn:aws:s3:::s3backupsflmpcpg/*
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:GetSendQuota
+                - ses:VerifyEmailAddress
+                - ses:SendRawEmail
+              Resource: '*'
+            - Sid: AWSLambdaVPCAccessExecutionPermissions
+              Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+                - ec2:CreateNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+                - ec2:DescribeSubnets
+                - ec2:DeleteNetworkInterface
+                - ec2:AssignPrivateIpAddresses
+                - ec2:UnassignPrivateIpAddresses
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: '*'
+      SnapStart:
+        ApplyOn: None
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto

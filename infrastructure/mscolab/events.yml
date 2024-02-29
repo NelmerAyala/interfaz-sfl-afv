@@ -1,0 +1,153 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events mscolab
+
+Parameters:
+  ETLAddCompletedLogArn:
+    Type: String
+  ETLAddFailedLogArn:
+    Type: String
+  ETLInactivateCompletedLogArn:
+    Type: String
+  ETLInactivateFailedLogArn:
+    Type: String
+  ETLUpdateCompletedLogArn:
+    Type: String
+  ETLUpdateFailedLogArn:
+    Type: String
+  ETLAddColabLambdaArn:
+    Type: String
+  ETLInactivateColabLambdaArn:
+    Type: String
+  ETLUpdateColabLambdaArn:
+    Type: String
+
+Resources:
+  ETLAddCompletedEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-etl-add-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["colab.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddCompletedLogArn
+          Id: "Idd241a208-5b8b-466f-8485-76118e629d71"
+      EventBusName: default
+
+  ETLAddFailedEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-etl-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["colab.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddFailedLogArn
+          Id: "Id242cad33-7ab5-4fc8-bf79-9f24697c9288"
+      EventBusName: default
+
+  ETLInactivateCompletedEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-etl-inactivate-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["colab.etl.inactivate"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLInactivateCompletedLogArn
+          Id: "Id9a37061a-a50c-4850-9f42-b477e7c77d16"
+      EventBusName: default
+
+  ETLInactivateFailedEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-etl-inactivate-failed
+      EventPattern:
+        { "detail-type": ["failed"], "source": ["colab.etl.inactivate"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLInactivateFailedLogArn
+          Id: "Id0f3d1c92-37c4-48e7-a98b-55632f6e3063"
+      EventBusName: default
+
+  ETLUpdateCompletedEvent: #EventsRule5
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-etl-update-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["colab.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateCompletedLogArn
+          Id: "Id7338e865-d322-4509-83d7-e3292b7f7254"
+      EventBusName: default
+
+  ETLUpdateFailedEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-etl-update-failed
+      EventPattern:
+        { "detail-type": ["failed"], "source": ["colab.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateFailedLogArn
+          Id: "Ide936a968-df7d-4a29-8de8-d69474f784ab"
+      EventBusName: default
+
+  PullSQSAddEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-pullSQS-add
+      EventPattern: { "detail-type": ["add"], "source": ["colab.pullSQS.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddColabLambdaArn
+          Id: "Id91ee21e8-77c2-4970-97dd-66f075a26a38"
+      EventBusName: default
+
+  PullSQSInactivateEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-pullSQS-inactivate
+      EventPattern:
+        {
+          "detail-type": ["inactivate"],
+          "source": ["colab.pullSQS.inactivate"],
+        }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLInactivateColabLambdaArn
+          Id: "Id2836aeb4-cc99-4e2f-8992-765162bbf2d5"
+      EventBusName: default
+
+  PullSQSUpdateEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mscolab-rule-pullSQS-update
+      EventPattern:
+        { "detail-type": ["update"], "source": ["colab.pullSQS.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateColabLambdaArn
+          Id: "Id2836aeb4-cc99-4e2f-8992-765162bbf2d5"
+      EventBusName: default
+
+Outputs:
+  ETLAddCompletedEventArn:
+    Value: !GetAtt ETLAddCompletedEvent.Arn
+  ETLAddFailedEventArn:
+    Value: !GetAtt ETLAddFailedEvent.Arn
+  ETLInactivateCompletedEventArn:
+    Value: !GetAtt ETLInactivateCompletedEvent.Arn
+  ETLInactivateFailedEventArn:
+    Value: !GetAtt ETLInactivateFailedEvent.Arn
+  ETLUpdateCompletedEventArn:
+    Value: !GetAtt ETLUpdateCompletedEvent.Arn
+  ETLUpdateFailedEventArn:
+    Value: !GetAtt ETLUpdateFailedEvent.Arn
+  PullSQSAddEventArn:
+    Value: !GetAtt PullSQSAddEvent.Arn
+  PullSQSInactivateEventArn:
+    Value: !GetAtt PullSQSInactivateEvent.Arn
+  PullSQSUpdateEventArn:
+    Value: !GetAtt PullSQSUpdateEvent.Arn

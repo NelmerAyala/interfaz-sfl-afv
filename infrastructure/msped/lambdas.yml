@@ -1,0 +1,88 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas msped
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 30
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SoftlandAPI:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+Resources:
+  BussPedLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: lambda de reglas de negocio (buss) y conexion a la API de PS (SFL)
+      Environment:
+        Variables:
+          API_SFL: !Sub "https://${SoftlandAPI}.execute-api.${AWS::Region}.amazonaws.com/MaVE-int-AFV-SFL/v1/pedidos"
+      FunctionName: mave-msped-lbda-buss-pedido
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msped/mave-msped-lbda-buss-pedido/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  DMPedLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: lambda de data management encargada de armar pedido (desde aqui se reenvian pedidos manualmente)
+      Environment:
+        Variables:
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretArnFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+      FunctionName: mave-msped-lbda-dm-pedido
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msped/mave-msped-lbda-dm-pedido/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+Outputs:
+  BussPedLambdaArn:
+    Description: BussPedLambda Arn
+    Value: !GetAtt BussPedLambda.Arn
+  DMPedLambdaArn:
+    Description: DMPedLambda Arn
+    Value: !GetAtt DMPedLambda.Arn

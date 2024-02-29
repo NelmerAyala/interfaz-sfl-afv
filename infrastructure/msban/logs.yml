@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack log groups ms bancos/cuentas
+
+Resources:
+  ETLAddCompletedBanLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msban-even-etl-add-completed
+
+  ETLUpdateCompletedBanLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msban-even-etl-update-completed
+
+  BussAddFailedBanLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msban-even-buss-add-failed
+
+  BussUpdateFailedBanLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msban-buss-update-failed
+
+  ETLAddFailedBanLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msban-even-etl-add-failed
+
+  ETLUpdateFailedBanLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msban-even-etl-update-failed
+
+Outputs:
+  ETLAddCompletedBanLogArn:
+    Value: !GetAtt ETLAddCompletedBanLog.Arn
+  ETLUpdateCompletedBanLogArn:
+    Value: !GetAtt ETLUpdateCompletedBanLog.Arn
+
+  BussAddFailedBanLogArn:
+    Value: !GetAtt BussAddFailedBanLog.Arn
+  BussUpdateFailedBanLogArn:
+    Value: !GetAtt BussUpdateFailedBanLog.Arn
+
+  ETLAddFailedBanLogArn:
+    Value: !GetAtt ETLAddFailedBanLog.Arn
+  ETLUpdateFailedBanLogArn:
+    Value: !GetAtt ETLUpdateFailedBanLog.Arn

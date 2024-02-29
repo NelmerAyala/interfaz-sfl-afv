@@ -1,0 +1,120 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msart
+
+Resources:
+
+  ErrorAddArticuloLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-even-error-articulos-add"
+  #Borrar
+  ErrorInactiveArticuloLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-even-error-articulos-inactive"
+
+  SuccessAddArticuloLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-even-success-articulos-add"
+
+  SuccessInactiveArticuloLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-even-success-articulos-inactive"
+
+  ETLAddCompletedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-etl-add-completed"
+
+  ETLAddFailedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-etl-add-failed"
+
+  ETLInactiveCompletedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-etl-inactive-completed"
+
+  ETLInactiveFailedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-etl-inactive-failed"
+
+  ETLUpdateCompletedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-etl-update-completed"
+
+  ETLUpdateFailedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-etl-update-failed"
+
+  RuleAddCompletedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-rule-add-completed"
+
+  RuleAddFailedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-rules-add-failed"
+
+  RuleUpdateCompletedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-rules-update-completed"
+
+  RuleUpdateFailedLog:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-msart-event-rules-update-failed"
+     
+Outputs:
+  ErrorAddArticuloLogArn:
+    Description: ErrorAddArticuloLog Arn
+    Value: !GetAtt ErrorAddArticuloLog.Arn
+  ErrorInactiveArticuloLogArn:
+    Description: ErrorInactiveArticuloLog Arn
+    Value: !GetAtt ErrorInactiveArticuloLog.Arn
+  SuccessAddArticuloLogArn:
+    Description: SuccessAddArticuloLog Arn
+    Value: !GetAtt SuccessAddArticuloLog.Arn
+  SuccessInactiveArticuloLogArn:
+    Description: SuccessInactiveArticuloLog Arn
+    Value: !GetAtt SuccessInactiveArticuloLog.Arn
+  ETLAddCompletedLogArn:
+    Description: ETLAddCompletedLog Arn
+    Value: !GetAtt ETLAddCompletedLog.Arn
+  ETLAddFailedLogArn:
+    Description: ETLAddFailedLog Arn
+    Value: !GetAtt ETLAddFailedLog.Arn
+  ETLInactiveCompletedLogArn:
+    Description: ETLInactiveCompletedLog Arn
+    Value: !GetAtt ETLInactiveCompletedLog.Arn
+  ETLInactiveFailedLogArn:
+    Description: ETLInactiveFailedLog Arn
+    Value: !GetAtt ETLInactiveFailedLog.Arn
+  ETLUpdateCompletedLogArn:
+    Description: ETLUpdateCompletedLog Arn
+    Value: !GetAtt ETLUpdateCompletedLog.Arn
+  ETLUpdateFailedLogArn:
+    Description: ETLUpdateFailedLog Arn
+    Value: !GetAtt ETLUpdateFailedLog.Arn
+  RuleAddCompletedLogArn:
+    Description: RuleAddCompletedLog Arn
+    Value: !GetAtt RuleAddCompletedLog.Arn
+  RuleAddFailedLogArn:
+    Description: RuleAddFailedLog Arn
+    Value: !GetAtt RuleAddFailedLog.Arn
+  RuleUpdateCompletedLogArn:
+    Description: RuleUpdateCompletedLog Arn
+    Value: !GetAtt RuleUpdateCompletedLog.Arn
+  RuleUpdateFailedLogArn:
+    Description: RuleUpdateFailedLog Arn
+    Value: !GetAtt RuleUpdateFailedLog.Arn
+  

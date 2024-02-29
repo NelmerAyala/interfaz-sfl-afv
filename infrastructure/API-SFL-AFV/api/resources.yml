@@ -1,0 +1,135 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIMigrationAfvSfl:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ResourceV1: #ApiGatewayResource2
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref ApiGatewayAPIMigrationAfvSfl
+      PathPart: v1
+      ParentId: !Ref ApiGatewayRestApiRoot
+
+  # Resource /articulos
+  ArticulosResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/articulos.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # -- Resource /bancosCuentas
+  BancosCuentasResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/bancos-cuentas.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # Resource /clientes
+  ClientesResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/clientes.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # Resource /colaboradores
+  ClientesResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/colaboradores.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # Resource /condicionPago
+  CondicionPagoResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/condicionPago.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # Resource /divComercial
+  DivComercialResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/divComercial.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+  
+  # -- Resource /divGeografica
+  DivisionGeograficaResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/division-geografica.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # Resource /docComerciales
+  DocComercialesResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/docComerciales.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # -- Resource /fletes
+  FletesResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/fletes.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # Resource /impuestos
+  ImpuestosResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/impuestos.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # -- Resource /monedas
+  MonedasResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/monedas.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # Resource /promociones
+  PromocionesResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/promociones.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # -- Resource /tasaCambio
+  TasaDeCambioResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/tasa-de-cambio.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+

@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack sqs mstcam
+
+Parameters:
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+Resources:
+  SQSQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - SQS:*
+            Effect: Allow
+            Resource: !GetAtt TasaCambioSQS.Arn
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+          - Action:
+              - SQS:SendMessage
+            Effect: Allow
+            Resource: !GetAtt TasaCambioSQS.Arn
+            Principal:
+              AWS:
+                - "*"
+            Condition:
+              ArnLike:
+                "aws:SourceArn": !Ref BusPeticionesSflAfvSNSTopicArn
+      Queues:
+        - !Ref TasaCambioSQS
+
+  TasaCambioSQS: #SQSQueue
+    Type: AWS::SQS::Queue
+    Properties:
+      ContentBasedDeduplication: false
+      DelaySeconds: 0
+      FifoQueue: true
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 3
+      VisibilityTimeout: 600
+      QueueName: mave-mstcam-sqs-tasacambio.fifo
+
+Outputs:
+  TasaCambioSQSArn:
+    Value: !GetAtt TasaCambioSQS.Arn

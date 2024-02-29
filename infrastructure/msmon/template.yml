@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack ms monedas
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ApiGatewayTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        MonedasSQSArn: !GetAtt SQSTemplate.Outputs.MonedasSQSArn
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+    DependsOn:
+      - SQSTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerDMFormatter: !Ref LayerDMFormatter
+        LayerSendEvent: !Ref LayerSendEvent
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretArnFebeca: !Ref SecretArnFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+    DependsOn:
+      - ApiGatewayTemplate
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        ETLAddMonLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddMonLambdaArn
+        ETLUpdateMonLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateMonLambdaArn
+        DMMonedasLambdaArn: !GetAtt LambdasTemplate.Outputs.DMMonedasLambdaArn
+
+        ETLAddCompletedMonLogArn: !GetAtt LogsTemplate.Outputs.ETLAddCompletedMonLogArn
+        ETLUpdateCompletedMonLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateCompletedMonLogArn
+        ETLAddFailedMonLogArn: !GetAtt LogsTemplate.Outputs.ETLAddFailedMonLogArn
+        ETLUpdateFailedMonLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateFailedMonLogArn
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        ETLAddMonLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddMonLambdaArn
+        ETLUpdateMonLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateMonLambdaArn
+        DMMonedasLambdaArn: !GetAtt LambdasTemplate.Outputs.DMMonedasLambdaArn
+        PullSQSMonLambdaArn: !GetAtt LambdasTemplate.Outputs.PullSQSMonLambdaArn
+
+        PullSQSAddMonEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSAddMonEventArn
+        PullSQSUpdateMonEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSUpdateMonEventArn
+        ETLAddCompletedMonEventArn: !GetAtt EventRulesTemplate.Outputs.ETLAddCompletedMonEventArn
+        ETLUpdateCompletedMonEventArn: !GetAtt EventRulesTemplate.Outputs.ETLUpdateCompletedMonEventArn
+
+        MonedasSQSArn: !GetAtt SQSTemplate.Outputs.MonedasSQSArn
+        ApiGatewayAPIDMMon: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDMMon
+    DependsOn:
+      - EventRulesTemplate
+      - SQSTemplate
+
+Outputs:
+  ApiGatewayAPIDMMon:
+    Value: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDMMon

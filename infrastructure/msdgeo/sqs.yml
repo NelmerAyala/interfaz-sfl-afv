@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack SQS ms distribucion geografica
+
+Parameters:
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+Resources:
+  DistGeograficaSQS:
+    Type: AWS::SQS::Queue
+    Properties:
+      ContentBasedDeduplication: false
+      DelaySeconds: 1
+      FifoQueue: true
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 3
+      VisibilityTimeout: 600
+      QueueName: mave-msdgeo-sqs-distribuciongeografica.fifo
+
+  SQSQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - SQS:*
+            Effect: Allow
+            Resource: !GetAtt DistGeograficaSQS.Arn
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+          - Action:
+              - SQS:SendMessage
+            Effect: Allow
+            Resource: !GetAtt DistGeograficaSQS.Arn
+            Principal:
+              AWS:
+                - "*"
+            Condition:
+              ArnLike:
+                aws:SourceArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+      Queues:
+        - !Ref DistGeograficaSQS
+
+Outputs:
+  DistGeograficaSQSArn:
+    Value: !GetAtt DistGeograficaSQS.Arn

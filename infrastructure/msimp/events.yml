@@ -1,0 +1,98 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msimp
+
+Parameters:
+  ETLAddCompletedLogArn:
+    Type: String
+  ETLAddFailedLogArn:
+    Type: String
+  ETLUpdateCompletedLogArn:
+    Type: String
+  ETLUpdateFailedLogArn: 
+    Type: String
+  ETLAddImpLambdaArn: 
+    Type: String
+  ETLUpdateImpLambdaArn: 
+    Type: String
+
+Resources:
+  ETLAddCompletedEvent: #EventsRule3
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msimp-rule-etl-add-completed
+      EventPattern: { "detail-type": ["completed"], "source": ["imp.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddCompletedLogArn
+          Id: "Id0db07acc-fdfa-491d-987e-3aa19af297ed"
+      EventBusName: default
+  
+  ETLAddFailedEvent: #EventsRule4
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msimp-rule-etl-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["imp.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddFailedLogArn
+          Id: "Ide72ee0a1-3f34-4d69-8694-5f638a34267d"
+      EventBusName: default
+
+  ETLUpdateCompletedEvent: #EventsRule5
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msimp-rule-etl-update-completed
+      EventPattern: { "detail-type": ["completed"], "source": ["imp.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateCompletedLogArn
+          Id: "Id0d1a3e0b-ac82-4cbd-b195-928878fb4dc5"
+      EventBusName: default
+  
+  ETLUpdateFailedEvent: #EventsRule6
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msimp-rule-etl-update-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["imp.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateFailedLogArn
+          Id: "Idc5badc56-c315-481f-9b50-572e9c28ddc9"
+      EventBusName: default
+
+  PullSQSAddEvent: #EventsRule7
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msimp-rule-pullSQS-add
+      EventPattern: { "detail-type": ["add"], "source": ["imp.pullSQS.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddImpLambdaArn
+          Id: "Id59ce498a-57f4-4ff2-9c37-353c39237e03"
+      EventBusName: default
+
+  PullSQSUpdateEvent: #EventsRule8
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msimp-rule-pullSQS-update
+      EventPattern: { "detail-type": ["update"], "source": ["imp.pullSQS.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateImpLambdaArn
+          Id: "Id4d01e35f-2404-41c0-aa70-b37b94f98695"
+      EventBusName: default
+
+Outputs:
+  ETLAddCompletedEventArn:
+    Value: !GetAtt ETLAddCompletedEvent.Arn
+  ETLAddFailedEventArn:
+    Value: !GetAtt ETLAddFailedEvent.Arn
+  ETLUpdateCompletedEventArn:
+    Value: !GetAtt ETLUpdateCompletedEvent.Arn
+  ETLUpdateFailedEventArn:
+    Value: !GetAtt ETLUpdateFailedEvent.Arn
+  PullSQSAddEventArn:
+    Value: !GetAtt PullSQSAddEvent.Arn
+  PullSQSUpdateEventArn:
+    Value: !GetAtt PullSQSUpdateEvent.Arn

@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas API-SFL-AFV
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 90
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  LayerSendSNSSQS:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  BusSflLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: SFL-AFV | Bus de peticiones
+      Environment:
+        Variables:
+          default_schema: dbafv
+          beval_schema: dbbeval
+          SNS_ARN: !Ref BusPeticionesSflAfvSNSTopicArn
+          febeca_schema: dbfebeca
+          sillaca_schema: dbsillaca
+      FunctionName: mave-busSLF-lbda
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/API-SFL-AFV/mave-busSLF-lbda
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendSNSSQS
+
+  BusDocComercialesLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: SFL-AFV | Bus de Documentos Comerciales
+      Environment:
+        Variables:
+          SQS_URL: https://sqs.us-east-1.amazonaws.com/490598428640/mave-msdocc-sqs-update-documentoscomerciales
+      FunctionName: mave-bus-documentoscomerciales
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/API-SFL-AFV/mave-bus-documentoscomerciales
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      # Se puede agregar capa LayerSendSNSSQS pero se debe tener una versión diferente del envío de los mensajes a la cola
+      # ya que estas colas no son de tipo FIFO por ende no llevan unos parametros que ya se tienen establecidos en el layer original
+      #Layers:
+      #- !Ref LayerSendSNSSQS
+
+  BusExistenciaLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: SFL-AFV | Bus de existencia
+      Environment:
+        Variables:
+          SQS_BEVAL_URL: https://sqs.us-east-1.amazonaws.com/490598428640/mave-msexist-sqs-existencia-beval
+          SQS_FEBECA_URL: https://sqs.us-east-1.amazonaws.com/490598428640/mave-msexist-sqs-existencia-febeca
+          SQS_SILLACA_URL: https://sqs.us-east-1.amazonaws.com/490598428640/mave-msexist-sqs-existencia-sillaca
+      FunctionName: mave-bus-existencia
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/API-SFL-AFV/mave-bus-existencia
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      # Se puede agregar capa LayerSendSNSSQS pero se debe tener una versión diferente del envío de los mensajes a la cola
+      # ya que estas colas no son de tipo FIFO por ende no llevan unos parametros que ya se tienen establecidos en el layer original
+      #Layers:
+      #- !Ref LayerSendSNSSQS
+
+Outputs:
+  BusSflLambdaArn:
+    Value: !GetAtt BusSflLambda.Arn
+  BusDocComercialesLambdaArn:
+    Value: !GetAtt BusDocComercialesLambda.Arn
+  BusExistenciaLambdaArn:
+    Value: !GetAtt BusExistenciaLambda.Arn

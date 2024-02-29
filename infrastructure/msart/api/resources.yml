@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIArticulos:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ArticulosResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/article.yml
+      Parameters:
+        ApiGatewayAPIArticulos: !Ref ApiGatewayAPIArticulos
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  ArticulosLpvResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/article-lpv.yml
+      Parameters:
+        ApiGatewayAPIArticulos: !Ref ApiGatewayAPIArticulos
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  ReferenciaResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/reference.yml
+      Parameters:
+        ApiGatewayAPIArticulos: !Ref ApiGatewayAPIArticulos
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  CategoriaCatalogoResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/category-catalog.yml
+      Parameters:
+        ApiGatewayAPIArticulos: !Ref ApiGatewayAPIArticulos
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+  
+  CategoriaArticuloCatalogoResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/category-article-catalog.yml
+      Parameters:
+        ApiGatewayAPIArticulos: !Ref ApiGatewayAPIArticulos
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  MarcasResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/brand.yml
+      Parameters:
+        ApiGatewayAPIArticulos: !Ref ApiGatewayAPIArticulos
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot        

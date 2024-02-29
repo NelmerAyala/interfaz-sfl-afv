@@ -1,0 +1,84 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPICliente:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ClienteResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/cliente.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+  ConceptoTriCliResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/conceptotributariocliente.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+  ConceptoTriDetResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/conceptotributariodetalle.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+  DireccionResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/direccion.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+  GrupoClienteResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/grupo_cliente.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+  LimiteCreditoResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/limitedecredito.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+  RepresentanteResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/representante.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+  TelefonoResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/telefono.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+  TipoClienteResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/tipocliente.yml
+      Parameters:
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+        
+

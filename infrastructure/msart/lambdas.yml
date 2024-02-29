@@ -1,0 +1,352 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas msart
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 600
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  # LAYERS
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  # APIS
+  ApiGatewayAPIColaboradores:
+    Type: String
+  ApiGatewayAPIDivComercial:
+    Type: String
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+
+  ETLAddArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | ETL Add"
+      Environment:
+        Variables:
+          URL_DM_ARTICULOS: ""
+          URL_DM_GRUPO_CLIENTE: ""
+          URL_DM_IMPUESTOS: ""
+      FunctionName: mave-msart-lbda-etl-Add
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-etl-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+        - !Ref LayerAxiosGraphql
+
+  ETLInactiveArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | ETL Inactive"
+      Environment:
+        Variables:
+          URL_DM_ARTICULOS: ""
+          URL_DM_GRUPO_CLIENTE: ""
+      FunctionName: mave-msart-lbda-etl-Inactive
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-etl-Inactive/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+        - !Ref LayerAxiosGraphql
+
+  ETLUpdateArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | ETL Update"
+      Environment:
+        Variables:
+          URL_DM_ARTICULOS: ""
+          URL_DM_GRUPO_CLIENTE: ""
+          URL_DM_IMPUESTOS: ""
+      FunctionName: mave-msart-lbda-etl-Update
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-etl-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+        - !Ref LayerAxiosGraphql
+
+  DMArticulosArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | Articulos"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "articulos"
+      FunctionName: mave-msart-lbda-dm-articulo
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-dm-articulo/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMReferenciaArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | Referencia"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "referencia"
+      FunctionName: mave-msart-lbda-dm-referencia
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-dm-referencia/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMArticulosLpvArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | Articulos Lpv"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "articulos_lpv"
+          TABLE2: "articulos"
+      FunctionName: mave-msart-lbda-dm-articulo-lpv
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-dm-articulo-lpv/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMCategoriaCatalogoArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | Categoria Catalago"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "categoriacatalogo"
+      FunctionName: mave-msart-lbda-dm-categoriacatalogo
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-dm-categoriacatalogo/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMCategoriaArticuloCatalogoArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | Categoria Articulo Catalago"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "categoriaarticulocatalogo"
+      FunctionName: mave-msart-lbda-dm-categoriaarticulocatalogo
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-dm-categoriaarticulocatalogo/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMMarcasArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | Marcas"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "marcas"
+      FunctionName: mave-msart-lbda-dm-marcas
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-dm-marcas/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+  
+  DMTransactionAddArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | Add Maestro"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          REFERENCIA: "referencia"
+          CATEGORIAARTICULO: "categoriaarticulocatalogo"
+          ARTICULOS_LPV: "articulos_lpv"
+          ARTICULOS: "articulos"
+      FunctionName: mave-msart-lbda-dm-transaction-add
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-dm-transaction-add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+        - !Ref LayerSendEvent
+
+  DMTransactionInactiveArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Procesamiento de Datos | Inactive Maestro"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          REFERENCIA: "referencia"
+          CATEGORIAARTICULO: "categoriaarticulocatalogo"
+          ARTICULOS_LPV: "articulos_lpv"
+          ARTICULOS: "articulos"
+      FunctionName: mave-msart-lbda-dm-transaction-inactive
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-dm-transaction-inactive/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+        - !Ref LayerSendEvent
+  
+  RuleUpdateArtLambdaArn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Rule Update"
+      Environment:
+        Variables:
+          URL_DM_ARTICULOS: !Sub "https://${ApiGatewayAPIArticulos}.execute-api.${AWS::Region}.amazonaws.com/articles"
+          # URL_DM_CLIENTES: !Sub "https://${ApiGatewayAPIDivComercial}.execute-api.${AWS::Region}.amazonaws.com/cleints"
+      FunctionName: mave-msart-lbda-rule-Update
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-rule-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+  
+  RuleAddArtLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Rule Add"
+      Environment:
+        Variables:
+          URL_DM_ARTICULOS: !Sub "https://${ApiGatewayAPIArticulos}.execute-api.${AWS::Region}.amazonaws.com/articles"
+          # URL_DM_CLIENTES: !Sub "https://${ApiGatewayAPIDivComercial}.execute-api.${AWS::Region}.amazonaws.com/cleints"
+      FunctionName: mave-msart-lbda-rule-Add
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-rule-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  PullSQSArtLambdaArn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Articulos | Pull de Cola SQS"
+      FunctionName: mave-msart-lbda-pullSQS
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msart/mave-msart-lbda-pullSQS/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+Outputs:
+  ETLAddArtLambdaArn:
+    Description: ETLAddArtLambda Arn
+    Value: !GetAtt ETLAddArtLambda.Arn
+  ETLInactiveArtLambdaArn:
+    Description: ETLInactiveArtLambda Arn
+    Value: !GetAtt ETLInactiveArtLambda.Arn
+  ETLUpdateArtLambdaArn:
+    Description: ETLUpdateArtLambda Arn
+    Value: !GetAtt ETLUpdateArtLambda.Arn
+  DMArticulosArtLambdaArn:
+    Description: DMArticulosArtLambda Arn
+    Value: !GetAtt DMArticulosArtLambda.Arn
+  DMReferenciaArtLambdaArn:
+    Description: DMReferenciaArtLambda Arn
+    Value: !GetAtt DMReferenciaArtLambda.Arn
+  DMArticulosLpvArtLambdaArn:
+    Description: DMArticulosLpvArtLambda Arn
+    Value: !GetAtt DMArticulosLpvArtLambda.Arn
+  DMCategoriaCatalogoArtLambdaArn:
+    Description: DMCategoriaCatalogoArtLambda Arn
+    Value: !GetAtt DMCategoriaCatalogoArtLambda.Arn
+  DMCategoriaArticuloCatalogoArtLambdaArn:
+    Description: DMCategoriaArticuloCatalogoArtLambda Arn
+    Value: !GetAtt DMCategoriaArticuloCatalogoArtLambda.Arn
+  DMMarcasArtLambdaArn:
+    Description: DMMarcasArtLambda Arn
+    Value: !GetAtt DMMarcasArtLambda.Arn
+  DMTransactionAddArtLambdaArn:
+    Description: DMTransactionAddArtLambda Arn
+    Value: !GetAtt DMTransactionAddArtLambda.Arn
+  DMTransactionInactiveArtLambdaArn:
+    Description: DMTransactionInactiveArtLambda Arn
+    Value: !GetAtt DMTransactionInactiveArtLambda.Arn
+  RuleUpdateArtLambdaArn:
+    Description: RuleUpdateArtLambdaArn Arn
+    Value: !GetAtt RuleUpdateArtLambdaArn.Arn
+  RuleAddArtLambdaArn:
+    Description: RuleAddArtLambda Arn
+    Value: !GetAtt RuleAddArtLambda.Arn
+  PullSQSArtLambdaArn:
+    Description: PullSQSArtLambdaArn Arn
+    Value: !GetAtt PullSQSArtLambdaArn.Arn
+    

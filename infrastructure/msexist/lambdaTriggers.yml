@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers msexist
+
+Parameters:
+  BusExistLambdaArn:
+    Type: String
+  PullSQSETLUpdateExistLambdaArn:
+    Type: String
+
+  ExistenciaBevalSQSArn:
+    Type: String
+  ExistenciaFebecaSQSArn:
+    Type: String
+  ExistenciaSillacaSQSArn:
+    Type: String
+
+  ApiGatewayAPIMigrationSflAfv:
+    Type: String
+
+Resources:
+  BusExistenciaLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref BusExistLambdaArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIMigrationSflAfv}/*/POST/articulos/precios"
+
+  LambdaEventSourceMappingBeval:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 100
+      EventSourceArn: !Ref ExistenciaBevalSQSArn
+      FunctionName: !Ref PullSQSETLUpdateExistLambdaArn
+      Enabled: true
+      MaximumBatchingWindowInSeconds: 1
+
+  LambdaEventSourceMappingFebeca:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 100
+      EventSourceArn: !Ref ExistenciaFebecaSQSArn
+      FunctionName: !Ref PullSQSETLUpdateExistLambdaArn
+      Enabled: true
+      MaximumBatchingWindowInSeconds: 1
+
+  LambdaEventSourceMappingSillaca:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 100
+      EventSourceArn: !Ref ExistenciaSillacaSQSArn
+      FunctionName: !Ref PullSQSETLUpdateExistLambdaArn
+      Enabled: true
+      MaximumBatchingWindowInSeconds: 1

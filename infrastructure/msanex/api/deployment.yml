@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API deployment
+
+Parameters:
+  ApiGatewayAPIAnexos:
+    Type: String
+
+Resources:
+  StageAPIAnexos:
+    Type: "AWS::ApiGateway::Stage"
+    Properties:
+      StageName: annex
+      DeploymentId: !Ref ApiGatewayDeployment
+      RestApiId: !Ref ApiGatewayAPIAnexos
+      CacheClusterEnabled: false
+      TracingEnabled: false
+
+  ApiGatewayDeployment:
+    Type: "AWS::ApiGateway::Deployment"
+    Properties:
+      RestApiId: !Ref ApiGatewayAPIAnexos
+
+Outputs:
+  StageAPIAnexos:
+    Value: !Ref StageAPIAnexos

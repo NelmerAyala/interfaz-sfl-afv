@@ -1,0 +1,94 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events ms distribucion geografica
+
+Parameters:
+  ETLAddDistGeoLambdaArn:
+    Type: String
+  ETLUpdateDistGeoLambdaArn:
+    Type: String
+
+  ETLAddCompletedDistGeoLogArn:
+    Type: String
+  ETLUpdateCompletedDistGeoLogArn:
+    Type: String
+
+  ETLAddFailedDistGeoLogArn:
+    Type: String
+  ETLUpdateFailedDistGeoLogArn:
+    Type: String
+
+Resources:
+  ETLAddCompletedDistGeoEvent: #EventsRule2:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msdgeo-even-etl-add-completed
+      EventPattern: { "detail-type": ["completed"], "source": ["dgeo.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddCompletedDistGeoLogArn
+          Id: Id46c05e8c-2a49-4f60-ba1f-834fef456706
+      EventBusName: default
+
+  ETLUpdateCompletedDistGeoEvent: #EventsRule4
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msdgeo-even-etl-update-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["dgeo.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateCompletedDistGeoLogArn
+          Id: Id3fa783e8-3899-4d45-a442-dcde80104e56
+      EventBusName: default
+
+  ETLAddFailedDistGeoEvent: #EventsRule
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msdgeo-even-etl-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["dgeo.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddFailedDistGeoLogArn
+          Id: Idc87ca500-6aa9-46e8-9c1b-8b4c1052f828
+      EventBusName: default
+
+  ETLUpdateFailedDistGeoEvent: #EventsRule6
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msdgeo-even-etl-update-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["dgeo.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateFailedDistGeoLogArn
+          Id: Id55ab1530-9fea-4d3c-8e75-9f664545218a
+      EventBusName: default
+
+  PullSQSAddDistGeoEvent: #EventsRule7
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msdgeo-rule-pullSQS-add
+      EventPattern: { "detail-type": ["add"], "source": ["dgeo.pullSQS.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddDistGeoLambdaArn
+          Id: Idf20e0e0b-248d-4451-9d7c-1c7d24b5022e
+      EventBusName: default
+
+  PullSQSUpdateDistGeoEvent: #EventsRule8:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msdgeo-rule-pullSQS-update
+      EventPattern:
+        { "detail-type": ["update"], "source": ["dgeo.pullSQS.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateDistGeoLambdaArn
+          Id: Id7ef56a24-067c-4bd4-aa94-2fe69ddff4fa
+      EventBusName: default
+
+Outputs:
+  PullSQSAddDistGeoEventArn:
+    Value: !GetAtt PullSQSAddDistGeoEvent.Arn
+  PullSQSUpdateDistGeoEventArn:
+    Value: !GetAtt PullSQSUpdateDistGeoEvent.Arn

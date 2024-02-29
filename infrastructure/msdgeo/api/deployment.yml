@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API deployment
+
+Parameters:
+  ApiGatewayAPIDmDistGeo:
+    Type: String
+  StageName:
+    Type: String
+    Default: v1
+
+Resources:
+  ApiGatewayDeployment:
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      RestApiId: !Ref ApiGatewayAPIDmDistGeo
+      Description: api deployment
+      StageName: !Ref StageName
+
+Outputs:
+  StageAPIDmDistGeo:
+    Value: !Ref StageName

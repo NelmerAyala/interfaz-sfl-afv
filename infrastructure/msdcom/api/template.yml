@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIDivComercial:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: mave-msdcom-api-coordinaciones
+      Description: API - Microservicio Division Comercial
+      ApiKeySourceType: HEADER
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIDivComercial: !Ref ApiGatewayAPIDivComercial
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIDivComercial.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIDivComercial
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIDivComercial: !Ref ApiGatewayAPIDivComercial
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIDivComercial:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIDivComercial

@@ -1,0 +1,180 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas mstcam
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 600
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerJsonSchema:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  ApiGatewayAPIDMMon:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  PullSQSTCamLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      FunctionName: mave-mstcam-lbda-pullSQS
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mstcam/mave-mstcam-lbda-pullSQS/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+
+  ETLAddTCamLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          DP_MONEDA_URL: !Sub "https://${ApiGatewayAPIDMMon}.execute-api.${AWS::Region}.amazonaws.com/currency/mave-msmon-lbda-dm-monedas"
+      FunctionName: mave-mstcam-lbda-etl-Add
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mstcam/mave-mstcam-lbda-etl-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerJsonSchema
+
+  ETLInactiveTCamLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          DP_MONEDA_URL: !Sub "https://${ApiGatewayAPIDMMon}.execute-api.${AWS::Region}.amazonaws.com/currency/mave-msmon-lbda-dm-monedas"
+      FunctionName: mave-mstcam-lbda-etl-Inactive
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mstcam/mave-mstcam-lbda-etl-Inactive/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerJsonSchema
+
+  ETLUpdateTCamLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          DP_MONEDA_URL: !Sub "https://${ApiGatewayAPIDMMon}.execute-api.${AWS::Region}.amazonaws.com/currency/mave-msmon-lbda-dm-monedas"
+      FunctionName: mave-mstcam-lbda-etl-Update
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mstcam/mave-mstcam-lbda-etl-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerJsonSchema
+
+  DMTCambioLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      Environment:
+        Variables:
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretArnFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          REGION: !Ref AWS::Region
+          TABLE: tasa_cambio
+      FunctionName: mave-mstcam-lbda-tasacambio
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mstcam/mave-mstcam-lbda-tasacambio/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerDMFormatter
+        - !Ref LayerSecretManager
+
+  BussInactiveTCamLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      FunctionName: mave-mstcam-lbda-buss-Inactive
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mstcam/mave-mstcam-lbda-buss-Inactive/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+
+  BussAddTCamLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      FunctionName: mave-mstcam-lbda-buss-Add
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mstcam/mave-mstcam-lbda-buss-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+
+  BussUpdateTCamLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: ""
+      FunctionName: mave-mstcam-lbda-buss-Update
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mstcam/mave-mstcam-lbda-buss-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+
+Outputs:
+  PullSQSTCamLambdaArn:
+    Description: PullSQSTCamLambda Arn
+    Value: !GetAtt PullSQSTCamLambda.Arn
+
+  ETLAddTCamLambdaArn:
+    Description: ETLAddTCamLambda Arn
+    Value: !GetAtt ETLAddTCamLambda.Arn
+  ETLInactiveTCamLambdaArn:
+    Description: ETLInactiveTCamLambda Arn
+    Value: !GetAtt ETLInactiveTCamLambda.Arn
+  ETLUpdateTCamLambdaArn:
+    Description: ETLUpdateTCamLambda Arn
+    Value: !GetAtt ETLUpdateTCamLambda.Arn
+
+  DMTCambioLambdaArn:
+    Value: !GetAtt DMTCambioLambda.Arn
+
+  BussInactiveTCamLambdaArn:
+    Value: !GetAtt BussInactiveTCamLambda.Arn
+  BussAddTCamLambdaArn:
+    Value: !GetAtt BussAddTCamLambda.Arn
+  BussUpdateTCamLambdaArn:
+    Value: !GetAtt BussUpdateTCamLambda.Arn

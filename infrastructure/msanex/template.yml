@@ -1,0 +1,106 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack msanexos
+
+Parameters:
+  #LAYERS
+  LayerDMformater:
+    Type: String
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerSendSNSSQS:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  # API
+  SoftlandAPI:
+    Type: String
+  # ADDS
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ApiGatewayTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        BussAddFailedLogArn: !GetAtt LogsTemplate.Outputs.BussAddFailedLogArn
+        BussAddSuccessLogArn: !GetAtt LogsTemplate.Outputs.BussAddSuccessLogArn
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerDMformater: !Ref LayerDMformater
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerSendSNSSQS: !Ref LayerSendSNSSQS
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretARNFebeca: !Ref SecretARNFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+        SoftlandAPI: !Ref SoftlandAPI
+        ApiGatewayAPIAnexos: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIAnexos
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        DMAnexosLambdaArn: !GetAtt LambdasTemplate.Outputs.DMAnexosLambdaArn
+        BussAnexosLambdaArn: !GetAtt LambdasTemplate.Outputs.BussAnexosLambdaArn
+        ApiGatewayAPIAnexos: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIAnexos
+        AnexosSQSArn: !GetAtt SQSTemplate.Outputs.AnexosSQSArn
+    DependsOn:
+      - ApiGatewayTemplate
+      - LambdasTemplate
+
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        AnexosSQSArn: !GetAtt SQSTemplate.Outputs.AnexosSQSArn
+        BusPeticionesXRTAFVSnsArn: !Ref BusPeticionesXRTAFVSnsArn
+        BusPeticionesAFVSoftlandSnsArn: !Ref BusPeticionesAFVSoftlandSnsArn
+    DependsOn:
+      - SQSTemplate

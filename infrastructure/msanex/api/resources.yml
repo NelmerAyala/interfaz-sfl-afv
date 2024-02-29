@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIAnexos:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  AnexosResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/anexos.yml
+      Parameters:
+        ApiGatewayAPIAnexos: !Ref ApiGatewayAPIAnexos
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  AnexosDetalleResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/anexosdetalle.yml
+      Parameters:
+        ApiGatewayAPIAnexos: !Ref ApiGatewayAPIAnexos
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot

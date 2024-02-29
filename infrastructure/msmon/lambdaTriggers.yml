@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers msmon
+
+Parameters:
+  ETLAddMonLambdaArn:
+    Type: String
+  ETLUpdateMonLambdaArn:
+    Type: String
+  DMMonedasLambdaArn:
+    Type: String
+  PullSQSMonLambdaArn:
+    Type: String
+
+  PullSQSAddMonEventArn:
+    Type: String
+  PullSQSUpdateMonEventArn:
+    Type: String
+  ETLAddCompletedMonEventArn:
+    Type: String
+  ETLUpdateCompletedMonEventArn:
+    Type: String
+
+  MonedasSQSArn:
+    Type: String
+
+  ApiGatewayAPIDMMon:
+    Type: String
+
+Resources:
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLUpdateMonLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSUpdateMonEventArn
+
+  LambdaPermission2:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLAddMonLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSAddMonEventArn
+
+  LambdaPermission7:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMMonedasLambdaArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDMMon}/*/POST/mave-msmon-lbda-dm-monedas"
+
+  LambdaPermission8:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMMonedasLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref ETLAddCompletedMonEventArn
+
+  LambdaPermission9:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMMonedasLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref ETLUpdateCompletedMonEventArn
+
+  LambdaEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      EventSourceArn: !Ref MonedasSQSArn
+      FunctionName: !Ref PullSQSMonLambdaArn
+      Enabled: true
+      MaximumBatchingWindowInSeconds: 0

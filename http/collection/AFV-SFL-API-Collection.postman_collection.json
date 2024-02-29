@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "2480b5db-4de6-46f1-ab1b-f792046d9399",
+		"name": "AFV-SFL-API-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20464890"
+	},
+	"item": [
+		{
+			"name": "Add Pedido",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"CASA\": 0,\n    \"CLIENTE\": 12088,\n    \"CONDICION_PAGO\": 15,\n    \"ESTADO\": \"A\",\n    \"FECHA_HORA\": \"2022-11-02T11:46:35.000\",\n    \"OBSERVACIONES\": \"\",\n    \"PEDIDO\": \"PZ02160011\",\n    \"PORC_DESCUENTO1\": 0,\n    \"RUTA\": 5,\n    \"VENDEDOR\": 176,\n    \"U_Pedido_Padre\": \"PZ02160011\",\n    \"U_Instrumento_Pago\": 25,\n    \"U_Descripcion\": \"TRANSFERENCIA\",\n    \"PEDIDO_LINEA\": [\n        {\n            \"ARTICULO\": 4201,\n            \"CANTIDAD_PEDIDA\": 3,\n            \"COMENTARIO\": \"DESC PROMO: 0% DESC POR EMP:0%\",\n            \"ESTADO\": \"A\",\n            \"PEDIDO\": \"PZ02160011\",\n            \"PORC_DESCUENTO\": 0,\n            \"PRECIO_UNITARIO\": 80,\n            \"TIPO_DESCUENTO\": \"P\"\n        },\n        {\n            \"ARTICULO\": 4540,\n            \"CANTIDAD_PEDIDA\": 4,\n            \"COMENTARIO\": \"DESC PROMO: 0% DESC POR EMP:0%\",\n            \"ESTADO\": \"A\",\n            \"PEDIDO\": \"PZ02160011\",\n            \"PORC_DESCUENTO\": 0,\n            \"PRECIO_UNITARIO\": 85,\n            \"TIPO_DESCUENTO\": \"P\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.57.129.11/RESTAPI/api/pedidos",
+					"protocol": "http",
+					"host": [
+						"10",
+						"57",
+						"129",
+						"11"
+					],
+					"path": [
+						"RESTAPI",
+						"api",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba funciona GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.57.129.11/RESTAPI/api/pedidos",
+					"protocol": "http",
+					"host": [
+						"10",
+						"57",
+						"129",
+						"11"
+					],
+					"path": [
+						"RESTAPI",
+						"api",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Gateway",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://qx93mh5j4g.execute-api.us-east-1.amazonaws.com/MaVE-int-AFV-SFL/v1/pedidos",
+					"protocol": "https",
+					"host": [
+						"qx93mh5j4g",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"MaVE-int-AFV-SFL",
+						"v1",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

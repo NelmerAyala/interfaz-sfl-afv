@@ -1,0 +1,108 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack msped
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SoftlandAPI:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  BusPeticionesAfvSflSNSTopicArn:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesAfvSflSNSTopicArn: !Ref BusPeticionesAfvSflSNSTopicArn
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        PedidosSQSArn: !GetAtt SQSTemplate.Outputs.PedidosSQSArn
+        BusPeticionesAfvSflSNSTopicArn: !Ref BusPeticionesAfvSflSNSTopicArn
+    DependsOn:
+      - SQSTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerDMFormatter: !Ref LayerDMFormatter
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+        SoftlandAPI: !Ref SoftlandAPI
+
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretArnFebeca: !Ref SecretArnFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        BussPedLambdaArn: !GetAtt LambdasTemplate.Outputs.BussPedLambdaArn
+        DMPedLambdaArn: !GetAtt LambdasTemplate.Outputs.DMPedLambdaArn
+        BussAddFailedLogArn: !GetAtt LogsTemplate.Outputs.BussAddFailedLogArn
+        BussAddSuccessLogArn: !GetAtt LogsTemplate.Outputs.BussAddSuccessLogArn
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        BussPedLambdaArn: !GetAtt LambdasTemplate.Outputs.BussPedLambdaArn
+        DMPedLambdaArn: !GetAtt LambdasTemplate.Outputs.DMPedLambdaArn
+
+        BussAddEventArn: !GetAtt EventRulesTemplate.Outputs.BussAddEventArn
+
+        PedidosSQSArn: !GetAtt SQSTemplate.Outputs.PedidosSQSArn
+    DependsOn:
+      - EventRulesTemplate
+      - SQSTemplate

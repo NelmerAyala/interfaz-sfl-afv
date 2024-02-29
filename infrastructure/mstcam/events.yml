@@ -1,0 +1,272 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events mstcam
+
+Parameters:
+  DMTCambioLambdaArn:
+    Type: String
+
+  BussAddTCamLambdaArn:
+    Type: String
+  BussInactiveTCamLambdaArn:
+    Type: String
+  BussUpdateTCamLambdaArn:
+    Type: String
+
+  ETLAddTCamLambdaArn:
+    Type: String
+  ETLInactiveTCamLambdaArn:
+    Type: String
+  ETLUpdateTCamLambdaArn:
+    Type: String
+
+  BussAddCompletedTCamLogArn:
+    Type: String
+  BussInactivateCompletedTCamLogArn:
+    Type: String
+  BussUpdateCompletedTCamLogArn:
+    Type: String
+
+  BussAddFailedTCamLogArn:
+    Type: String
+  BussInactivateFailedTCamLogArn:
+    Type: String
+  BussUpdateFailedTCamLogArn:
+    Type: String
+
+  ETLAddCompletedTCamLogArn:
+    Type: String
+  ETLInactivateCompletedTCamLogArn:
+    Type: String
+  ETLUpdateCompletedTCamLogArn:
+    Type: String
+
+  ETLAddFailedTCamLogArn:
+    Type: String
+  ETLUpdateFailedTCamLogArn:
+    Type: String
+  ETLInactivateFailedTCamLogArn:
+    Type: String
+
+  PullSQSAddTCamLogArn:
+    Type: String
+  PullSQSInactivateTCamLogArn:
+    Type: String
+  PullSQSUpdateTCamLogArn:
+    Type: String
+
+Resources:
+  BussAddCompletedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-buss-add-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["tcam.buss.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref DMTCambioLambdaArn
+          Id: "Id79cf3329-eca5-427c-a3a1-c944e4f8ef2a"
+        - Arn: !Ref BussAddCompletedTCamLogArn
+          Id: "Ide4da74e2-e3c8-480a-a80c-6c36a10883dd"
+      EventBusName: default
+
+  BussInactivateCompletedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-buss-inactivate-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["tcam.buss.inactive"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref DMTCambioLambdaArn
+          Id: "Id0d01ad46-888b-4285-8d9f-2962291a57c1"
+        - Arn: !Ref BussInactivateCompletedTCamLogArn
+          Id: "Id4c046b0d-aed9-43b5-ba1b-2bfb31d032a0"
+      EventBusName: default
+
+  BussUpdateCompletedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-buss-update-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["tcam.buss.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref DMTCambioLambdaArn
+          Id: "Id290d50e6-9c94-443e-8871-058602fc4eef"
+        - Arn: !Ref BussUpdateCompletedTCamLogArn
+          Id: "Idd0c6ef2b-4645-41a4-8ba8-0b378a63d240"
+      EventBusName: default
+
+  BussAddFailedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-buss-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["tcam.buss.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussAddFailedTCamLogArn
+          Id: "Idddf7c886-9006-4e5c-95f4-2b74787df40b"
+      EventBusName: default
+
+  BussUpdateFailedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-buss-update-failed
+      EventPattern:
+        { "detail-type": ["failed"], "source": ["tcam.buss.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussUpdateFailedTCamLogArn
+          Id: "Idcf7d996c-bf1f-4ed1-a218-585d1dcaa877"
+      EventBusName: default
+
+  BussInactivateFailedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-buss-inactivate-failed
+      EventPattern:
+        { "detail-type": ["failed"], "source": ["tcam.buss.inactive"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussInactivateFailedTCamLogArn
+          Id: "Id3927bf49-0fec-49ca-a199-8ba324efc603"
+      EventBusName: default
+
+  ETLAddCompletedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-etl-add-completed
+      EventPattern: { "detail-type": ["completed"], "source": ["tcam.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussAddTCamLambdaArn
+          Id: "Idcb42f2d7-7160-4f3b-b6a1-e9064b2e5235"
+        - Arn: !Ref ETLAddCompletedTCamLogArn
+          Id: "Ide02cfb8d-40ef-4ae9-8ebd-2a20d4e64d23"
+      EventBusName: default
+
+  ETLInactivateCompletedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-etl-inactive-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["tcam.etl.inactive"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussInactiveTCamLambdaArn
+          Id: "Id5520cbe6-1342-4e94-a5bb-2c8c21808913"
+        - Arn: !Ref ETLInactivateCompletedTCamLogArn
+          Id: "Id81a2a2b0-60fa-4799-beb4-c2f497a7e412"
+      EventBusName: default
+
+  ETLUpdateCompletedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-etl-update-completed
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["tcam.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussUpdateTCamLambdaArn
+          Id: "Idb2a07b2b-709c-4022-be8d-269e54ff8c18"
+        - Arn: !Ref ETLUpdateCompletedTCamLogArn
+          Id: "Idcbeb8b66-7291-4e8e-913b-4f2031ffbb1f"
+      EventBusName: default
+
+  ETLAddFailedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-etl-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["tcam.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddFailedTCamLogArn
+          Id: "Id02fc49e5-d12e-4ca6-a1b1-82263baeda32"
+      EventBusName: default
+
+  ETLInactivateFailedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-etl-inactive-failed
+      EventPattern:
+        { "detail-type": ["failed"], "source": ["tcam.etl.inactive"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLInactivateFailedTCamLogArn
+          Id: "Ided430e7c-4741-4bfa-824a-74d1edf978a4"
+      EventBusName: default
+
+  ETLUpdateFailedTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-etl-update-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["tcam.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateFailedTCamLogArn
+          Id: "Idedaa36f7-ba48-4b19-8757-42e200f9ed5f"
+      EventBusName: default
+
+  PullSQSAddTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-pullSQS-add
+      EventPattern: { "detail-type": ["add"], "source": ["tcam.pullSQS.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref PullSQSAddTCamLogArn
+          Id: "Id2d66a126-89fd-4631-9570-f54e9aa2a5dc"
+        - Arn: !Ref ETLAddTCamLambdaArn
+          Id: "Id440c9a73-aff6-490a-adfb-73398c6bb790"
+      EventBusName: default
+
+  PullSQSInactivateTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-pullSQS-inactive
+      EventPattern:
+        { "detail-type": ["inactivate"], "source": ["tcam.pullSQS.inactivate"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref PullSQSInactivateTCamLogArn
+          Id: "Id26aa4c3e-f9ee-48b9-9ca1-1502f2e62c3a"
+        - Arn: !Ref ETLInactiveTCamLambdaArn
+          Id: "Ide6e9e09b-ee9a-4563-ad55-99a4e77b930d"
+      EventBusName: default
+
+  PullSQSUpdateTCamEvent:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-mstcam-even-pullSQS-update
+      EventPattern:
+        { "detail-type": ["update"], "source": ["tcam.pullSQS.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref PullSQSUpdateTCamLogArn
+          Id: "Id54cc9cae-fae3-43d8-b2bb-b612a0973856"
+        - Arn: !Ref ETLUpdateTCamLambdaArn
+          Id: "Ida6828a3f-37c5-465f-b8be-1b62c27de6fb"
+      EventBusName: default
+
+Outputs:
+  BussAddCompletedTCamEventArn:
+    Value: !GetAtt BussAddCompletedTCamEvent.Arn
+  BussInactivateCompletedTCamEventArn:
+    Value: !GetAtt BussInactivateCompletedTCamEvent.Arn
+  BussUpdateCompletedTCamEventArn:
+    Value: !GetAtt BussUpdateCompletedTCamEvent.Arn
+
+  ETLAddCompletedTCamEventArn:
+    Value: !GetAtt ETLAddCompletedTCamEvent.Arn
+  ETLInactivateCompletedTCamEventArn:
+    Value: !GetAtt ETLInactivateCompletedTCamEvent.Arn
+  ETLUpdateCompletedTCamEventArn:
+    Value: !GetAtt ETLUpdateCompletedTCamEvent.Arn
+
+  PullSQSAddTCamEventArn:
+    Value: !GetAtt PullSQSAddTCamEvent.Arn
+  PullSQSInactivateTCamEventArn:
+    Value: !GetAtt PullSQSInactivateTCamEvent.Arn
+  PullSQSUpdateTCamEventArn:
+    Value: !GetAtt PullSQSUpdateTCamEvent.Arn

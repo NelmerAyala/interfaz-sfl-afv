@@ -1,0 +1,108 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas msanexos
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 600
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  # LAYERS
+  LayerDMformater:
+    Type: String
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerSendSNSSQS:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  # APIs
+  SoftlandAPI:
+    Type: String
+  ApiGatewayAPIAnexos:
+    Type: String
+
+Resources:
+  DMAnexosLambda: #LambdaFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "AFV-SFL | Microservicio Anexos | Procesamiento de Datos | Anexos"
+      Environment:
+        Variables:
+          # ANEXO_DATA: "VENDEDOR CLIENTE CUENTA_BANCARIA"
+          # ANEXODETALLE_DATA: "DOCUMENTO MONTO"
+          REGION: "us-east-1"
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE_ANEXO: "anexo"
+          TABLE_ANEXODETALLE: "anexodetalle"
+
+      FunctionName: mave-msanex-lbda-dm-anexos
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msanex/mave-msanex-lbda-dm-anexos
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+  BussAnexosLambda: #LambdaFunction2
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "AFV-SFL | Microservicio Anexos | Buss de Datos | Anexos"
+      Environment:
+        Variables:
+          ANEXODETALLE_DATA: "DOCUMENTO MONTO"
+          ANEXO_DATA: "VENDEDOR CLIENTE CUENTA_BANCARIA DEPOSITO_MONTO NUMERO_DEPOSITO FECHA_DEPOSITO"
+          API_SFL_URL: "https://${SoftlandAPI}.execute-api.${AWS::Region}.amazonaws.com/MaVE-int-AFV-SFL/v1/anexos"
+          # API_URL COLOCAR LA DE PROD
+          API_URL: "https://${ApiGatewayAPIAnexos}.execute-api.${AWS::Region}.amazonaws.com/annex"
+          LAMBDA_NAME: "mave-msretry-lbda-add-data"
+          SNS_AFV_NAME: "mave-sns-busPeticionesAFV-SFL.fifo"
+          SNS_XRT_ARN: "arn:aws:sns:${AWS::Region}:${AWS::AccountId}:mave-sns-busPeticionesAFV-XRT.fifo"
+      FunctionName: mave-msanex-lbda-buss-anexos
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msanex/mave-msanex-lbda-buss-anexos
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+        - !Ref LayerSendSNSSQS
+        - !Ref LayerDMformater
+
+Outputs:
+  DMAnexosLambdaArn:
+    Description: DMAnexosLambda Arn
+    Value: !GetAtt DMAnexosLambda.Arn
+  BussAnexosLambdaArn:
+    Description: BussAnexosLambda Arn
+    Value: !GetAtt BussAnexosLambda.Arn

@@ -1,0 +1,104 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msmon
+
+Parameters:
+  ETLAddMonLambdaArn:
+    Type: String
+  ETLUpdateMonLambdaArn:
+    Type: String
+  DMMonedasLambdaArn:
+    Type: String
+
+  ETLAddCompletedMonLogArn:
+    Type: String
+  ETLUpdateCompletedMonLogArn:
+    Type: String
+  ETLAddFailedMonLogArn:
+    Type: String
+  ETLUpdateFailedMonLogArn:
+    Type: String
+
+Resources:
+  ETLAddCompletedMonEvent: #EventsRule
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msmon-rule-buss-add
+      EventPattern: { "detail-type": ["completed"], "source": ["mon.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref DMMonedasLambdaArn
+          Id: "Id00ba07fc-d800-4048-b094-7ada2290c7f9"
+        - Arn: !Ref ETLAddCompletedMonLogArn
+          Id: "Idd3188f8f-d0c9-4a2b-bcf5-9c3240c72632"
+      EventBusName: default
+
+  ETLUpdateCompletedMonEvent: #EventsRule2
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msmon-rule-buss-update
+      EventPattern:
+        { "detail-type": ["completed"], "source": ["mon.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateCompletedMonLogArn
+          Id: "Id1118232a-433e-4b8f-8f46-1c1cc75a547d"
+        - Arn: !Ref DMMonedasLambdaArn
+          Id: "Idd3188f8f-d0c9-4a2b-bcf5-9c3240c7263f"
+      EventBusName: default
+
+  ETLAddFailedMonEvent: #EventsRule3
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msmon-rule-etl-add-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["mon.etl.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddFailedMonLogArn
+          Id: "Ide476ec39-e1d3-41e9-9991-6fb629a9cb9c"
+      EventBusName: default
+
+  ETLUpdateFailedEvent: #EventsRule6
+    Type: AWS::Events::Rule
+    Properties:
+      Name: "mave-msmon-rule-etl-update-failed"
+      EventPattern: { "detail-type": ["failed"], "source": ["mon.etl.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateFailedMonLogArn
+          Id: "Id832d3b74-5c96-41c6-825b-697a2af3dcbb"
+      EventBusName: default
+
+  PullSQSAddMonEvent: #EventsRule4
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msmon-rule-pullSQS-add
+      EventPattern: { "detail-type": ["add"], "source": ["mon.pullSQS.add"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLAddMonLambdaArn
+          Id: "Idf06eada2-d45b-42cf-8be1-16a1d64b348f"
+      EventBusName: default
+
+  PullSQSUpdateMonEvent: #EventsRule5
+    Type: AWS::Events::Rule
+    Properties:
+      Name: "mave-msmon-rule-pullSQS-update"
+      EventPattern:
+        { "detail-type": ["update"], "source": ["mon.pullSQS.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref ETLUpdateMonLambdaArn
+          Id: "Id0dbe3bcc-4c0a-40e1-bd53-536ee7714866"
+      EventBusName: default
+
+Outputs:
+  PullSQSAddMonEventArn:
+    Value: !GetAtt PullSQSAddMonEvent.Arn
+  PullSQSUpdateMonEventArn:
+    Value: !GetAtt PullSQSUpdateMonEvent.Arn
+
+  ETLAddCompletedMonEventArn:
+    Value: !GetAtt ETLAddCompletedMonEvent.Arn
+  ETLUpdateCompletedMonEventArn:
+    Value: !GetAtt ETLUpdateCompletedMonEvent.Arn

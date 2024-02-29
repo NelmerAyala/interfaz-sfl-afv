@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack ms existencia
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerSendSNSSQS:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+  ApiGatewayAPIMigrationSflAfv:
+    Type: String
+
+Resources:
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerSendSNSSQS: !Ref LayerSendSNSSQS
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretArnFebeca: !Ref SecretArnFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+
+        ExistenciaBevalSQSArn: !GetAtt SQSTemplate.Outputs.ExistenciaBevalSQSArn
+        ExistenciaFebecaSQSArn: !GetAtt SQSTemplate.Outputs.ExistenciaFebecaSQSArn
+        ExistenciaSillacaSQSArn: !GetAtt SQSTemplate.Outputs.ExistenciaSillacaSQSArn
+    DependsOn:
+      - SQSTemplate
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        ETLUpdateCompletedExistLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateCompletedExistLogArn
+        ETLUpdateFailedExistLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateFailedExistLogArn
+
+    DependsOn:
+      - LogsTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        BusExistLambdaArn: !GetAtt LambdasTemplate.Outputs.BusExistLambdaArn
+        PullSQSETLUpdateExistLambdaArn: !GetAtt LambdasTemplate.Outputs.PullSQSETLUpdateExistLambdaArn
+
+        ExistenciaBevalSQSArn: !GetAtt SQSTemplate.Outputs.ExistenciaBevalSQSArn
+        ExistenciaFebecaSQSArn: !GetAtt SQSTemplate.Outputs.ExistenciaFebecaSQSArn
+        ExistenciaSillacaSQSArn: !GetAtt SQSTemplate.Outputs.ExistenciaSillacaSQSArn
+
+        ApiGatewayAPIMigrationSflAfv: !Ref ApiGatewayAPIMigrationSflAfv
+    DependsOn:
+      - EventRulesTemplate
+      - SQSTemplate

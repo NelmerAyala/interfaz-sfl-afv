@@ -1,0 +1,111 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 10
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+Description: "stack AUDIT-DB-AFV"
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "AFV-SFL | Lambda de Auditoria de base de datos."
+      Environment:
+        Variables:
+          DATABASES: "DBAFV"
+          ENTITIES: "ANEXO RECIBO RETENCION ORDEN_LOTE"
+      FunctionName: mave-lbda-rds-audit
+      Handler: "index.handler"
+      Architectures:
+        - "x86_64"
+      CodeUri: src/lambdas/mave-lbda-rds-audit/
+      Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/Role_Lambda_Global"
+      Layers:
+        - !Sub "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:mave-layer-send-event:1"
+
+  LambdaPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction.Arn
+      Principal: "logs.amazonaws.com"
+      SourceArn: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/rds/cluster/db-qa-afv/audit:*"
+
+  LogsLogGroup:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "/aws/events/mave-even-rds-audit-add"
+
+  LogsSubscriptionFilter:
+    Type: "AWS::Logs::SubscriptionFilter"
+    Properties:
+      # LogGroupName: !Ref LogsLogGroup
+      LogGroupName: /aws/rds/cluster/db-qa-afv/audit
+      FilterPattern: '[(w1="*INSERT INTO*") && w1!="*DELETE*" && w1!="*ERROR*" && (w1="*anexo*" || w1="*orden_lote*" || w1="*recibo*" || w1="*retencion*") && w1!="*sds_database*" ]'
+      DestinationArn: !GetAtt LambdaFunction.Arn
+
+  EventsRule:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "mave-even-rds-audit-add"
+      EventPattern: '{"detail-type":["add"],"source":["audit.log"]}'
+      State: "ENABLED"
+      Targets:
+        - Arn: !Sub "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:mave-busAFV-lbda"
+          Id: "Idca08c6f6-229e-4284-acd2-0ca148fa05fb"
+          InputPath: "$.detail"
+        - Arn: !GetAtt LogsLogGroup.Arn
+          Id: "Iddbdf49e4-5373-443f-a296-ff4e18a5d930"
+      EventBusName: "default"
+    DependsOn:
+      - LogsLogGroup
+
+  # RDSDBCluster:
+  #   Type: "AWS::RDS::DBCluster"
+  #   Properties:
+  #     AvailabilityZones:
+  #       - !Sub "${AWS::Region}d"
+  #       - !Sub "${AWS::Region}b"
+  #       - !Sub "${AWS::Region}c"
+  #     BackupRetentionPeriod: 30
+  #     DBClusterIdentifier: "db-qa-afv"
+  #     DBClusterParameterGroupName: "groupparameter-cluster-dbserverless2-audit"
+  #     DBSubnetGroupName: "default-vpc-06a0aeeb48dadc175"
+  #     Engine: "aurora-mysql"
+  #     Port: 3306
+  #     MasterUsername: "Admin"
+  #     MasterUserPassword: "REPLACEME"
+  #     PreferredBackupWindow: "04:43-05:13"
+  #     PreferredMaintenanceWindow: "sun:03:47-sun:04:17"
+  #     VpcSecurityGroupIds:
+  #       - "sg-0e493319e44020a36"
+  #       - "sg-055006abad9f72a20"
+  #     StorageEncrypted: true
+  #     KmsKeyId: !Sub "arn:aws:kms:${AWS::Region}:${AWS::AccountId}:key/a63fcc9c-728e-4120-a592-544743bacb39"
+  #     EngineVersion: "5.7.mysql_aurora.2.08.3"
+  #     EnableIAMDatabaseAuthentication: false
+  #     EngineMode: "serverless"
+  #     ScalingConfiguration:
+  #       MinCapacity: 8
+  #       MaxCapacity: 8
+  #       AutoPause: true
+  #       SecondsUntilAutoPause: 300
+  #     DeletionProtection: true
+  #     EnableHttpEndpoint: true
+
+  # RDSDBClusterParameterGroup:
+  #   Type: AWS::RDS::DBClusterParameterGroup
+  #   Properties:
+  #     DBClusterParameterGroupName: "groupparameter-cluster-dbafv-audit"
+  #     Description: "parameters of Aurora cluster DB to audit events"
+  #     Family: "aurora-mysql5.7"
+  #     Parameters:
+  #       log_bin_trust_function_creators: "1"
+  #       lower_case_table_names: "1"
+  #       server_audit_events: "QUERY_DML"
+  #       server_audit_logging: "1"
+  #       time_zone: "America/Caracas"

@@ -1,0 +1,258 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas msdcom
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 600
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  # LAYERS
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  # APIS
+  ApiGatewayAPIDivComercial:
+    Type: String
+  ApiGatewayAPICliente:
+    #! REMOVE
+    Default: "undefined"
+    Type: String
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  DMClientezonaLambda: #LambdaFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | Procesamiento de Datos | Clientezona"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "clientezona"
+      FunctionName: mave-msdcom-lbda-dm-clientezona
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-dm-clientezona/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMCoordinacionesLambda: #LambdaFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | Procesamiento de Datos | Coordinaciones"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "coordinaciones"
+      FunctionName: mave-msdcom-lbda-dm-coordinaciones
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-dm-coordinaciones/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMRegionesLambda: #LambdaFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | Procesamiento de Datos | Regiones"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "regiones"
+      FunctionName: mave-msdcom-lbda-dm-regiones
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-dm-regiones/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMRutasLambda: #LambdaFunction2
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | Procesamiento de Datos | Rutas"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "rutas"
+      FunctionName: mave-msdcom-lbda-dm-rutas
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-dm-rutas/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMRutasdetalleLambda: #LambdaFunction2
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | Procesamiento de Datos | Rutasdetalle"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "rutasdetalle"
+      FunctionName: mave-msdcom-lbda-dm-rutasdetalle
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-dm-rutasdetalle/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMZonasLambda: #LambdaFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | Procesamiento de Datos | Zonas"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "zonas"
+      FunctionName: mave-msdcom-lbda-dm-zonas
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-dm-zonas/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  PullSQSDcomLambda: #LambdaFunction3
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | Pull de Cola SQS"
+      FunctionName: mave-msdcom-lbda-pullSQS
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-pullSQS/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+  ETLAddDcomLambda: #LambdaFunction4
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | ETL Add"
+      Environment:
+        Variables:
+          API_CLIENTE_URL: !Sub "https://${ApiGatewayAPICliente}.execute-api.${AWS::Region}.amazonaws.com/cleints"
+          API_URL: !Sub "https://${ApiGatewayAPIDivComercial}.execute-api.${AWS::Region}.amazonaws.com/ComercialDiv"
+      FunctionName: mave-msdcom-lbda-etl-Add
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-etl-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  ETLInactivateDcomLambda: #LambdaFunction4
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | ETL Inactivate"
+      Environment:
+        Variables:
+          API_URL: !Sub "https://${ApiGatewayAPIDivComercial}.execute-api.${AWS::Region}.amazonaws.com/ComercialDiv"
+      FunctionName: mave-msdcom-lbda-etl-Inactivate
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-etl-Inactivate/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  ETLUpdateDcomLambda: #LambdaFunction5
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio División Comercial | ETL Update"
+      Environment:
+        Variables:
+          API_URL: !Sub "https://${ApiGatewayAPIDivComercial}.execute-api.${AWS::Region}.amazonaws.com/ComercialDiv"
+      FunctionName: mave-msdcom-lbda-etl-Update
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msdcom/mave-msdcom-lbda-etl-Update
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+Outputs:
+  DMClientezonaLambdaArn:
+    Description: DMClientezonaLambda Arn
+    Value: !GetAtt DMClientezonaLambda.Arn
+  DMCoordinacionesLambdaArn:
+    Description: DMCoordinacionesLambda Arn
+    Value: !GetAtt DMCoordinacionesLambda.Arn
+  DMRegionesLambdaArn:
+    Description: DMRegionesLambda Arn
+    Value: !GetAtt DMRegionesLambda.Arn
+  DMRutasLambdaArn:
+    Description: DMRutasLambda Arn
+    Value: !GetAtt DMRutasLambda.Arn
+  DMRutasdetalleLambdaArn:
+    Description: DMRutasdetalleLambda Arn
+    Value: !GetAtt DMRutasdetalleLambda.Arn
+  DMZonasLambdaArn:
+    Description: DMZonasLambda Arn
+    Value: !GetAtt DMZonasLambda.Arn
+  PullSQSDcomLambdaArn:
+    Description: DMRutasLambda Arn
+    Value: !GetAtt DMRutasLambda.Arn
+  ETLAddDcomLambdaArn:
+    Description: ETLAddDcomLambda Arn
+    Value: !GetAtt ETLAddDcomLambda.Arn
+  ETLInactivateDcomLambdaArn:
+    Description: ETLInactivateDcomLambda Arn
+    Value: !GetAtt ETLInactivateDcomLambda.Arn
+  ETLUpdateDcomLambdaArn:
+    Description: ETLUpdateDcomLambda Arn
+    Value: !GetAtt ETLUpdateDcomLambda.Arn

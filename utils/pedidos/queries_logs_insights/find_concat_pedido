@@ -1,0 +1,5 @@
+# buscar los logs referenciados a los pedidos que estan dentro del like, se deben separar por | y se pueden pasar todos los que se necesiten buscar
+
+fields @timestamp, @message, @log
+| display source, detail.data.orden.PEDIDO, detail.responseAPI.innerMessage, detail.responseAPI.message, detail.error
+| filter @message like /P003803823042260050|P003803823042260052/

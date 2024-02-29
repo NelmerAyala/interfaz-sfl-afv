@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msdcom
+
+Resources:
+  ETLAddCompletedLog: #LogsLogGroup3
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdcom-even-etl-add-completed 
+  
+  ETLAddFailedLog: #LogsLogGroup4
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdcom-even-etl-add-failed 
+
+  ETLInactivateCompletedLog: #LogsLogGroup7
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdcom-even-etl-inactivate-completed 
+  
+  ETLInactivateFailedLog: #LogsLogGroup8
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdcom-even-etl-inactivate-failed 
+
+  ETLUpdateCompletedLog: #LogsLogGroup5
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdcom-even-etl-update-completed 
+
+  ETLUpdateFailedLog: #LogsLogGroup6
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdcom-even-etl-update-failed 
+  
+Outputs:
+  ETLAddCompletedLogArn:
+    Value: !GetAtt ETLAddCompletedLog.Arn
+  ETLAddFailedLogArn:
+    Value: !GetAtt ETLAddFailedLog.Arn
+  ETLInactivateCompletedLogArn:
+    Value: !GetAtt ETLInactivateCompletedLog.Arn
+  ETLInactivateFailedLogArn:
+    Value: !GetAtt ETLInactivateFailedLog.Arn
+  ETLUpdateCompletedLogArn:
+    Value: !GetAtt ETLUpdateCompletedLog.Arn
+  ETLUpdateFailedLogArn:
+    Value: !GetAtt ETLUpdateFailedLog.Arn

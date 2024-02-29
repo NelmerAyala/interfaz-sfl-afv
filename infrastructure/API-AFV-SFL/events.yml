@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events ms bancos/cuentas
+
+Parameters:
+  BussAddBanLambdaArn:
+    Type: String
+  BussUpdateBanLambdaArn:
+    Type: String
+
+  ETLAddBanLambdaArn:
+    Type: String
+  ETLUpdateBanLambdaArn:
+    Type: String
+
+  ETLAddCompletedBanLogArn:
+    Type: String
+  ETLUpdateCompletedBanLogArn:
+    Type: String
+
+  BussAddFailedBanLogArn:
+    Type: String
+  BussUpdateFailedBanLogArn:
+    Type: String
+
+  ETLAddFailedBanLogArn:
+    Type: String
+  ETLUpdateFailedBanLogArn:
+    Type: String
+
+Resources:
+  BussUpdateFailedBanEvent: #EventsRule10
+    Type: AWS::Events::Rule
+    Properties:
+      Name: mave-msban-rule-buss-update-failed
+      EventPattern: { "detail-type": ["failed"], "source": ["ban.buss.update"] }
+      State: ENABLED
+      Targets:
+        - Arn: !Ref BussUpdateFailedBanLogArn
+          Id: "Id50021a29-00f9-47b7-90ad-dee491c1cb5c"
+      EventBusName: default
+
+Outputs:
+  ETLAddCompletedBanEventArn:
+    Value: !GetAtt ETLAddCompletedBanEvent.Arn

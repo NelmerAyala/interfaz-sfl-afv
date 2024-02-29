@@ -1,0 +1,115 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events mstcam
+
+Resources:
+  BussAddCompletedTCamLog: #LogsLogGroup
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-buss-add-completed
+
+  BussInactivateCompletedTCamLog: #LogsLogGroup3
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-buss-inactivate-completed
+
+  BussUpdateCompletedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-buss-update-completed
+
+  BussAddFailedTCamLog: #LogsLogGroup2
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-buss-add-failed
+
+  BussUpdateFailedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-buss-update-failed
+
+  BussInactivateFailedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-buss-inactivate-failed
+
+  ETLAddCompletedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-etl-add-completed
+
+  ETLInactivateCompletedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-etl-inactive-completed
+
+  ETLUpdateCompletedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-etl-update-completed
+
+  ETLAddFailedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-etl-add-failed
+
+  ETLInactivateFailedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-etl-inactive-failed
+
+  ETLUpdateFailedTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-etl-update-failed
+
+  PullSQSAddTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-pullSQS-add
+
+  PullSQSInactivateTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mstcam-even-pullSQS-inactive
+
+  PullSQSUpdateTCamLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/events/mave-mstcam-even-pullSQS-update
+
+Outputs:
+  BussAddCompletedTCamLogArn:
+    Value: !GetAtt BussAddCompletedTCamLog.Arn
+  BussInactivateCompletedTCamLogArn:
+    Value: !GetAtt BussInactivateCompletedTCamLog.Arn
+  BussUpdateCompletedTCamLogArn:
+    Value: !GetAtt BussUpdateCompletedTCamLog.Arn
+
+  BussAddFailedTCamLogArn:
+    Value: !GetAtt BussAddFailedTCamLog.Arn
+  BussUpdateFailedTCamLogArn:
+    Value: !GetAtt BussUpdateFailedTCamLog.Arn
+  BussInactivateFailedTCamLogArn:
+    Value: !GetAtt BussInactivateFailedTCamLog.Arn
+
+  ETLAddCompletedTCamLogArn:
+    Value: !GetAtt ETLAddCompletedTCamLog.Arn
+  ETLInactivateCompletedTCamLogArn:
+    Value: !GetAtt ETLInactivateCompletedTCamLog.Arn
+  ETLUpdateCompletedTCamLogArn:
+    Value: !GetAtt ETLUpdateCompletedTCamLog.Arn
+
+  ETLAddFailedTCamLogArn:
+    Value: !GetAtt ETLAddFailedTCamLog.Arn
+  ETLUpdateFailedTCamLogArn:
+    Value: !GetAtt ETLUpdateFailedTCamLog.Arn
+  ETLInactivateFailedTCamLogArn:
+    Value: !GetAtt ETLInactivateFailedTCamLog.Arn
+
+  PullSQSAddTCamLogArn:
+    Value: !GetAtt PullSQSAddTCamLog.Arn
+  PullSQSInactivateTCamLogArn:
+    Value: !GetAtt PullSQSInactivateTCamLog.Arn
+  PullSQSUpdateTCamLogArn:
+    Value: !GetAtt PullSQSUpdateTCamLog.Arn

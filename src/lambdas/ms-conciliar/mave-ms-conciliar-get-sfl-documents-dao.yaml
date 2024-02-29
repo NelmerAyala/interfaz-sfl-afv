@@ -1,0 +1,119 @@
+# Esta plantilla de AWS SAM se ha generado a partir de la configuración de su
+# función. Si su función tiene uno o más desencadenadores, tenga en cuenta que los
+# recursos de AWS asociados a estos desencadenadores no están completamente
+# especificados en esta plantilla e incluyen valores de marcadores de posición.
+# Abra esta plantilla en AWS Application Composer o en su IDE favorito y
+# modifíquela para especificar una aplicación sin servidor con otros recursos de
+# AWS.
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application Model template describing your function.
+Resources:
+  mavemsconciliargetsfldocumentsdao:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 135
+      Handler: index.handler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      EphemeralStorage:
+        Size: 512
+      Environment:
+        Variables:
+          DB_PORT_BEVAL: '1433'
+          SECRET_REGION_BEVAL: us-east-1
+          DB_HOST_BEVAL: 10.57.129.126
+          DB_USER_BEVAL: monitor
+          DB_NAME_BEVAL: SOFTLANDPRD
+          SECRET_ARN_BEVAL: >-
+            arn:aws:secretsmanager:us-east-1:490598428640:secret:prod/softland/sq-server-8pmcDn
+          SECRET_REGION_SILLACA: us-east-1
+          SECRET_ARN_FEBECA: por definir
+          SECRET_ARN_SILLACA: por definir
+          DB_PASSWORD_BEVAL: M4rz0$2323-1
+          SECRET_REGION_FEBECA: us-east-1
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      Layers:
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-my-sql-server:1
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-secretmanager:1
+        - >-
+          arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-node-conciliacion-util:8
+      PackageType: Zip
+      Policies:
+        - Statement:
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+                - secretsmanager:DescribeSecret
+              Resource: arn:aws:secretsmanager:*:490598428640:secret:*
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - events:PutEvents
+              Resource: arn:aws:events:us-east-1:490598428640:event-bus/*
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - sqs:DeleteMessage
+                - sqs:ReceiveMessage
+                - sqs:SendMessage
+                - sqs:GetQueueAttributes
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - ec2:CreateNetworkInterface
+                - ec2:DeleteNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+              Resource: '*'
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - sns:Publish
+              Resource: arn:aws:sns:us-east-1:490598428640:*
+            - Sid: AWSLambdaVPCAccessExecutionPermissions
+              Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+                - ec2:CreateNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+                - ec2:DescribeSubnets
+                - ec2:DeleteNetworkInterface
+                - ec2:AssignPrivateIpAddresses
+                - ec2:UnassignPrivateIpAddresses
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource:
+                - '*'
+            - Effect: Allow
+              Action:
+                - s3:*
+                - s3-object-lambda:*
+              Resource: '*'
+      SnapStart:
+        ApplyOn: None
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0e493319e44020a36
+        SubnetIds:
+          - subnet-07e92315ed3de5369
+          - subnet-00531be5ea17a31f0
+        Ipv6AllowedForDualStack: false
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto

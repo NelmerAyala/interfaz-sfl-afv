@@ -1,0 +1,107 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas msexist
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 303
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerSendSNSSQS:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  ExistenciaBevalSQSArn:
+    Type: String
+  ExistenciaFebecaSQSArn:
+    Type: String
+  ExistenciaSillacaSQSArn:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  BusExistLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: SFL-AFV | Bus de existencia
+      Environment:
+        Variables:
+          SQS_BEVAL_URL: !Ref ExistenciaBevalSQSArn
+          SQS_FEBECA_URL: !Ref ExistenciaFebecaSQSArn
+          SQS_SILLACA_URL: !Ref ExistenciaSillacaSQSArn
+      FunctionName: mave-bus-existencia
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msexist/mave-bus-existencia/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendSNSSQS
+
+  PullSQSETLUpdateExistLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio de Existencia | PullSQS-ETL Update"
+      Environment:
+        Variables:
+          DM_NAME: !Ref DMExistenciaLambda
+      FunctionName: mave-msexist-lbda-PullSQS-ETL-existencia
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msexist/mave-msexist-lbda-PullSQS-ETL-existencia/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+  DMExistenciaLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Existencia | Procesamiento de Datos | Existencia"
+      Environment:
+        Variables:
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretArnFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+      FunctionName: mave-msexist-lbda-dm-existencia
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msexist/mave-msexist-lbda-dm-existencia/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+Outputs:
+  BusExistLambdaArn:
+    Description: BusExistLambda Arn
+    Value: !GetAtt BusExistLambda.Arn
+  PullSQSETLUpdateExistLambdaArn:
+    Description: ETLUpdateExistLambda Arn
+    Value: !GetAtt PullSQSETLUpdateExistLambda.Arn

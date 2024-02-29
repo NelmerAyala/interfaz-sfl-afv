@@ -1,0 +1,157 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers mscli
+
+Parameters:
+  DMClienteArn:
+    Type: String
+  DMClienteDireccionArn:
+    Type: String
+  DMClienteRepresentanteArn:
+    Type: String
+  DMClienteTelefonoArn:
+    Type: String
+  DMConceptoTriCliArn:
+    Type: String
+  DMConceptoTriDetArn:
+    Type: String
+  DMLimiteCreditoArn:
+    Type: String
+  DMTipoClienteArn:
+    Type: String
+  DMTipoTelefonoArn:
+    Type: String
+  DMGrupoClienteArn:
+    Type: String
+  ETLAddClienteLambdaArn:
+    Type: String
+  ETLInactivateClienteLambdaArn:
+    Type: String
+  ETLUpdateClienteLambdaArn:
+    Type: String
+  ClienteSQSArn:
+    Type: String
+  PullSQSClienteLambdaArn:
+    Type: String
+  ApiGatewayAPICliente:
+    Type: String
+  PullSQSAddEventArn:
+    Type: String
+  PullSQSInactivateEventArn:
+    Type: String
+  PullSQSUpdateEventArn:
+    Type: String
+
+Resources:
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMClienteArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/cliente"
+
+  LambdaPermission2:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMClienteDireccionArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/direccion"
+
+  LambdaPermission3:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMClienteRepresentanteArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/representante"
+
+  LambdaPermission4:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMClienteTelefonoArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/telefono"
+
+  LambdaPermission5:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMConceptoTriCliArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/conceptotributariocliente"
+
+  LambdaPermission6:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMConceptoTriDetArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/conceptotributariodetalle"
+
+  LambdaPermission7:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMLimiteCreditoArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/limitedecredito"
+
+  LambdaPermission8:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMTipoClienteArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/tipocliente"
+
+  LambdaPermission9:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMTipoTelefonoArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/telefono"
+
+  LambdaPermission10:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMGrupoClienteArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPICliente}/*/POST/grupo_cliente"
+
+  LambdaPermission12:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLAddClienteLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSAddEventArn
+
+  LambdaPermission13:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLInactivateClienteLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSInactivateEventArn
+
+  LambdaPermission14:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLUpdateClienteLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSUpdateEventArn
+
+  LambdaEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      Enabled: true
+      EventSourceArn: !Ref ClienteSQSArn
+      FunctionName: !Ref PullSQSClienteLambdaArn
+      MaximumBatchingWindowInSeconds: 0

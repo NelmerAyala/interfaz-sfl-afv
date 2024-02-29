@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack sqs msart
+
+Parameters:
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+Resources:
+  ArticulosSQS:
+    Type: AWS::SQS::Queue
+    Properties:
+      ContentBasedDeduplication: false
+      DelaySeconds: 0
+      FifoQueue: true
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 3
+      VisibilityTimeout: 600
+      QueueName: mave-msart-sqs-articulos.fifo
+
+  SQSQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - SQS:*
+            Effect: Allow
+            Resource: !GetAtt ArticulosSQS.Arn
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+          - Action:
+              - SQS:SendMessage
+            Effect: Allow
+            Resource: !GetAtt ArticulosSQS.Arn
+            Principal:
+              AWS:
+                - "*"
+            Condition:
+              ArnLike:
+                aws:SourceArn: !Ref BusPeticionesSflAfvSNSTopicArn
+      Queues:
+        - !Ref ArticulosSQS
+
+Outputs:
+  ArticulosSQSArn:
+    Description: ArticulosSQS Arn
+    Value: !GetAtt ArticulosSQS.Arn

@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack msart
+
+Parameters:
+  #LAYERS
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  # API
+  ApiGatewayAPIDivComercial:
+    Type: String
+  # Adds
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ApiGatewayTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretARNFebeca: !Ref SecretARNFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+    DependsOn:
+      - ApiGatewayTemplate
+
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+Outputs:
+  ApiGatewayAPIArticulos:
+    Value: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIArticulos

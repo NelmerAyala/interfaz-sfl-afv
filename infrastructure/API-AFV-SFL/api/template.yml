@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIMigrationAfvSfl:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: MaVE-int-SFL-AFV
+      Description: API - Migración SFL-AFV
+      ApiKeySourceType: HEADER
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIMigrationAfvSfl.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIMigrationAfvSfl
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIMigrationAfvSfl:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIMigrationAfvSfl

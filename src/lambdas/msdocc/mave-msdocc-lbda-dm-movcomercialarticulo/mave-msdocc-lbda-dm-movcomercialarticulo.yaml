@@ -1,0 +1,128 @@
+# Esta plantilla de AWS SAM se ha generado a partir de la configuración de su
+# función. Si su función tiene uno o más desencadenadores, tenga en cuenta que los
+# recursos de AWS asociados a estos desencadenadores no están completamente
+# especificados en esta plantilla e incluyen valores de marcadores de posición.
+# Abra esta plantilla en AWS Application Composer o en su IDE favorito y
+# modifíquela para especificar una aplicación sin servidor con otros recursos de
+# AWS.
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application Model template describing your function.
+Resources:
+  mavemsdocclbdadmmovcomercialarticulo:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: >-
+        SFL-AFV | Microservicio Documentos Comerciales | Procesamiento de Datos
+        | Movcomercialarticulo
+      MemorySize: 128
+      Timeout: 210
+      Handler: index.handler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      EphemeralStorage:
+        Size: 512
+      Environment:
+        Variables:
+          APP_SYNC_KEY: da2-zepk26ne4nb55kr5fzzyc25jgm
+          APP_SYNC_URL: >-
+            https://6k3ga5q7pzawncumlrfkcn5shm.appsync-api.us-east-1.amazonaws.com/graphql
+          REGION: us-east-1
+          SECRET_ARN_BEVAL: >-
+            arn:aws:secretsmanager:us-east-1:490598428640:secret:prob/beval/afv-UpCqFb
+          SECRET_ARN_FEBECA: >-
+            arn:aws:secretsmanager:us-east-1:490598428640:secret:prod/febeca/afv-cNkFX5
+          SECRET_ARN_SILLACA: >-
+            arn:aws:secretsmanager:us-east-1:490598428640:secret:prod/sillaca/afv-oSx3Mb
+          TABLE: movcomercialarticulo
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      Layers:
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-Axios-graphql:1
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-dm-formater:1
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-send-event:1
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-secretmanager:1
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-mysql:1
+      PackageType: Zip
+      Policies:
+        - Statement:
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+                - secretsmanager:DescribeSecret
+              Resource: arn:aws:secretsmanager:*:490598428640:secret:*
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - events:PutEvents
+              Resource: arn:aws:events:us-east-1:490598428640:event-bus/*
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - sqs:DeleteMessage
+                - sqs:ReceiveMessage
+                - sqs:SendMessage
+                - sqs:GetQueueAttributes
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - ec2:CreateNetworkInterface
+                - ec2:DeleteNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+              Resource: '*'
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - sns:Publish
+              Resource: arn:aws:sns:us-east-1:490598428640:*
+            - Sid: AWSLambdaVPCAccessExecutionPermissions
+              Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+                - ec2:CreateNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+                - ec2:DescribeSubnets
+                - ec2:DeleteNetworkInterface
+                - ec2:AssignPrivateIpAddresses
+                - ec2:UnassignPrivateIpAddresses
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource:
+                - '*'
+            - Effect: Allow
+              Action:
+                - s3:*
+                - s3-object-lambda:*
+              Resource: '*'
+      ReservedConcurrentExecutions: 10
+      SnapStart:
+        ApplyOn: None
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-055006abad9f72a20
+        SubnetIds:
+          - subnet-07e92315ed3de5369
+          - subnet-00531be5ea17a31f0
+        Ipv6AllowedForDualStack: false
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /movcomercialarticulo
+            Method: POST
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto

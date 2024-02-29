@@ -1,0 +1,11 @@
+{
+  "name": "mave-aws-mstcam",
+  "version": "1.0.0",
+  "description": "mayoreo venezuela aws microservice tasa cambio",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}

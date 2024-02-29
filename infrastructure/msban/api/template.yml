@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIDmBan:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: mave-msban-api-cuentas
+      Description: API - Microservicio Bancos/Cuentas
+      ApiKeySourceType: HEADER
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIDmBan: !Ref ApiGatewayAPIDmBan
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIDmBan.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIDmBan
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIDmBan: !Ref ApiGatewayAPIDmBan
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIDmBan:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIDmBan
+  StageAPIDmBan:
+    Value: !GetAtt ApiDeploymentTemplate.Outputs.StageAPIDmBan

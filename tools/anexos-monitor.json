@@ -1,0 +1,2597 @@
+[{
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23622,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 452,
+        "NUMERO_DEPOSITO": 30263021,
+        "FECHA_DEPOSITO": "2023-05-08T12:41:21.000",
+        "U_FECHA_VALOR_XRT": "2023-05-05T00:00:00.000",
+        "ANEXO": "A000400423050860228",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 24375,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 85910077,
+        "FECHA_DEPOSITO": "2023-05-15T10:25:09.000",
+        "U_FECHA_VALOR_XRT": "2023-05-12T00:00:00.000",
+        "ANEXO": "A005905923051260213",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923051060252",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910077).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 24375,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 85910077,
+        "FECHA_DEPOSITO": "2023-05-15T10:25:09.000",
+        "U_FECHA_VALOR_XRT": "2023-05-12T00:00:00.000",
+        "ANEXO": "A005905923051260213",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923051060252",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910077).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 28364,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 81,
+        "NUMERO_DEPOSITO": 85910081,
+        "FECHA_DEPOSITO": "2023-05-15T10:25:08.000",
+        "U_FECHA_VALOR_XRT": "2023-05-12T00:00:00.000",
+        "ANEXO": "A005905923051260214",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923051160254",
+            "MONTO": 81
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 81,
+        "NUMERO_DEPOSITO": 85910081,
+        "FECHA_DEPOSITO": "2023-05-15T10:25:08.000",
+        "CUENTA_BANCARIA": 20,
+        "U_FECHA_VALOR_XRT": "2023-05-12T00:00:00.000",
+        "ANEXO": "A005905923051260214",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923051160254",
+            "MONTO": 81
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910081).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 28364,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 81,
+        "NUMERO_DEPOSITO": 85910081,
+        "FECHA_DEPOSITO": "2023-05-15T10:25:08.000",
+        "U_FECHA_VALOR_XRT": "2023-05-12T00:00:00.000",
+        "ANEXO": "A005905923051260214",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923051160254",
+            "MONTO": 81
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910081).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 28364,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 81,
+        "NUMERO_DEPOSITO": 85910081,
+        "FECHA_DEPOSITO": "2023-05-15T10:25:08.000",
+        "U_FECHA_VALOR_XRT": "2023-05-12T00:00:00.000",
+        "ANEXO": "A005905923051260214",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923051160254",
+            "MONTO": 81
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910081).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 23736,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 70,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:21.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004304323051660113",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004304323051160149",
+            "MONTO": 70
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 23736,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 70,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:21.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004304323051660113",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004304323051160149",
+            "MONTO": 70
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 23736,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 70,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:21.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004304323051660113",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004304323051160149",
+            "MONTO": 70
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 23736,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 70,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:21.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004304323051660113",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004304323051160149",
+            "MONTO": 70
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 23736,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 70,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:21.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004304323051660113",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004304323051160149",
+            "MONTO": 70
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 13324,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 415,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:22.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004310823051660106",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004310823051660146",
+            "MONTO": 415
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 13324,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 415,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:22.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004310823051660106",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004310823051660146",
+            "MONTO": 415
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 13324,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 415,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:22.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004310823051660106",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004310823051660146",
+            "MONTO": 415
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 13324,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 415,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:22.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004310823051660106",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004310823051660146",
+            "MONTO": 415
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 13324,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 415,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:22.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004310823051660106",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004310823051660146",
+            "MONTO": 415
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 28161,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 97,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:22.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004304323051660112",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004304323051160146",
+            "MONTO": 97
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 28161,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 97,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:22.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004304323051660112",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004304323051160146",
+            "MONTO": 97
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 200,
+        "CLIENTE": 28161,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 97,
+        "NUMERO_DEPOSITO": 76520218,
+        "FECHA_DEPOSITO": "2023-05-17T10:55:22.000",
+        "U_FECHA_VALOR_XRT": "2023-05-16T00:00:00.000",
+        "ANEXO": "A004304323051660112",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004304323051160146",
+            "MONTO": 97
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76520218).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23591,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 10,
+        "NUMERO_DEPOSITO": 30264835,
+        "FECHA_DEPOSITO": "2023-05-20T14:09:49.000",
+        "U_FECHA_VALOR_XRT": "2023-05-19T00:00:00.000",
+        "ANEXO": "A000400423051960261",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 422) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23591,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 10,
+        "NUMERO_DEPOSITO": 30264835,
+        "FECHA_DEPOSITO": "2023-05-20T14:09:49.000",
+        "U_FECHA_VALOR_XRT": "2023-05-19T00:00:00.000",
+        "ANEXO": "A000400423051960261",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 30264835).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23580,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 70,
+        "NUMERO_DEPOSITO": 30264843,
+        "FECHA_DEPOSITO": "2023-05-20T14:09:49.000",
+        "U_FECHA_VALOR_XRT": "2023-05-19T00:00:00.000",
+        "ANEXO": "A000400423051960263",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 482) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23580,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 70,
+        "NUMERO_DEPOSITO": 30264843,
+        "FECHA_DEPOSITO": "2023-05-20T14:09:49.000",
+        "U_FECHA_VALOR_XRT": "2023-05-19T00:00:00.000",
+        "ANEXO": "A000400423051960263",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 30264843).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23627,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 198,
+        "NUMERO_DEPOSITO": 30264852,
+        "FECHA_DEPOSITO": "2023-05-20T14:09:49.000",
+        "U_FECHA_VALOR_XRT": "2023-05-19T00:00:00.000",
+        "ANEXO": "A000400423051960269",
+        "ANEXODETALLE": []
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23627,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 198,
+        "NUMERO_DEPOSITO": 30264852,
+        "FECHA_DEPOSITO": "2023-05-20T14:09:49.000",
+        "U_FECHA_VALOR_XRT": "2023-05-19T00:00:00.000",
+        "ANEXO": "A000400423051960269",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 30264852).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23593,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 823,
+        "NUMERO_DEPOSITO": 30264853,
+        "FECHA_DEPOSITO": "2023-05-26T10:46:04.000",
+        "U_FECHA_VALOR_XRT": "2023-05-19T00:00:00.000",
+        "ANEXO": "A000400423051960270",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 90,
+        "CLIENTE": 15919,
+        "CUENTA_BANCARIA": 14,
+        "DEPOSITO_MONTO": 415,
+        "NUMERO_DEPOSITO": 39873962,
+        "FECHA_DEPOSITO": "2023-05-26T10:51:23.000",
+        "U_FECHA_VALOR_XRT": "2023-05-25T00:00:00.000",
+        "ANEXO": "A002102123052360277",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R002102123051460311",
+            "MONTO": 415
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (14, 39873962).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 90,
+        "CLIENTE": 15919,
+        "CUENTA_BANCARIA": 14,
+        "DEPOSITO_MONTO": 415,
+        "NUMERO_DEPOSITO": 39873962,
+        "FECHA_DEPOSITO": "2023-05-26T10:51:23.000",
+        "U_FECHA_VALOR_XRT": "2023-05-25T00:00:00.000",
+        "ANEXO": "A002102123052360277",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R002102123051460311",
+            "MONTO": 415
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (14, 39873962).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23601,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 310,
+        "NUMERO_DEPOSITO": 30265138,
+        "FECHA_DEPOSITO": "2023-05-24T11:24:47.000",
+        "U_FECHA_VALOR_XRT": "2023-05-23T00:00:00.000",
+        "ANEXO": "A000400423052360275",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 30265138).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23601,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 310,
+        "NUMERO_DEPOSITO": 30265138,
+        "FECHA_DEPOSITO": "2023-05-24T11:24:47.000",
+        "U_FECHA_VALOR_XRT": "2023-05-23T00:00:00.000",
+        "ANEXO": "A000400423052360275",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 30265138).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 237,
+        "CLIENTE": 14193,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 200,
+        "NUMERO_DEPOSITO": 79860144,
+        "FECHA_DEPOSITO": "2023-05-24T11:25:26.000",
+        "U_FECHA_VALOR_XRT": "2023-05-23T00:00:00.000",
+        "ANEXO": "A006406423052360165",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006406423052260210",
+            "MONTO": 200
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 237,
+        "CLIENTE": 14193,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 200,
+        "NUMERO_DEPOSITO": 79860144,
+        "FECHA_DEPOSITO": "2023-05-24T11:25:26.000",
+        "U_FECHA_VALOR_XRT": "2023-05-23T00:00:00.000",
+        "ANEXO": "A006406423052360165",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006406423052260210",
+            "MONTO": 200
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 79860144).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 237,
+        "CLIENTE": 24489,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 158,
+        "NUMERO_DEPOSITO": 79860148,
+        "FECHA_DEPOSITO": "2023-05-24T11:25:25.000",
+        "U_FECHA_VALOR_XRT": "2023-05-23T00:00:00.000",
+        "ANEXO": "A006406423052360164",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006406423052360212",
+            "MONTO": 158
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 237,
+        "CLIENTE": 24489,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 158,
+        "NUMERO_DEPOSITO": 79860148,
+        "FECHA_DEPOSITO": "2023-05-24T11:25:25.000",
+        "U_FECHA_VALOR_XRT": "2023-05-23T00:00:00.000",
+        "ANEXO": "A006406423052360164",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006406423052360212",
+            "MONTO": 158
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 79860148).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 253,
+        "CLIENTE": 24830,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 40011669,
+        "FECHA_DEPOSITO": "2023-05-25T09:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-05-24T00:00:00.000",
+        "ANEXO": "A007607623052460215",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R007607623052260344",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (25, 40011669).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 253,
+        "CLIENTE": 24830,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 40011669,
+        "FECHA_DEPOSITO": "2023-05-25T09:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-05-24T00:00:00.000",
+        "ANEXO": "A007607623052460215",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R007607623052260344",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (25, 40011669).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 57,
+        "CLIENTE": 15108,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 56230067,
+        "FECHA_DEPOSITO": "2023-05-30T18:52:58.000",
+        "U_FECHA_VALOR_XRT": "2023-05-26T00:00:00.000",
+        "ANEXO": "A016816823053060191",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R016816823051760222",
+            "MONTO": 100
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 57,
+        "CLIENTE": 15108,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 56230067,
+        "FECHA_DEPOSITO": "2023-05-30T18:52:58.000",
+        "U_FECHA_VALOR_XRT": "2023-05-26T00:00:00.000",
+        "ANEXO": "A016816823053060191",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R016816823051760222",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 56230067).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 28093,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 155,
+        "NUMERO_DEPOSITO": 30266140,
+        "FECHA_DEPOSITO": "2023-05-31T09:39:48.000",
+        "U_FECHA_VALOR_XRT": "2023-05-30T00:00:00.000",
+        "ANEXO": "A000400423053060290",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 28093,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 155,
+        "NUMERO_DEPOSITO": 30266140,
+        "FECHA_DEPOSITO": "2023-05-31T09:39:48.000",
+        "U_FECHA_VALOR_XRT": "2023-05-30T00:00:00.000",
+        "ANEXO": "A000400423053060290",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 30266140).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23581,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 102,
+        "NUMERO_DEPOSITO": 30266141,
+        "FECHA_DEPOSITO": "2023-05-31T09:39:48.000",
+        "U_FECHA_VALOR_XRT": "2023-05-30T00:00:00.000",
+        "ANEXO": "A000400423053060291",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 531) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 197,
+        "CLIENTE": 23581,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 102,
+        "NUMERO_DEPOSITO": 30266141,
+        "FECHA_DEPOSITO": "2023-05-31T09:39:48.000",
+        "U_FECHA_VALOR_XRT": "2023-05-30T00:00:00.000",
+        "ANEXO": "A000400423053060291",
+        "ANEXODETALLE": []
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 24394,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 153,
+        "NUMERO_DEPOSITO": 85890069,
+        "FECHA_DEPOSITO": "2023-06-02T09:55:17.000",
+        "U_FECHA_VALOR_XRT": "2023-06-01T00:00:00.000",
+        "ANEXO": "A005905923060160255",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923060160299",
+            "MONTO": 153
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85890069).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 24394,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 153,
+        "NUMERO_DEPOSITO": 85890069,
+        "FECHA_DEPOSITO": "2023-06-02T09:55:17.000",
+        "U_FECHA_VALOR_XRT": "2023-06-01T00:00:00.000",
+        "ANEXO": "A005905923060160255",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923060160299",
+            "MONTO": 153
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85890069).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 331,
+        "CLIENTE": 13501,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 65,
+        "NUMERO_DEPOSITO": 32680089,
+        "FECHA_DEPOSITO": "2023-06-06T09:55:07.000",
+        "U_FECHA_VALOR_XRT": "2023-06-05T00:00:00.000",
+        "ANEXO": "A001101123060560077",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001101123060260199",
+            "MONTO": 65
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 32680089).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 331,
+        "CLIENTE": 13501,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 65,
+        "NUMERO_DEPOSITO": 32680089,
+        "FECHA_DEPOSITO": "2023-06-06T09:55:07.000",
+        "U_FECHA_VALOR_XRT": "2023-06-05T00:00:00.000",
+        "ANEXO": "A001101123060560077",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001101123060260199",
+            "MONTO": 65
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 32680089).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 271,
+        "CLIENTE": 25319,
+        "CUENTA_BANCARIA": 35,
+        "DEPOSITO_MONTO": 89,
+        "NUMERO_DEPOSITO": 15244104,
+        "FECHA_DEPOSITO": "2023-06-06T09:54:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-05T00:00:00.000",
+        "ANEXO": "A008808823060560577",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R008808823060260702",
+            "MONTO": 89
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (35, 15244104).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 271,
+        "CLIENTE": 25319,
+        "CUENTA_BANCARIA": 35,
+        "DEPOSITO_MONTO": 89,
+        "NUMERO_DEPOSITO": 15244104,
+        "FECHA_DEPOSITO": "2023-06-06T09:54:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-05T00:00:00.000",
+        "ANEXO": "A008808823060560577",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R008808823060260702",
+            "MONTO": 89
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (35, 15244104).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 92,
+        "CLIENTE": 15983,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 479,
+        "NUMERO_DEPOSITO": 11134782,
+        "FECHA_DEPOSITO": "2023-06-15T15:33:08.000",
+        "U_FECHA_VALOR_XRT": "2023-06-06T00:00:00.000",
+        "ANEXO": "A021121123060660274",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R021121123060160390",
+            "MONTO": 479.02
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 681) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 90,
+        "CLIENTE": 26933,
+        "CUENTA_BANCARIA": 14,
+        "DEPOSITO_MONTO": 80,
+        "NUMERO_DEPOSITO": 65659659,
+        "FECHA_DEPOSITO": "2023-06-15T11:56:39.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A002102123060660311",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R002102123060160350",
+            "MONTO": 80
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 237,
+        "CLIENTE": 24506,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 286,
+        "NUMERO_DEPOSITO": 79900161,
+        "FECHA_DEPOSITO": "2023-06-15T10:25:18.000",
+        "U_FECHA_VALOR_XRT": "2023-06-06T00:00:00.000",
+        "ANEXO": "A006406423060660191",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006406423060360229",
+            "MONTO": 286
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 67,
+        "CLIENTE": 13292,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 31220264,
+        "FECHA_DEPOSITO": "2023-06-15T10:19:16.000",
+        "U_FECHA_VALOR_XRT": "2023-06-01T00:00:00.000",
+        "ANEXO": "A018118123060760126",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R018118123060660195",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 67,
+        "CLIENTE": 26206,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 320,
+        "NUMERO_DEPOSITO": 31220268,
+        "FECHA_DEPOSITO": "2023-06-15T10:19:56.000",
+        "U_FECHA_VALOR_XRT": "2023-06-01T00:00:00.000",
+        "ANEXO": "A018118123060760127",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R018118123060660196",
+            "MONTO": 320
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 24,
+        "CLIENTE": 14266,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 129,
+        "NUMERO_DEPOSITO": 71820083,
+        "FECHA_DEPOSITO": "2023-06-09T15:34:51.000",
+        "U_FECHA_VALOR_XRT": "2023-06-08T00:00:00.000",
+        "ANEXO": "A013013023060860228",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013013023060860385",
+            "MONTO": 129
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 24,
+        "CLIENTE": 14266,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 129,
+        "NUMERO_DEPOSITO": 71820083,
+        "FECHA_DEPOSITO": "2023-06-09T15:34:51.000",
+        "U_FECHA_VALOR_XRT": "2023-06-08T00:00:00.000",
+        "ANEXO": "A013013023060860228",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013013023060860385",
+            "MONTO": 129
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 24,
+        "CLIENTE": 14266,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 129,
+        "NUMERO_DEPOSITO": 71820083,
+        "FECHA_DEPOSITO": "2023-06-09T15:34:51.000",
+        "U_FECHA_VALOR_XRT": "2023-06-08T00:00:00.000",
+        "ANEXO": "A013013023060860228",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013013023060860385",
+            "MONTO": 129
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 71820083).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 855,
+        "NUMERO_DEPOSITO": 30267736,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:46.000",
+        "CUENTA_BANCARIA": 7,
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A088500423060960315",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R088500423060960377",
+            "MONTO": 855
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 402,
+        "CLIENTE": 23590,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 855,
+        "NUMERO_DEPOSITO": 30267736,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:46.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A088500423060960315",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R088500423060960377",
+            "MONTO": 855
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 30267736).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 402,
+        "CLIENTE": 23590,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 855,
+        "NUMERO_DEPOSITO": 30267736,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:46.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A088500423060960315",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R088500423060960377",
+            "MONTO": 855
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 30267736).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 39,
+        "NUMERO_DEPOSITO": 40356572,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:45.000",
+        "CUENTA_BANCARIA": 7,
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A013913923060960235",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013913923060860317",
+            "MONTO": 39
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 32,
+        "CLIENTE": 26598,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 39,
+        "NUMERO_DEPOSITO": 40356572,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:45.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A013913923060960235",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013913923060860317",
+            "MONTO": 39
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 40356572).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 32,
+        "CLIENTE": 26598,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 39,
+        "NUMERO_DEPOSITO": 40356572,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:45.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A013913923060960235",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013913923060860317",
+            "MONTO": 39
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 40356572).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 32,
+        "CLIENTE": 14453,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 130,
+        "NUMERO_DEPOSITO": 40356565,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:45.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A013913923060960240",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013913923060960322",
+            "MONTO": 130
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "@message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 85) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 130,
+        "NUMERO_DEPOSITO": 40356565,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:45.000",
+        "CUENTA_BANCARIA": 7,
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A013913923060960240",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013913923060960322",
+            "MONTO": 130
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 32,
+        "CLIENTE": 14453,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 130,
+        "NUMERO_DEPOSITO": 40356565,
+        "FECHA_DEPOSITO": "2023-06-12T08:54:45.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A013913923060960240",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013913923060960322",
+            "MONTO": 130
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (7, 40356565).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 21,
+        "CLIENTE": 14075,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 739,
+        "NUMERO_DEPOSITO": 76170285,
+        "FECHA_DEPOSITO": "2023-06-14T10:54:57.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A012812823061260216",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012812823060460304",
+            "MONTO": 739
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76170285).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 21,
+        "CLIENTE": 14075,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 739,
+        "NUMERO_DEPOSITO": 76170285,
+        "FECHA_DEPOSITO": "2023-06-14T10:54:57.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A012812823061260216",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012812823060460304",
+            "MONTO": 739
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76170285).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 21,
+        "CLIENTE": 14080,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 140,
+        "NUMERO_DEPOSITO": 76170289,
+        "FECHA_DEPOSITO": "2023-06-14T10:54:57.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A012812823061260217",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012812823060660314",
+            "MONTO": 140
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76170289).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 21,
+        "CLIENTE": 14080,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 140,
+        "NUMERO_DEPOSITO": 76170289,
+        "FECHA_DEPOSITO": "2023-06-14T10:54:57.000",
+        "U_FECHA_VALOR_XRT": "2023-06-09T00:00:00.000",
+        "ANEXO": "A012812823061260217",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012812823060660314",
+            "MONTO": 140
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76170289).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23915,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 523.26,
+        "NUMERO_DEPOSITO": 31530156,
+        "FECHA_DEPOSITO": "2023-06-14T10:55:15.000",
+        "U_FECHA_VALOR_XRT": "2023-06-13T00:00:00.000",
+        "ANEXO": "A004604623061360358",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623060960561",
+            "MONTO": 523.26
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23915,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 523.26,
+        "NUMERO_DEPOSITO": 31530156,
+        "FECHA_DEPOSITO": "2023-06-14T10:55:15.000",
+        "U_FECHA_VALOR_XRT": "2023-06-13T00:00:00.000",
+        "ANEXO": "A004604623061360358",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623060960561",
+            "MONTO": 523.26
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 31530156).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 255,
+        "CLIENTE": 28566,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 135,
+        "NUMERO_DEPOSITO": 48270035,
+        "FECHA_DEPOSITO": "2023-06-14T10:55:14.000",
+        "U_FECHA_VALOR_XRT": "2023-06-13T00:00:00.000",
+        "ANEXO": "A007707723061360195",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R007707723061260259",
+            "MONTO": 135
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 48270035).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 255,
+        "CLIENTE": 28566,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 135,
+        "NUMERO_DEPOSITO": 48270035,
+        "FECHA_DEPOSITO": "2023-06-14T10:55:14.000",
+        "U_FECHA_VALOR_XRT": "2023-06-13T00:00:00.000",
+        "ANEXO": "A007707723061360195",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R007707723061260259",
+            "MONTO": 135
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 48270035).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 91,
+        "CLIENTE": 15967,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 680,
+        "NUMERO_DEPOSITO": 7940145,
+        "FECHA_DEPOSITO": "2023-06-15T10:40:29.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A021021023061460118",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R021021023060960229",
+            "MONTO": 680
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 7940145).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 57,
+        "CLIENTE": 26727,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 78,
+        "NUMERO_DEPOSITO": 76170062,
+        "FECHA_DEPOSITO": "2023-06-15T10:40:28.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A016816823061460226",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R016816823061360268",
+            "MONTO": 78
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 57,
+        "CLIENTE": 15122,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 211,
+        "NUMERO_DEPOSITO": 76170066,
+        "FECHA_DEPOSITO": "2023-06-15T10:40:29.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A016816823061460227",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R016816823061360267",
+            "MONTO": 211
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 57,
+        "CLIENTE": 15121,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 84,
+        "NUMERO_DEPOSITO": 76170070,
+        "FECHA_DEPOSITO": "2023-06-15T10:40:28.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A016816823061460228",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R016816823061260265",
+            "MONTO": 84
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 57,
+        "CLIENTE": 15117,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 76170074,
+        "FECHA_DEPOSITO": "2023-06-15T10:40:28.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A016816823061460229",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R016816823061260266",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 57,
+        "CLIENTE": 15117,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 76170074,
+        "FECHA_DEPOSITO": "2023-06-15T10:40:28.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A016816823061460229",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R016816823061260266",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76170074).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 23,
+        "CLIENTE": 26478,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 65,
+        "NUMERO_DEPOSITO": 68480255,
+        "FECHA_DEPOSITO": "2023-06-15T10:40:28.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A001301323061460167",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001301323061360202",
+            "MONTO": 65
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 68480255).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 23,
+        "CLIENTE": 14253,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 102,
+        "NUMERO_DEPOSITO": 68480263,
+        "FECHA_DEPOSITO": "2023-06-15T10:40:29.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A001301323061460168",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001301323061360203",
+            "MONTO": 102
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 68480263).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 201,
+        "CLIENTE": 28214,
+        "CUENTA_BANCARIA": 8,
+        "DEPOSITO_MONTO": 80,
+        "NUMERO_DEPOSITO": 35628713,
+        "FECHA_DEPOSITO": "2023-06-17T08:13:10.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A004404423061460253",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004404423061360279",
+            "MONTO": 80
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 220,
+        "CLIENTE": 32091,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 405,
+        "NUMERO_DEPOSITO": 27430231,
+        "FECHA_DEPOSITO": "2023-06-16T10:40:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A055355323061560174",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R055355323061360261",
+            "MONTO": 405
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 220,
+        "CLIENTE": 32091,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 405,
+        "NUMERO_DEPOSITO": 27430231,
+        "FECHA_DEPOSITO": "2023-06-16T10:40:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A055355323061560174",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R055355323061360261",
+            "MONTO": 405
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 27430231).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 211,
+        "CLIENTE": 28287,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 223,
+        "NUMERO_DEPOSITO": 75990304,
+        "FECHA_DEPOSITO": "2023-06-16T10:40:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A005105123061560161",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005105123061360260",
+            "MONTO": 223
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 211,
+        "CLIENTE": 28287,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 223,
+        "NUMERO_DEPOSITO": 75990304,
+        "FECHA_DEPOSITO": "2023-06-16T10:40:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A005105123061560161",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005105123061360260",
+            "MONTO": 223
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 211,
+        "CLIENTE": 17978,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 132,
+        "NUMERO_DEPOSITO": 75990308,
+        "FECHA_DEPOSITO": "2023-06-16T10:40:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A005105123061560162",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005105123061460262",
+            "MONTO": 132
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 211,
+        "CLIENTE": 17978,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 132,
+        "NUMERO_DEPOSITO": 75990308,
+        "FECHA_DEPOSITO": "2023-06-16T10:40:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A005105123061560162",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005105123061460262",
+            "MONTO": 132
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 75990308).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 283,
+        "CLIENTE": 25678,
+        "CUENTA_BANCARIA": 12,
+        "DEPOSITO_MONTO": 125,
+        "NUMERO_DEPOSITO": 4366,
+        "FECHA_DEPOSITO": "2023-06-16T07:34:13.000",
+        "U_FECHA_VALOR_XRT": "2023-06-14T00:00:00.000",
+        "ANEXO": "A009609623061560176",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R009609623061260254",
+            "MONTO": 125
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 192,
+        "CLIENTE": 28015,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 321.67,
+        "NUMERO_DEPOSITO": 7940224,
+        "FECHA_DEPOSITO": "2023-06-16T10:40:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A003603623061560197",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R003603623061460245",
+            "MONTO": 321.67
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 192,
+        "CLIENTE": 28021,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 1052.76,
+        "NUMERO_DEPOSITO": 7940220,
+        "FECHA_DEPOSITO": "2023-06-16T10:40:21.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A003603623061560198",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R003603623061460246",
+            "MONTO": 1052.76
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 266,
+        "CLIENTE": 25193,
+        "CUENTA_BANCARIA": 35,
+        "DEPOSITO_MONTO": 200,
+        "NUMERO_DEPOSITO": 15224257,
+        "FECHA_DEPOSITO": "2023-06-16T14:04:34.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A008308323061560270",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R008308323061460324",
+            "MONTO": 200
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 599) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 32,
+        "CLIENTE": 14487,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 91,
+        "NUMERO_DEPOSITO": 40358412,
+        "FECHA_DEPOSITO": "2023-06-16T14:05:15.000",
+        "U_FECHA_VALOR_XRT": "2023-06-15T00:00:00.000",
+        "ANEXO": "A013913923061560247",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R013913923061460333",
+            "MONTO": 91
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 782) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 200,
+        "NUMERO_DEPOSITO": 5010127,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "CUENTA_BANCARIA": 20,
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A031231223061660297",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R031231223061560415",
+            "MONTO": 200
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 243,
+        "CLIENTE": 24614,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 684,
+        "NUMERO_DEPOSITO": 40359337,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:47.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A000700723061660338",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R000700723061460518",
+            "MONTO": 684
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 243,
+        "CLIENTE": 24614,
+        "CUENTA_BANCARIA": 7,
+        "DEPOSITO_MONTO": 684,
+        "NUMERO_DEPOSITO": 40359337,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:47.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A000700723061660338",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R000700723061460518",
+            "MONTO": 684
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 284) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 28363,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 191,
+        "NUMERO_DEPOSITO": 85910093,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A005905923061660281",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923061560328",
+            "MONTO": 191
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910093).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 28363,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 191,
+        "NUMERO_DEPOSITO": 85910093,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A005905923061660281",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923061560328",
+            "MONTO": 191
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910093).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 24400,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 20,
+        "NUMERO_DEPOSITO": 85910089,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A005905923061660282",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923061660330",
+            "MONTO": 20
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910089).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 233,
+        "CLIENTE": 24400,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 20,
+        "NUMERO_DEPOSITO": 85910089,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A005905923061660282",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R005905923061660330",
+            "MONTO": 20
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 85910089).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23912,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 178.32,
+        "NUMERO_DEPOSITO": 31530163,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A004604623061660382",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623061560591",
+            "MONTO": 178.32
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 207) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23912,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 178.32,
+        "NUMERO_DEPOSITO": 31530163,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A004604623061660382",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623061560591",
+            "MONTO": 178.32
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23930,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 833.26,
+        "NUMERO_DEPOSITO": 31530167,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A004604623061660383",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623061560588",
+            "MONTO": 833.26
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 160) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23930,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 833.26,
+        "NUMERO_DEPOSITO": 31530167,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A004604623061660383",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623061560588",
+            "MONTO": 833.26
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23985,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 664.87,
+        "NUMERO_DEPOSITO": 31530175,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A004604623061660384",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623061560587",
+            "MONTO": 664.87
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23985,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 664.87,
+        "NUMERO_DEPOSITO": 31530175,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A004604623061660384",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623061560587",
+            "MONTO": 664.87
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 160) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23985,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 13.03,
+        "NUMERO_DEPOSITO": 31530179,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A004604623061660386",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623061560592",
+            "MONTO": 13.03
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 204,
+        "CLIENTE": 23985,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 13.03,
+        "NUMERO_DEPOSITO": 31530179,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A004604623061660386",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R004604623061560592",
+            "MONTO": 13.03
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 31530179).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 236,
+        "CLIENTE": 24471,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 1027,
+        "NUMERO_DEPOSITO": 83280056,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A006306323061660115",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006306323061660240",
+            "MONTO": 1027
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 236,
+        "CLIENTE": 24471,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 1027,
+        "NUMERO_DEPOSITO": 83280056,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A006306323061660115",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006306323061660240",
+            "MONTO": 1027
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 16,
+        "CLIENTE": 26350,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 140,
+        "NUMERO_DEPOSITO": 25820241,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A001201223061660172",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001201223061560272",
+            "MONTO": 140
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 16,
+        "CLIENTE": 26350,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 140,
+        "NUMERO_DEPOSITO": 25820241,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A001201223061660172",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001201223061560272",
+            "MONTO": 140
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 103) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 40,
+        "NUMERO_DEPOSITO": 25820257,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "CUENTA_BANCARIA": 20,
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A001201223061660177",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001201223061460269",
+            "MONTO": 40
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 40,
+        "NUMERO_DEPOSITO": 25820257,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "CUENTA_BANCARIA": 20,
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A001201223061660177",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001201223061460269",
+            "MONTO": 40
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 288) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 16,
+        "CLIENTE": 13800,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 40,
+        "NUMERO_DEPOSITO": 25820257,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A001201223061660177",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001201223061460269",
+            "MONTO": 40
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 25820257).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 16,
+        "CLIENTE": 13800,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 40,
+        "NUMERO_DEPOSITO": 25820257,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A001201223061660177",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001201223061460269",
+            "MONTO": 40
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 25820257).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 200,
+        "NUMERO_DEPOSITO": 25820276,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "CUENTA_BANCARIA": 20,
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A001201223061660180",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001201223061560277",
+            "MONTO": 200
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 16,
+        "CLIENTE": 26338,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 200,
+        "NUMERO_DEPOSITO": 25820276,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:27.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A001201223061660180",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R001201223061560277",
+            "MONTO": 200
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 25820276).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 22,
+        "CLIENTE": 14130,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 50,
+        "NUMERO_DEPOSITO": 40012639,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A012912923061660241",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012912923061560393",
+            "MONTO": 50
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 277) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 22,
+        "CLIENTE": 14130,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 50,
+        "NUMERO_DEPOSITO": 40012639,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A012912923061660241",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012912923061560393",
+            "MONTO": 50
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 103) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 22,
+        "CLIENTE": 14123,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 122,
+        "NUMERO_DEPOSITO": 40012637,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A012912923061660243",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012912923061560391",
+            "MONTO": 122
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 22,
+        "CLIENTE": 14123,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 122,
+        "NUMERO_DEPOSITO": 40012637,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A012912923061660243",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012912923061560391",
+            "MONTO": 122
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 292) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 22,
+        "CLIENTE": 14125,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 160,
+        "NUMERO_DEPOSITO": 40012636,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A012912923061660244",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012912923061560390",
+            "MONTO": 160
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 103) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 22,
+        "CLIENTE": 14125,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 160,
+        "NUMERO_DEPOSITO": 40012636,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A012912923061660244",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012912923061560390",
+            "MONTO": 160
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 295) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 22,
+        "CLIENTE": 26453,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 40012635,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A012912923061660245",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012912923061260387",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 103) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 22,
+        "CLIENTE": 26453,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 100,
+        "NUMERO_DEPOSITO": 40012635,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A012912923061660245",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R012912923061260387",
+            "MONTO": 100
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 284) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 9,
+        "CLIENTE": 13604,
+        "CUENTA_BANCARIA": 35,
+        "DEPOSITO_MONTO": 80,
+        "NUMERO_DEPOSITO": 15070529,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A011111123061660285",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R011111123061560360",
+            "MONTO": 80
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 284) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 9,
+        "CLIENTE": 13604,
+        "CUENTA_BANCARIA": 35,
+        "DEPOSITO_MONTO": 80,
+        "NUMERO_DEPOSITO": 15070529,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A011111123061660285",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R011111123061560360",
+            "MONTO": 80
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 151) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 253,
+        "CLIENTE": 17065,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 194.02,
+        "NUMERO_DEPOSITO": 40012651,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A007607623061660271",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R007607623061560408",
+            "MONTO": 194.02
+        }]
+    },
+    "response": ""
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 253,
+        "CLIENTE": 17065,
+        "CUENTA_BANCARIA": 25,
+        "DEPOSITO_MONTO": 194.02,
+        "NUMERO_DEPOSITO": 40012651,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:11.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A007607623061660271",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R007607623061560408",
+            "MONTO": 194.02
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 285) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 271,
+        "CLIENTE": 25295,
+        "CUENTA_BANCARIA": 35,
+        "DEPOSITO_MONTO": 195,
+        "NUMERO_DEPOSITO": 13450033,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A008808823061660623",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R008808823061260756",
+            "MONTO": 195
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Transaction (Process ID 285) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 195,
+        "NUMERO_DEPOSITO": 13450033,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:26.000",
+        "CUENTA_BANCARIA": 35,
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A008808823061660623",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R008808823061260756",
+            "MONTO": 195
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 271,
+        "CLIENTE": 25295,
+        "CUENTA_BANCARIA": 35,
+        "DEPOSITO_MONTO": 195,
+        "NUMERO_DEPOSITO": 13450033,
+        "FECHA_DEPOSITO": "2023-06-19T08:54:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A008808823061660623",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R008808823061260756",
+            "MONTO": 195
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (35, 13450033).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 60,
+        "NUMERO_DEPOSITO": 76170328,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "CUENTA_BANCARIA": 20,
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A006906923061660216",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006906923061660333",
+            "MONTO": 60
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "VENDEDOR": 242,
+        "CLIENTE": 24573,
+        "CUENTA_BANCARIA": 20,
+        "DEPOSITO_MONTO": 60,
+        "NUMERO_DEPOSITO": 76170328,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A006906923061660216",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R006906923061660333",
+            "MONTO": 60
+        }]
+    },
+    "response": {
+        "data": "ERROR",
+        "message": "Error: An error occurred while updating the entries. See the inner exception for details. / Inner Exception: Violation of PRIMARY KEY constraint 'PK_PS_AFV_ANEXOS'. Cannot insert duplicate key in object 'GLOBAL.PS_AFV_ANEXOS'. The duplicate key value is (20, 76170328).\r\nThe statement has been terminated."
+    }
+}, {
+    "message": {
+        "CASA": 0,
+        "DEPOSITO_MONTO": 53,
+        "NUMERO_DEPOSITO": 65680158,
+        "FECHA_DEPOSITO": "2023-06-19T08:55:26.000",
+        "CUENTA_BANCARIA": 20,
+        "U_FECHA_VALOR_XRT": "2023-06-16T00:00:00.000",
+        "ANEXO": "A014314323061760153",
+        "ANEXODETALLE": [{
+            "DOCUMENTO": "R014314323061560270",
+            "MONTO": 53
+        }]
+    },
+    "response": {
+        "data": "OK"
+    }
+}]

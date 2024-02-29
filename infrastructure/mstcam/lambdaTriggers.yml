@@ -1,0 +1,133 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers mstcam
+
+Parameters:
+  PullSQSTCamLambdaArn:
+    Type: String
+
+  ETLAddTCamLambdaArn:
+    Type: String
+  ETLInactiveTCamLambdaArn:
+    Type: String
+  ETLUpdateTCamLambdaArn:
+    Type: String
+
+  DMTCambioLambdaArn:
+    Type: String
+
+  BussInactiveTCamLambdaArn:
+    Type: String
+  BussAddTCamLambdaArn:
+    Type: String
+  BussUpdateTCamLambdaArn:
+    Type: String
+
+  TasaCambioSQSArn:
+    Type: String
+
+  ApiGatewayAPIDMMon:
+    Type: String
+
+  BussAddCompletedTCamEventArn:
+    Type: String
+  BussInactivateCompletedTCamEventArn:
+    Type: String
+  BussUpdateCompletedTCamEventArn:
+    Type: String
+
+  ETLAddCompletedTCamEventArn:
+    Type: String
+  ETLInactivateCompletedTCamEventArn:
+    Type: String
+  ETLUpdateCompletedTCamEventArn:
+    Type: String
+
+  PullSQSAddTCamEventArn:
+    Type: String
+  PullSQSInactivateTCamEventArn:
+    Type: String
+  PullSQSUpdateTCamEventArn:
+    Type: String
+
+Resources:
+  LambdaEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      EventSourceArn: !Ref TasaCambioSQSArn
+      FunctionName: !Ref PullSQSTCamLambdaArn
+      Enabled: true
+      MaximumBatchingWindowInSeconds: 0
+
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLAddTCamLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSAddTCamEventArn
+
+  LambdaPermission2:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLInactiveTCamLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSInactivateTCamEventArn
+
+  LambdaPermission3:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLUpdateTCamLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSUpdateTCamEventArn
+
+  LambdaPermission4:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMTCambioLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref BussAddCompletedTCamEventArn
+
+  LambdaPermission5:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMTCambioLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref BussInactivateCompletedTCamEventArn
+
+  LambdaPermission6:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMTCambioLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref BussUpdateCompletedTCamEventArn
+
+  LambdaPermission8:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref BussUpdateTCamLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref ETLUpdateCompletedTCamEventArn
+
+  LambdaPermission9:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref BussInactiveTCamLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref ETLInactivateCompletedTCamEventArn
+
+  LambdaPermission10:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref BussAddTCamLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref ETLAddCompletedTCamEventArn

@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack SNS subscription ms bancos/cuentas
+
+Parameters:
+  BancosCuentasSQSArn:
+    Type: String
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+Resources:
+  SNSSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+      FilterPolicy: { "ID_MICROSERVICIO": [{ "numeric": ["=", 2] }] }
+      Endpoint: !Ref BancosCuentasSQSArn
+      Protocol: sqs
+      RawMessageDelivery: false
+      Region: !Ref AWS::Region

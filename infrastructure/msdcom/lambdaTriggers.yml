@@ -1,0 +1,117 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers msdcom
+
+Parameters:
+  DMClientezonaLambdaArn: 
+    Type: String
+  DMCoordinacionesLambdaArn: 
+    Type: String
+  DMRegionesLambdaArn: 
+    Type: String
+  DMRutasLambdaArn: 
+    Type: String
+  DMRutasdetalleLambdaArn: 
+    Type: String
+  DMZonasLambdaArn: 
+    Type: String
+  PullSQSDcomLambdaArn:  
+    Type: String
+  ETLAddDcomLambdaArn: 
+    Type: String
+  ETLInactivateDcomLambdaArn: 
+    Type: String
+  ETLUpdateDcomLambdaArn: 
+    Type: String
+  ApiGatewayAPIDivComercial: 
+    Type: String
+  DivComercialSQSArn: 
+    Type: String
+  PullSQSAddEventArn: 
+    Type: String
+  PullSQSUpdateEventArn: 
+    Type: String
+  PullSQSInactivateEventArn: 
+    Type: String
+
+Resources:
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMClientezonaLambdaArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDivComercial}/*/POST/client-zone"
+
+  LambdaPermission2:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMCoordinacionesLambdaArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDivComercial}/*/POST/coordinations"
+      
+  LambdaPermission3:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMRegionesLambdaArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDivComercial}/*/POST/regions"
+  
+  LambdaPermission4:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMRutasLambdaArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDivComercial}/*/POST/routes"
+
+  LambdaPermission5:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMRutasdetalleLambdaArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDivComercial}/*/POST/detail-routes"
+
+  LambdaPermission6:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref DMZonasLambdaArn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDivComercial}/*/POST/zones"
+
+  LambdaPermission7:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLAddDcomLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSAddEventArn
+
+  LambdaPermission8:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLInactivateDcomLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSInactivateEventArn
+
+  LambdaPermission9:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLUpdateDcomLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSUpdateEventArn
+
+  LambdaEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      Enabled: true
+      EventSourceArn: !Ref DivComercialSQSArn
+      FunctionName: !Ref PullSQSDcomLambdaArn
+      MaximumBatchingWindowInSeconds: 0

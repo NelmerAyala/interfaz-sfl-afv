@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack sqs mssendemail
+
+Resources:
+  AnexosSQS:
+    Type: AWS::SQS::Queue
+    Properties:
+      ContentBasedDeduplication: false
+      DelaySeconds: 0
+      FifoQueue: true
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 3
+      VisibilityTimeout: 30
+      QueueName: mave-msanex-sqs-anexos.fifo
+
+  SQSQueuePolicy:
+    Type: "AWS::SQS::QueuePolicy"
+    Properties:
+      PolicyDocument: !Sub '{"Version":"2008-10-17","Id":"__default_policy_ID","Statement":[{"Sid":"__owner_statement","Effect":"Allow","Principal":{"AWS":"arn:aws:iam::${AWS::AccountId}:root"},"Action":"SQS:*","Resource":"${AnexosSQS.Arn}"},{"Sid":"topic-subscription-arn:aws:sns:${AWS::Region}:${AWS::AccountId}:mave-sns-busPeticionesAFV-SFL.fifo","Effect":"Allow","Principal":{"AWS":"*"},"Action":"SQS:SendMessage","Resource":"${AnexosSQS.Arn}","Condition":{"ArnLike":{"aws:SourceArn":${BusPeticionesAFVSoftlandSnsArn}"}}}]}'
+      Queues:
+        - !Ref AnexosSQS
+
+Outputs:
+  AnexosSQSArn:
+    Value: !GetAtt AnexosSQS.Arn

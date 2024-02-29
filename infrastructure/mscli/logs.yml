@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events mscli
+
+Resources:
+  ETLAddCompletedLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mscli-rule-etl-add-completed
+
+  ETLAddFailedLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mscli-rule-etl-add-failed
+
+  ETLInactivateCompletedLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mscli-rule-etl-inactivate-completed
+
+  ETLInactivateFailedLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mscli-rule-etl-inactivate-failed
+
+  ETLUpdateCompletedLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mscli-rule-etl-update-completed
+
+  ETLUpdateFailedLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-mscli-rule-etl-update-failed
+
+Outputs:
+  ETLAddCompletedLogArn:
+    Value: !GetAtt ETLAddCompletedLog.Arn
+  ETLAddFailedLogArn:
+    Value: !GetAtt ETLAddFailedLog.Arn
+  ETLInactivateCompletedLogArn:
+    Value: !GetAtt ETLInactivateCompletedLog.Arn
+  ETLInactivateFailedLogArn:
+    Value: !GetAtt ETLInactivateFailedLog.Arn
+  ETLUpdateCompletedLogArn:
+    Value: !GetAtt ETLUpdateCompletedLog.Arn
+  ETLUpdateFailedLogArn:
+    Value: !GetAtt ETLUpdateFailedLog.Arn

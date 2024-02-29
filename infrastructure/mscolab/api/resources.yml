@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIColaboradores:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ColaboradoresResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/collaborators.yml
+      Parameters:
+        ApiGatewayAPIColaboradores: !Ref ApiGatewayAPIColaboradores
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  LogincolaboradorResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/login-collaborator.yml
+      Parameters:
+        ApiGatewayAPIColaboradores: !Ref ApiGatewayAPIColaboradores
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  ZonarepresentanteResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/representative-zone.yml
+      Parameters:
+        ApiGatewayAPIColaboradores: !Ref ApiGatewayAPIColaboradores
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot

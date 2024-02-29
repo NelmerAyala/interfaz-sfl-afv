@@ -1,0 +1,5991 @@
+{
+	"info": {
+		"_postman_id": "d0d7e130-138b-486c-ad9f-5082fba5ec25",
+		"name": "SFL-AFV-API-Collection",
+		"description": "Colección de APIs SFL-AFV.\n\nPara V1, se encuentran los ejemplos de los siguientes microservicios:\n\n*   Artículos\n*   Bancos Cuentas\n*   Clientes\n*   Colaboradores\n*   Condición de Pago\n*   División Geográfica\n*   Documentos Comerciales\n*   Impuestos\n*   Monedas\n*   Tasa de Cambio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20464890"
+	},
+	"item": [
+		{
+			"name": "V1",
+			"item": [
+				{
+					"name": "Articulos",
+					"item": [
+						{
+							"name": "Categorias",
+							"item": [
+								{
+									"name": "Categorias",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"CATEGORIACATALOGOID\": 103,\r\n    \"CATEGORIAPADRECATALOGOID\": 100,\r\n    \"NOMBRE\": \"ALTERNADOR\",\r\n    \"DESCRIPCION\": \"ALTERNADOR2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/categorias",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"categorias"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Categorias - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"CATEGORIACATALOGOID\": 103,\r\n    \"CATEGORIAPADRECATALOGOID\": 0,\r\n    \"NOMBRE\": \"ALTERNADOR2\",\r\n    \"DESCRIPCION\": \"ALTERNADOR5\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/categorias",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"categorias"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 14:50:27 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "bce0e06e-f31c-4633-b25b-62c5f28be5b7"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V-5H6FtrIAMFj8g="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2a232-780fb9cc5aa528d175db4499;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Categorias",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"CATEGORIACATALOGOID\": 103,\r\n    \"CATEGORIAPADRECATALOGOID\": 0,\r\n    \"NOMBRE\": \"ALTERNADOR2\",\r\n    \"DESCRIPCION\": \"ALTERNADOR5\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/categorias",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"categorias"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Categorias - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"CATEGORIACATALOGOID\": 103,\r\n    \"CATEGORIAPADRECATALOGOID\": 0,\r\n    \"NOMBRE\": \"ALTERNADOR2\",\r\n    \"DESCRIPCION\": \"ALTERNADOR5\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/categorias",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"categorias"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 14:50:27 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "bce0e06e-f31c-4633-b25b-62c5f28be5b7"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V-5H6FtrIAMFj8g="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2a232-780fb9cc5aa528d175db4499;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Categorias",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"CATEGORIACATALOGOID\": 103\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/categorias",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"categorias"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Categorias - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"CATEGORIACATALOGOID\": 103\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/categorias",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"categorias"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 14:50:27 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "bce0e06e-f31c-4633-b25b-62c5f28be5b7"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V-5H6FtrIAMFj8g="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2a232-780fb9cc5aa528d175db4499;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Marcas",
+							"item": [
+								{
+									"name": "Marcas",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMARCA\": 512,\r\n    \"CLASIFICACION_3\": \"002\",\r\n    \"DESCRIPCION\": \"3 EN 1 - 2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/marcas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"marcas"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Marcas - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMARCA\": 512,\r\n    \"CLASIFICACION_3\": \"002\",\r\n    \"DESCRIPCION\": \"3 EN 1 - 2\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/marcas",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"marcas"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 15:35:58 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "73d8a0ae-9603-4d70-ba6a-8a61a5310776"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V-_yfEjCoAMFVJw="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2acdc-628e9475310f958b4efebe09;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Marcas",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMARCA\": 512,\r\n    \"CLASIFICACION_3\": \"002\",\r\n    \"DESCRIPCION\": \"3 EN 1 - 2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/marcas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"marcas"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Marcas - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMARCA\": 512,\r\n    \"CLASIFICACION_3\": \"002\",\r\n    \"DESCRIPCION\": \"3 EN 1 - 2\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/marcas",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"marcas"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 15:35:58 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "73d8a0ae-9603-4d70-ba6a-8a61a5310776"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V-_yfEjCoAMFVJw="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2acdc-628e9475310f958b4efebe09;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Marcas",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMARCA\": 512\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/marcas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"marcas"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Marcas - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMARCA\": 512\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/marcas",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"marcas"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 15:35:58 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "73d8a0ae-9603-4d70-ba6a-8a61a5310776"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V-_yfEjCoAMFVJw="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2acdc-628e9475310f958b4efebe09;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Precios",
+							"item": [
+								{
+									"name": "Precios",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3946,\r\n    \"NIVEL_PRECIO\": 1002449,\r\n    \"DESCUENTO_POR_EMPAQUE\": 0.00000000,\r\n    \"UNIDAD_DESCUENTO_POR_EMPAQUE\": 0.00000000,\r\n    \"EXISTENCIA\": 449.00000000,\r\n    \"MULTIPLO_VENTA\": 1.00000000,\r\n    \"UNIDAD_VENTA_MULTIPLO_VENTA\": \"PIEZA\",\r\n    \"PRECIO\": 150.00000000,\r\n    \"FECHA_OPERACION\": \"2022-09-28T11:33:14.147\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/precios",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"precios"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Precios - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDARTICULOSFL\": \"ase\",\r\n    \"DESCUENTO_POR_EMPAQUE\": 1332.21,\r\n    \"UNIDAD_DESCUENTO_POR_EMPAQUE\": 13.96,\r\n    \"EXISTENCIA\": 100.23,\r\n    \"MULTIPLO_VENTA\": 202.21,\r\n    \"UNIDAD_VENTA_MULTIPLO_VENTA\": \"UNITVENT\",\r\n    \"NIVEL_PRECIO\": \"1234123\",\r\n    \"PRECIO\": 13.025,\r\n    \"FECHA_INICIO\": \"2019-03-29 04:00:00\",\r\n    \"RECORD_DATE\": \"2013-11-08 06:32:33\",\r\n    \"CREATE_DATE\": \"2020-07-09 00:00:00\",\r\n    \"UPDATE_DATE\": \"2020-07-19 00:00:00\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/precios",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"precios"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 15:28:54 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "1e18b120-d146-46c5-8a3b-adc4a409fdbc"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V--wdF50IAMFqEw="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2ab35-2e76e2e55a2476dc0d210860;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Precios",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3946,\r\n    \"NIVEL_PRECIO\": 1002449,\r\n    \"DESCUENTO_POR_EMPAQUE\": 150.00000000,\r\n    \"UNIDAD_DESCUENTO_POR_EMPAQUE\": 120.00000000,\r\n    \"EXISTENCIA\": 500.00000000,\r\n    \"MULTIPLO_VENTA\": 1.00000000,\r\n    \"UNIDAD_VENTA_MULTIPLO_VENTA\": \"PIEZAS 2\",\r\n    \"PRECIO\": 180.00000000,\r\n    \"FECHA_OPERACION\": \"2022-09-30T11:55:14.147\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/precios",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"precios"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Precios - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDARTICULOSFL\": \"ase\",\r\n    \"DESCUENTO_POR_EMPAQUE\": 1332.21,\r\n    \"UNIDAD_DESCUENTO_POR_EMPAQUE\": 13.96,\r\n    \"EXISTENCIA\": 100.23,\r\n    \"MULTIPLO_VENTA\": 202.21,\r\n    \"UNIDAD_VENTA_MULTIPLO_VENTA\": \"UNITVENT\",\r\n    \"NIVEL_PRECIO\": \"1234123\",\r\n    \"PRECIO\": 13.025,\r\n    \"FECHA_INICIO\": \"2019-03-29 04:00:00\",\r\n    \"RECORD_DATE\": \"2013-11-08 06:32:33\",\r\n    \"CREATE_DATE\": \"2020-07-09 00:00:00\",\r\n    \"UPDATE_DATE\": \"2020-07-19 00:00:00\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/precios",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"precios"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 15:28:54 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "1e18b120-d146-46c5-8a3b-adc4a409fdbc"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V--wdF50IAMFqEw="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2ab35-2e76e2e55a2476dc0d210860;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Precios",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3946,\r\n    \"NIVEL_PRECIO\": 1027627\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/precios",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"precios"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Precios - 200 OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3946,\r\n    \"NIVEL_PRECIO\": 1027627\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/precios",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"precios"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 15:28:54 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "1e18b120-d146-46c5-8a3b-adc4a409fdbc"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V--wdF50IAMFqEw="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2ab35-2e76e2e55a2476dc0d210860;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Referencias",
+							"item": [
+								{
+									"name": "Referencias",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3946,\r\n    \"U_REFERENCIA_PROVEEDOR\": \"PR-01523\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/referencias",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"referencias"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Referencias - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDARTICULOSFL\": \"ase\",\r\n    \"U_REFERENCIA_PROVEEDOR\": \"REFPROVEC\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/articulos/referencias",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"articulos",
+														"referencias"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 28 Jul 2022 15:49:17 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "d497b4f9-ede6-4820-8ca9-f6b8a1a94471"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "V_BvVF95IAMFbiA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62e2affb-06047b60417f6bbd5a39abe3;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Lista Precio",
+							"item": [
+								{
+									"name": "Lista Precio",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3,\r\n    \"NOMBRE\": \"PEPE\",\r\n    \"ID_LISTAPRECIO\": 2,\r\n    \"ESTATUS_NIVEL_PRECIO\": \"A\",\r\n    \"CREATEDATE\": \"2022-08-26 20:37:01\",\r\n    \"UPDATE_DATE\": \"2022-08-26 20:37:01\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/listaPrecio",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"listaPrecio"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Lista Precio",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3,\r\n    \"NOMBRE\": \"PEPE\",\r\n    \"ID_LISTAPRECIO\": 2,\r\n    \"ESTATUS_NIVEL_PRECIO\": \"A\",\r\n    \"CREATEDATE\": \"2022-08-26 20:37:01\",\r\n    \"UPDATE_DATE\": \"2022-08-26 20:37:01\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/listaPrecio",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"listaPrecio"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Lista Precio",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3,\r\n    \"NOMBRE\": \"PEPE\",\r\n    \"ID_LISTAPRECIO\": 2,\r\n    \"ESTATUS_NIVEL_PRECIO\": \"A\",\r\n    \"CREATEDATE\": \"2022-08-26 20:37:01\",\r\n    \"UPDATE_DATE\": \"2022-08-26 20:37:01\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos/listaPrecio",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos",
+												"listaPrecio"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Articulos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3946,\r\n    \"IDMARCA\": 1,\r\n    \"DESCRIPCION\": \"REGULADOR ALTERNADOR M562 HY-CORP PEUGEOT 206 207 307 PARTNER \\/ CITROE C3C4\",\r\n    \"DESCRIPCION_UDF\": \"REGULADOR ALTERNADOR M562 HY-CORP PEUGEOT 206 207 307 PARTNER \\/ CITROE C3C4\",\r\n    \"FACTOR_VENTA\": 1.00000000,\r\n    \"USO\": \"DESCRIPCION DEL ARTICULO\",\r\n    \"OBSERVACIONES\": \"OBSERVACIONES DEL ARTICULO\",\r\n    \"NACIONALIDAD_ARTICULO\": \"Venezuela\",\r\n    \"MATERIAL_ARTICULO\": \"ND\",\r\n    \"U_COD_AFV\": \"5810341\",\r\n    \"IDIMPUESTO\": 1,\r\n    \"FACTOR_EMPAQUE\": 1.00000000,\r\n    \"UNIDAD_EMPAQUE\": \"PIEZA\",\r\n    \"MULTIPLO_VENTA\": 2.00000000,\r\n    \"UNIDAD_VENTA_MULTIPLO_VENTA\": \"PIEZAS\",\r\n    \"EXISTENCIA\": 449.00000000,\r\n    \"ULTIMACOMPRA\": \"2022-09-27\",\r\n    \"CANTIDADRECIBIDA\": 0,\r\n    \"U_DESC_EMPAQUE\": 0.00000000,\r\n    \"U_UNIDAD_EMPAQUE\": 0.00000000,\r\n    \"CLASIFICACION\": \"K\",\r\n    \"CATEGORIACATALOGOID\": 100,\r\n    \"U_REFERENCIA_PROVEEDOR\": \"01-01-001\",\r\n    \"FECHA_OPERACION\": \"2022-09-28T10:35:45.013\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/articulos",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"articulos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Articulos - 200 OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDARTICULOSFL\": \"ase\",\r\n    \"CLASIFICACION_3\": \"RSA356G\",\r\n    \"DESCRIPCION\": \"Descripcion\",\r\n    \"DESCRIPCION_UDF\": \"DescripUDF\",\r\n    \"FACTOR_VENTA\": 10.2,\r\n    \"USO\": \"USO\",\r\n    \"OBSERVACIONES\": \"OBSERVACIONES\",\r\n    \"NACIONALIDAD_ARTICULO\": \"NACIONA\",\r\n    \"MATERIAL_ARTICULO\": \"MATERIAL\",\r\n    \"ACTIVO\": \"S\",\r\n    \"U_COD_AFV\": \"CODAFV\",\r\n    \"IDIMPUESTO\": \"123\",\r\n    \"FACTOR_EMPAQUE\": 12.23,\r\n    \"UNIDAD_EMPAQUE\": \"UNIT-EMP\",\r\n    \"MULTIPLO_VENTA\": 202.21,\r\n    \"UNIDAD_VENTA_MULTIPLO_VENTA\": \"UNITVENT\",\r\n    \"ULTIMACOMPRA\": \"2020-09-12\",\r\n    \"CANTIDADRECIBIDA\": 10.65,\r\n    \"U_DESC_EMPAQUE\": 23.231,\r\n    \"U_UNIDAD_EMPAQUE\": 13.123,\r\n    \"CLASIFICACION\": \"CLASIF\",\r\n    \"DESCUENTO_POR_EMPAQUE\": 1332.21,\r\n    \"UNIDAD_DESCUENTO_POR_EMPAQUE\": 13.96,\r\n    \"EXISTENCIA\": 100.23,\r\n    \"NIVEL_PRECIO\": \"1234123\",\r\n    \"PRECIO\": 13.025,\r\n    \"FECHA_INICIO\": \"2019-03-29 04:00:00\",\r\n    \"CATEGORIACATALOGOID\": \"123\",\r\n    \"SUBCATEGORIACATALOGOID\": \"54635\",\r\n    \"U_REFERENCIA_PROVEEDOR\": \"REFPROVEC\",\r\n    \"RECORD_DATE\": \"2013-11-08 06:32:33\",\r\n    \"CREATE_DATE\": \"2020-07-09 00:00:00\",\r\n    \"UPDATE_DATE\": \"2020-07-19 00:00:00\",\r\n    \"NOMBRE_CATEGORIA_ARTICULO\": \"NOMBRECATART\",\r\n    \"DESCRIPCION_CATEGORIA_ARTICULO\": \"DESCRIPCATART\",\r\n    \"CATEGORIA_SUBCATEGORIA\": \"1234\",\r\n    \"CATEGORIAPADRECATALOGOID\": \"CATEGOCATAID\",\r\n    \"IDMARCA\": \"M3M012AS\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 29 Jul 2022 19:30:00 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "af69e4b8-c891-4753-b926-baa82448d98e"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "WC1AsFhpoAMF8gw="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62e43537-0f3f04c00a6e047c6fbf863e;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Articulos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3946,\r\n    \"IDMARCA\": 101,\r\n    \"DESCRIPCION\": \"REGULADOR ALTERNADOR M562 HY-CORP PEUGEOT 206 207 307 PARTNER \\/ CITROE C3C4\",\r\n    \"DESCRIPCION_UDF\": \"REGULADOR ALTERNADOR M562 HY-CORP PEUGEOT 206 207 307 PARTNER \\/ CITROE C3C4\",\r\n    \"FACTOR_VENTA\": 1.00000000,\r\n    \"USO\": \"ESTO ES UNA PRUEBA DEL PUT DEL API\",\r\n    \"OBSERVACIONES\": \"OBSERVACIONES DEL ARTICULO\",\r\n    \"NACIONALIDAD_ARTICULO\": \"Venezuela\",\r\n    \"MATERIAL_ARTICULO\": \"ND\",\r\n    \"U_COD_AFV\": \"5810342\",\r\n    \"IDIMPUESTO\": 1,\r\n    \"FACTOR_EMPAQUE\": 1.00000000,\r\n    \"UNIDAD_EMPAQUE\": \"PIEZA\",\r\n    \"MULTIPLO_VENTA\": 2.00000000,\r\n    \"UNIDAD_VENTA_MULTIPLO_VENTA\": \"PIEZAS\",\r\n    \"EXISTENCIA\": 450.00000000,\r\n    \"ULTIMACOMPRA\": \"2022-09-27\",\r\n    \"CANTIDADRECIBIDA\": 0,\r\n    \"U_DESC_EMPAQUE\": 0.00000000,\r\n    \"U_UNIDAD_EMPAQUE\": 0.00000000,\r\n    \"CLASIFICACION\": \"K\",\r\n    \"FECHA_OPERACION\": \"2022-09-29T10:42:49.620\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/articulos",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"articulos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Articulos - 200 OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDARTICULOSFL\": \"ase\",\r\n    \"CLASIFICACION_3\": \"RSA356G\",\r\n    \"DESCRIPCION\": \"Descripcion\",\r\n    \"DESCRIPCION_UDF\": \"DescripUDF\",\r\n    \"FACTOR_VENTA\": 10.2,\r\n    \"USO\": \"USO\",\r\n    \"OBSERVACIONES\": \"OBSERVACIONES\",\r\n    \"NACIONALIDAD_ARTICULO\": \"NACIONA\",\r\n    \"MATERIAL_ARTICULO\": \"MATERIAL\",\r\n    \"ACTIVO\": \"S\",\r\n    \"U_COD_AFV\": \"CODAFV\",\r\n    \"IDIMPUESTO\": \"123\",\r\n    \"FACTOR_EMPAQUE\": 12.23,\r\n    \"UNIDAD_EMPAQUE\": \"UNIT-EMP\",\r\n    \"MULTIPLO_VENTA\": 202.21,\r\n    \"UNIDAD_VENTA_MULTIPLO_VENTA\": \"UNITVENT\",\r\n    \"ULTIMACOMPRA\": \"2020-09-12\",\r\n    \"CANTIDADRECIBIDA\": 10.65,\r\n    \"U_DESC_EMPAQUE\": 23.231,\r\n    \"U_UNIDAD_EMPAQUE\": 13.123,\r\n    \"CLASIFICACION\": \"CLASIF\",\r\n    \"EXISTENCIA\": 100.23,\r\n    \"U_REFERENCIA_PROVEEDOR\": \"H42138\",\r\n    \"RECORD_DATE\": \"2013-11-08 06:32:33\",\r\n    \"CREATE_DATE\": \"2020-07-09 00:00:00\",\r\n    \"UPDATE_DATE\": \"2020-07-19 00:00:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 28 Jul 2022 14:17:38 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "d480790a-0602-4d80-b252-a99f2571379a"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "V-0UZHFBoAMFiPQ="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62e29a82-54aca08d300ee35b270b7269;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Articulos",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 3946\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/articulos",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"articulos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Articulos",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDARTICULOSFL\": \"ase\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/articulos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"articulos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 28 Jul 2022 16:00:46 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "19da68ae-3989-4725-980e-3dffb0eb917c"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "V_Da_EsXIAMFYKw="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62e2b2ac-5d6684a2049535623d684a82;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Artículos.\n\nTablas manipuladas DBAFV:\n\n*   articulos\n*   articulos_lpv\n*   categoriaarticulocatalogo\n*   marcas\n*   categoriacatalogo (maestro)\n*   grupos (maestro)\n*   partidas (maestro)\n*   referencia (maestro)\n*   subgrupo (maestro)"
+				},
+				{
+					"name": "Bancos Cuentas",
+					"item": [
+						{
+							"name": "Cuenta",
+							"item": [
+								{
+									"name": "Cuenta",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCUENTABANCARIA\": 2,\r\n    \"IDENTIDADFINANCIERA\": 1,\r\n    \"NUMEROCUENTABANCARIA\": \"0102E\",\r\n    \"NOMBRECUENTABANCARIA\": \"0102-0114-46-0000868297\",\r\n    \"STATUS\": \"S\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/bancosCuentas/cuenta",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"bancosCuentas",
+												"cuenta"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Cuenta - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCUENTABANCARIA\": 1,\r\n    \"IDENTIDADFINANCIERA\": 1,\r\n    \"NUMEROCUENTABANCARIA\": \"1\",\r\n    \"NOMBRECUENTABANCARIA\": \"1\",\r\n    \"STATUS\": \"S\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/bancosCuentas/cuenta",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"bancosCuentas",
+														"cuenta"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 22 Jul 2022 14:35:40 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "6b5503cf-fc7f-48a4-aa6c-649368cca892"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "VrFVXHxAIAMFU8g="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62dab5bb-53f18bdc47f74e4f7b0378cc;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Cuenta",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCUENTABANCARIA\": 2,\r\n    \"IDENTIDADFINANCIERA\": 1,\r\n    \"NUMEROCUENTABANCARIA\": \"0102E\",\r\n    \"NOMBRECUENTABANCARIA\": \"0102-0114-46-0000868297 UPDATE\",\r\n    \"STATUS\": \"S\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/bancosCuentas/cuenta",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"bancosCuentas",
+												"cuenta"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Cuenta - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCUENTABANCARIA\": 1,\r\n    \"IDENTIDADFINANCIERA\": 1,\r\n    \"NUMEROCUENTABANCARIA\": \"1\",\r\n    \"NOMBRECUENTABANCARIA\": \"1\",\r\n    \"STATUS\": \"S\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/bancosCuentas/cuenta",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"bancosCuentas",
+														"cuenta"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 22 Jul 2022 14:36:22 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "1dd30921-bb63-42b6-a1fa-0099cb9cc870"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "VrFb-E8LoAMFTfg="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62dab5e6-56649f1d160f8f7978507b2c;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Entidad",
+							"item": [
+								{
+									"name": "Entidad",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDENTIDADFINANCIERA\": 1,\r\n    \"DESCRIPCION\": \"Banco Mercantil\",\r\n    \"CONVENIOANEXO\": \"S\",\r\n    \"CREATEDATE\": \"2022-05-19T12:14:17.557\",\r\n    \"CREATEDBY\": \"sa\",\r\n    \"RECORDDATE\": \"2022-05-19T12:14:17.557\",\r\n    \"UPDATEDBY\": \"sa\",\r\n    \"STATUS\": \"S\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/bancosCuentas/entidad",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"bancosCuentas",
+												"entidad"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Entidad - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDENTIDADFINANCIERA\": 1,\r\n    \"DESCRIPCION\": \"Descripcion\",\r\n    \"CONVENIOANEXO\": \"A\",\r\n    \"CREATEDATE\": \"2022-01-01 00:00:00\",\r\n    \"CREATEDBY\": \"USER\",\r\n    \"RECORDDATE\": \"2022-01-01 00:00:00\",\r\n    \"UPDATEDBY\": \"USERR\",\r\n    \"STATUS\": \"S\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/bancosCuentas/entidad",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"bancosCuentas",
+														"entidad"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 22 Jul 2022 14:37:41 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "26815d86-ce20-43af-8316-cedf90aafb87"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "VrFoRHi5oAMFT4A="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62dab634-30fcabdb25fa44d4529c99d8;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Entidad",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDENTIDADFINANCIERA\": 1,\r\n    \"DESCRIPCION\": \"Banco Mercantil UPATE\",\r\n    \"CONVENIOANEXO\": \"S\",\r\n    \"CREATEDATE\": \"2022-05-19T12:14:17.557\",\r\n    \"CREATEDBY\": \"Yo\",\r\n    \"RECORDDATE\": \"2022-05-19T12:14:17.557\",\r\n    \"UPDATEDBY\": \"AWS ERP\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/bancosCuentas/entidad",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"bancosCuentas",
+												"entidad"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Entidad - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDENTIDADFINANCIERA\": 1,\r\n    \"DESCRIPCION\": \"Descripcion\",\r\n    \"CONVENIOANEXO\": \"A\",\r\n    \"CREATEDATE\": \"2022-01-01 00:00:00\",\r\n    \"CREATEDBY\": \"USER\",\r\n    \"RECORDDATE\": \"2022-01-01 00:00:00\",\r\n    \"UPDATEDBY\": \"USERR\",\r\n    \"STATUS\": \"S\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/bancosCuentas/entidad",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"bancosCuentas",
+														"entidad"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 22 Jul 2022 14:38:22 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "3b767848-67ca-49f5-9c13-b00be6dac0f2"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "VrFusEt4IAMFpOA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62dab65d-6b312a5a4b743fa2145ac593;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Banco Cuentas.\n\nTablas manipuladas DBAFV:\n\n*   cuentabancariainterna\n*   cyc_cuentabancaria\n*   entidadfinanciera"
+				},
+				{
+					"name": "Clientes",
+					"item": [
+						{
+							"name": "Concepto Tributario",
+							"item": [
+								{
+									"name": "Concepto Tributario",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 307,\r\n    \"IDCONCEPTOTRIBUTARIO\": 1,\r\n    \"CREATEDATE\": \"2022-08-26T20:37:01.013\",\r\n    \"CREATEDBY\": \"XMPENA\",\r\n    \"UPDATEDBY\": \"Juan Pablo 2do\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes/conceptoTributario",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes",
+												"conceptoTributario"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Concepto Tributario - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 300008,\r\n    \"IDCONCEPTOTRIBUTARIO\": 1,\r\n    \"CREATEDATE\": \"2022-09-01 00:00:00\",\r\n    \"CREATEDBY\": \"user\",\r\n    \"UPDATEDBY\": \"user2\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/clientes/conceptoTributario",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"clientes",
+														"conceptoTributario"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 02 Sep 2022 18:35:28 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "23907b46-4f72-40a1-8501-b5ddf2c981e1"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "X2D1cFXwIAMFZwQ="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-63124cef-0a3b977c197473b432529624;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Direcciones",
+							"item": [
+								{
+									"name": "Direcciones",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 307,\r\n    \"IDDIRECCION\": 311,\r\n    \"IDTIPODIRECCION\": 3,\r\n    \"IDCIUDAD\": 0,\r\n    \"DIRECCION\": \"Zona Industrial\",\r\n    \"ESTATUS\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes/direcciones",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes",
+												"direcciones"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Direcciones - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 300008,\r\n    \"IDDIRECCION\": 3,\r\n    \"IDTIPODIRECCION\": 3,\r\n    \"IDCIUDAD\": 5,\r\n    \"DIRECCION\": \"NUEVA CASA 2\",\r\n    \"ESTATUS\": 2\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/clientes/direcciones",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"clientes",
+														"direcciones"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 02 Sep 2022 17:49:40 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "ff0333e7-0659-4237-a58c-2019f599e466"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "X19IKHfJoAMFT0w="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-63124234-416dc0bc2165f33e51a92b8c;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Limite Credito",
+							"item": [
+								{
+									"name": "Limite Credito",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 307,\r\n    \"LIMITE_CREDITO\": 123,\r\n    \"DISPONIBLE\": 789\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes/limiteCredito",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes",
+												"limiteCredito"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Limite Credito - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 300008,\r\n    \"LIMITE_CREDITO\": 75,\r\n    \"DISPONIBLE\": 60\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/clientes/limiteCredito",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"clientes",
+														"limiteCredito"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Wed, 31 Aug 2022 19:41:26 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "ba3454bd-5c2d-4468-9512-7a4be8dfc22a"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "Xvnn6FzlIAMFTlQ="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-630fb965-5585025c718d0b1104606fde;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Lista Precio",
+							"item": [
+								{
+									"name": "Lista Precio",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID_NIVEL_PRECIO\": 2,\r\n    \"ID_LISTAPRECIO\": 2,\r\n    \"ESTATUS_NIVEL_PRECIO\": \"Y\",\r\n    \"CREATEDATE\": \"2022-09-20T14:26:01.013\",\r\n    \"UPDATE_DATE\": \"2022-09-20T14:26:01.013\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes/listaPrecio",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes",
+												"listaPrecio"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Lista Precio - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID_NIVEL_PRECIO\": 300008,\r\n    \"ID_LISTAPRECIO\": 250,\r\n    \"ESTATUS_NIVEL_PRECIO\": \"Y\",\r\n    \"CREATEDATE\": \"2022-09-01 00:00:00\",\r\n    \"UPDATE_DATE\": \"2022-09-01 00:00:00\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/clientes/listaPrecio",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"clientes",
+														"listaPrecio"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 02 Sep 2022 18:33:30 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "8197229f-3c8f-4574-b102-0cd0a75326f7"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "X2Di6GfAoAMFpsg="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-63124c78-58493eab25507f555eef4f9d;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Representantes",
+							"item": [
+								{
+									"name": "Representantes",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDREPRESENTANTE\": 1,\r\n    \"ID\": 307,\r\n    \"U_NOMBRE_REPR\": \"Juan\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes/representantes",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes",
+												"representantes"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Representantes - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDREPRESENTANTE\": 300008,\r\n    \"ID\": 300008,\r\n    \"U_NOMBRE_REPR\": \"MEDARDO\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/clientes/representantes",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"clientes",
+														"representantes"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 02 Sep 2022 18:12:25 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "8c5e79e7-cfc5-423d-b141-11d26337d90e"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "X2AdeG0DIAMF78g="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-63124789-1eb640de2b19e2912b7d4b16;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Telefonos",
+							"item": [
+								{
+									"name": "Telefonos",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDTELEFONO\": 307,\r\n    \"IDTIPOTELEFONO\": 1,\r\n    \"ID\": 307,\r\n    \"TELEFONO\": \"04124056128\",\r\n    \"ESTATUS\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes/telefonos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes",
+												"telefonos"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Telefonos - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 300008,\r\n    \"IDTELEFONO\": 300009,\r\n    \"IDTIPOTELEFONO\": 2,\r\n    \"TELEFONO\": \"04120000000\",\r\n    \"ESTATUS\": 2\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/clientes/telefonos",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"clientes",
+														"telefonos"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 02 Sep 2022 18:11:31 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "8b85b5e9-f65e-4817-81bb-c4cadba5d56d"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "X2AVEFNBIAMFgCQ="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-63124753-0ac4d39e3044ba554fd1a4e2;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Clientes",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n  \"CASA\": 0,\r\n  \"ID\": 307,\r\n  \"CONTRIBUYENTE\": \"J402088515\",\r\n  \"RAZONSOCIAL\": \"AUTOMOTORES BOLIVARIANOS 33, C.A\",\r\n  \"NOMBRE\": \"AUTOMOTORES BOLIVARIANOS 33, C.A\",\r\n  \"ALIAS\": \"AUTOMOTORES BOLIVARIANOS 33, C.A\",\r\n  \"ACTIVO\": \"S\",\r\n  \"CODNEMONICO\": \"0203206\",\r\n  \"E_MAIL\": \".\",\r\n  \"IDCATEGORIA\": \"1\",\r\n  \"ISUNLOCK\": false,\r\n  \"NIVEL_PRECIO\": \"10\",\r\n  \"U_COD_MINAMT\": 20,\r\n  \"IDDIRECCION_COBRO\": 0,\r\n  \"IDTIPODIRECCION_COBRO\": 0,\r\n  \"IDCIUDAD_COBRO\": 0,\r\n  \"DIRECCION_COBRO\": \"0\",\r\n  \"ESTATUS_COBRO\": \"\",\r\n  \"IDDIRECCION_EMBARQUE\": 311,\r\n  \"IDTIPODIRECCION_EMBARQUE\": 3,\r\n  \"IDCIUDAD_EMBARQUE\": 0,\r\n  \"DIRECCION_EMBARQUE\": \"ND\",\r\n  \"ESTATUS_EMBARQUE\": 2,\r\n  \"IDTELEFONO_MASTER\": 307,\r\n  \"IDTIPOTELEFONO_MASTER\": 1,\r\n  \"TELEFONO_MASTER\": \"4248136280\",\r\n  \"ESTATUS_MASTER\": 2,\r\n  \"IDTELEFONO_PRINCIPAL\": \"\",\r\n  \"IDTIPOTELEFONO_PRINCIPAL\": \"\",\r\n  \"TELEFONO_PRINCIPAL\": \"\",\r\n  \"ESTATUS_PRINCIPAL\": \"\",\r\n  \"IDREPRESENTANTE\": 100,\r\n  \"U_NOMBRE_REPR\": \"SIMANCAS GONZALEZ LORAINE\",\r\n  \"LIMITE_CREDITO\": 0,\r\n  \"DISPONIBLE\": 0,\r\n  \"IDCONCEPTOTRIBUTARIO\": 1,\r\n  \"ID_NIVEL_PRECIO\": 2,\r\n  \"ID_LISTAPRECIO\": 2,\r\n  \"ESTATUS_NIVEL_PRECIO\": \"2\",\r\n  \"CREATEDATE\": \"2022-08-26T20:37:01.013\",\r\n  \"CREATEDBY\": \"XMPENA\",\r\n  \"UPDATEDBY\": \"sa\",\r\n  \"UPDATE_DATE\": \"2022-09-08T11:19:22.960\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/clientes",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Clientes - 200 OK PRUEBA V1",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 300000,\r\n    \"IDREPRESENTANTE\": 300000,\r\n    \"IDTELEFONO_MASTER\": 300000,\r\n    \"IDTELEFONO_PRINCIPAL\": 300001,\r\n    \"CONTRIBUYENTE\": \"11223344\",\r\n    \"RAZONSOCIAL\": \"RAZON\",\r\n    \"NOMBRE\": \"JOSE\",\r\n    \"ALIAS\": \"YOYO\",\r\n    \"ACTIVO\": \"S\",\r\n    \"CODNEMONICO\": \"1234567\",\r\n    \"E_MAIL\": \"HOLA@GMAIL.COM\",\r\n    \"IDCATEGORIA\": \"1\",\r\n    \"ISUNLOCK\": true,\r\n    \"NIVEL_PRECIO\": \"1234\",\r\n    \"U_COD_MINAMT\": 10,\r\n    \"IDDIRECCION_COBRO\": 1,\r\n    \"IDTIPODIRECCION_COBRO\": 10,\r\n    \"IDCIUDAD_COBRO\": 10,\r\n    \"DIRECCION_COBRO\": \"Dir\",\r\n    \"ESTATUS_COBRO\": 1,\r\n    \"IDDIRECCION_EMBARQUE\": 3,\r\n    \"IDTIPODIRECCION_EMBARQUE\": 1,\r\n    \"IDCIUDAD_EMBARQUE\": 1,\r\n    \"DIRECCION_EMBARQUE\": \"Dire\",\r\n    \"ESTATUS_EMBARQUE\": 1,\r\n    \"IDTIPOTELEFONO_MASTER\": 1,\r\n    \"TELEFONO_MASTER\": \"123456\",\r\n    \"ESTATUS_MASTER\": 2,\r\n    \"IDTIPOTELEFONO_PRINCIPAL\": 10,\r\n    \"TELEFONO_PRINCIPAL\": \"1234\",\r\n    \"ESTATUS_PRINCIPAL\": 2,\r\n    \"U_NOMBRE_REPR\": \"NOMBRE\",\r\n    \"LIMITE_CREDITO\": 1,\r\n    \"DISPONIBLE\": 1,\r\n    \"IDCONCEPTOTRIBUTARIO\": 1,\r\n    \"ID_NIVEL_PRECIO\": 1,\r\n    \"ID_LISTAPRECIO\": 1,\r\n    \"ESTATUS_NIVEL_PRECIO\": \"Y\",\r\n    \"CREATEDATE\": \"2022-01-01 00:00:00\",\r\n    \"CREATEDBY\": \"2022-01-01 00:00:00\",\r\n    \"UPDATEDBY\": \"2022-01-01 00:00:00\",\r\n    \"RECORD_DATE\": \"2022-01-01 00:00:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 31 Aug 2022 15:16:55 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "199dcc04-1fe7-4968-b95f-a50bdc269901"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "XvA32EfkIAMFnPw="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-630f7b65-2deb78375fb78a1f55422aaa;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								},
+								{
+									"name": "Clientes - ID varchar",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": \"asd\",\r\n    \"IDREPRESENTANTE\": 300000,\r\n    \"IDTELEFONO_MASTER\": 300000,\r\n    \"IDTELEFONO_PRINCIPAL\": 300001,\r\n    \"CONTRIBUYENTE\": \"11223344\",\r\n    \"RAZONSOCIAL\": \"RAZON\",\r\n    \"NOMBRE\": \"JOSE\",\r\n    \"ALIAS\": \"YOYO\",\r\n    \"ACTIVO\": \"S\",\r\n    \"CODNEMONICO\": \"1234567\",\r\n    \"E_MAIL\": \"HOLA@GMAIL.COM\",\r\n    \"IDCATEGORIA\": \"1\",\r\n    \"ISUNLOCK\": true,\r\n    \"NIVEL_PRECIO\": \"1234\",\r\n    \"U_COD_MINAMT\": 10,\r\n    \"IDDIRECCION_COBRO\": 1,\r\n    \"IDTIPODIRECCION_COBRO\": 10,\r\n    \"IDCIUDAD_COBRO\": 10,\r\n    \"DIRECCION_COBRO\": \"Dir\",\r\n    \"ESTATUS_COBRO\": 1,\r\n    \"IDDIRECCION_EMBARQUE\": 3,\r\n    \"IDTIPODIRECCION_EMBARQUE\": 1,\r\n    \"IDCIUDAD_EMBARQUE\": 1,\r\n    \"DIRECCION_EMBARQUE\": \"Dire\",\r\n    \"ESTATUS_EMBARQUE\": 1,\r\n    \"IDTIPOTELEFONO_MASTER\": 1,\r\n    \"TELEFONO_MASTER\": \"123456\",\r\n    \"ESTATUS_MASTER\": 2,\r\n    \"IDTIPOTELEFONO_PRINCIPAL\": 10,\r\n    \"TELEFONO_PRINCIPAL\": \"1234\",\r\n    \"ESTATUS_PRINCIPAL\": 2,\r\n    \"U_NOMBRE_REPR\": \"NOMBRE\",\r\n    \"LIMITE_CREDITO\": 1,\r\n    \"DISPONIBLE\": 1,\r\n    \"IDCONCEPTOTRIBUTARIO\": 1,\r\n    \"ID_NIVEL_PRECIO\": 1,\r\n    \"ID_LISTAPRECIO\": 1,\r\n    \"ESTATUS_NIVEL_PRECIO\": \"Y\",\r\n    \"CREATEDATE\": \"2022-01-01 00:00:00\",\r\n    \"CREATEDBY\": \"2022-01-01 00:00:00\",\r\n    \"UPDATEDBY\": \"2022-01-01 00:00:00\",\r\n    \"RECORD_DATE\": \"2022-01-01 00:00:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 31 Aug 2022 18:08:04 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "3d22a332-7fd5-41fc-98f3-17b6d44be33d"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "XvZ8oHhiIAMFwEw="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-630fa383-484345c570c0a51f34ca97d2;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Clientes",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 1,\r\n    \"CONTRIBUYENTE\": \"J402088515\",\r\n    \"RAZONSOCIAL\": \"JUAN, C.A\",\r\n    \"NOMBRE\": \"Andres Blanca\",\r\n    \"ALIAS\": \"AUTOMOTORES BOLIVARIANOS 33, C.A\",\r\n    \"ACTIVO\": \"S\",\r\n    \"CODNEMONICO\": \"0203206\",\r\n    \"E_MAIL\": \".\",\r\n    \"IDCATEGORIA\": \"1\",\r\n    \"ISUNLOCK\": false,\r\n    \"NIVEL_PRECIO\": \"123456\",\r\n    \"U_COD_MINAMT\": 20,\r\n    \"CREATEDATE\": \"2022-08-26T20:37:01.013\",\r\n    \"CREATEDBY\": \"XMPENA\",\r\n    \"UPDATEDBY\": \"AWS ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/clientes",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Clientes - 200 OK Final",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 300008,\r\n    \"CONTRIBUYENTE\": \"11223344\",\r\n    \"RAZONSOCIAL\": \"Razon nueva\",\r\n    \"NOMBRE\": \"PRUEBA FINAL\",\r\n    \"ALIAS\": \"FINAL\",\r\n    \"ACTIVO\": \"S\",\r\n    \"CODNEMONICO\": \"1234567\",\r\n    \"E_MAIL\": \"armando1234@gmail.com\",\r\n    \"IDCATEGORIA\": \"1\",\r\n    \"ISUNLOCK\": true,\r\n    \"NIVEL_PRECIO\": \"1234\",\r\n    \"U_COD_MINAMT\": 10,\r\n    \"CREATEDATE\": \"2022-09-02 00:00:00\",\r\n    \"CREATEDBY\": \"USER\",\r\n    \"UPDATEDBY\": \"USER2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 02 Sep 2022 17:45:45 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "052fd3b7-dd8c-43f7-a97d-17b3882eb913"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "X18jRE4moAMFpHA="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-63124147-732861b026f866c311d6009b;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Clientes",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 500,\r\n    \"ID_NIVEL_PRECIO\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/clientes",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"clientes"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Clientes - 200 OK FINAL",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2,\r\n    \"ID_NIVEL_PRECIO\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/clientes",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"clientes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Mon, 05 Sep 2022 17:50:55 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "c0de3bb7-ab92-45ba-8a06-683fa4bf4695"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "X_2H4HvGoAMFSNA="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-631636ff-624dd7cc62dce435633a88c3;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Clientes.\n\nTablas manipuladas DBAFV:\n\n*   cliente\n*   clientedireccion\n*   cyc_clienterepresentante\n*   cyc_clientetelefonos\n*   cyc_conceptotributariocliente\n*   cyc_conceptotributariodetalle\n*   cyc_limitedecredito\n*   cyc_tipocliente (Maestro)\n*   cyc_tipotelefono (Maestro)\n*   grupo_cliente (Maestro)\n*   ramonegocio (Maestro)"
+				},
+				{
+					"name": "Colaboradores",
+					"item": [
+						{
+							"name": "Zona Representante",
+							"item": [
+								{
+									"name": "Zona Representante",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 1000000,\r\n    \"IDZONAS\": 1,\r\n    \"IDNIVELJERARQUICO\": 1,\r\n    \"FECHAEFECTIVA\": \"2022-05-19\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/colaboradores/zonaRep",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"colaboradores",
+												"zonaRep"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Zona Representante - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 1,\r\n    \"ID\": 400,\r\n    \"IDNIVELJERARQUICO\": 2,\r\n    \"FECHAEFECTIVA\": \"2022-05-19\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/colaboradores/zonaRep",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"colaboradores",
+														"zonaRep"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 08 Sep 2022 21:06:56 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "1f1cd369-ca27-4209-865d-eebb614cfd11"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "YKLpiF3SIAMF_EA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-631a5970-25105d1778e45fd167d03eb5;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Zona Representante",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 1,\r\n    \"ID\": 400,\r\n    \"IDNIVELJERARQUICO\": 2,\r\n    \"FECHAEFECTIVA\": \"2022-05-19\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/colaboradores/zonaRep",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"colaboradores",
+												"zonaRep"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Zona Representante - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 1,\r\n    \"ID\": 1000,\r\n    \"IDNIVELJERARQUICO\": 1,\r\n    \"FECHAEFECTIVA\": \"2022-10-20\",\r\n    \"IDSTATUS\": 2\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/colaboradores/zonaRep",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"colaboradores",
+														"zonaRep"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 08 Sep 2022 21:06:56 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "1f1cd369-ca27-4209-865d-eebb614cfd11"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "YKLpiF3SIAMF_EA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-631a5970-25105d1778e45fd167d03eb5;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Zona Representante",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 3,\r\n    \"ID\": 1000000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/colaboradores/zonaRep",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"colaboradores",
+												"zonaRep"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Zona Representante - 200 OK FINAL",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 3,\r\n    \"ID\": 1000000\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/colaboradores/zonaRep",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"colaboradores",
+														"zonaRep"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 08 Sep 2022 21:06:56 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "1f1cd369-ca27-4209-865d-eebb614cfd11"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "YKLpiF3SIAMF_EA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-631a5970-25105d1778e45fd167d03eb5;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Colaboradores",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 1000000,\r\n    \"NOMBRE_VENDEDOR\": \"PRUEBA 1000000 PROD\",\r\n    \"CELULAR\": \"00000000\",\r\n    \"USERNAME\": \"TESTPROD1000000\",\r\n    \"PASSWORD\": \"password1000000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/colaboradores",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"colaboradores"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Colaboradores - 200 OK FINAL",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 400,\r\n    \"NOMBRE_VENDEDOR\": \"PRUEBA 400 PROD\",\r\n    \"CELULAR\": \"00000000\",\r\n    \"USERNAME\": \"TESTPROD400\",\r\n    \"PASSWORD\": \"password1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/colaboradores",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"colaboradores"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 08 Sep 2022 20:40:44 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "b9e44f56-6bfc-4f48-80f1-ab88c0431b03"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "YKHzrFm3oAMFxmg="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-631a534a-0e7dd45805c7715e5e673b1e;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Colaboradores",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 400,\r\n    \"NOMBRE_VENDEDOR\": \"PRUEBA 400 PROD PUT\",\r\n    \"CELULAR\": \"00000000\",\r\n    \"USERNAME\": \"TESTPROD400\",\r\n    \"PASSWORD\": \"password1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/colaboradores",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"colaboradores"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Colaboradores - 200 OK FINAL",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 1005,\r\n    \"NOMBRE_VENDEDOR\": \"ANDRES1005 UPDATE\",\r\n    \"CELULAR\": \"10101010\",\r\n    \"USERNAME\": \"ANDRES10055\",\r\n    \"PASSWORD\": \"password123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/colaboradores",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"colaboradores"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 08 Sep 2022 20:57:50 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "76a8fcb9-4e87-4637-b082-2ebd938e4e49"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "YKKT9FzZIAMFssg="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-631a574c-6524dff54b8827607728d709;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Colaboradores",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 1000000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/colaboradores",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"colaboradores"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Colaboradores - 200 OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 1000000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/colaboradores",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"colaboradores"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Mon, 31 Oct 2022 18:51:02 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "50"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "d4d07728-c4cb-40b0-a870-fad73be34a47"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "a4jbaE5hIAMFjYA="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-63601915-61fa410e2477e9f365a58ba1;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"The request has been sent correctly.\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Colaboradores.\n\nTablas manipuladas DBAFV:\n\n*   colaboradores\n*   logincolaborador\n*   zonarepresentante\n*   canalventa (maestro)\n*   clientezona (maestro)\n*   cyc_tiporepresentante (maestro)"
+				},
+				{
+					"name": "Condición de Pago",
+					"item": [
+						{
+							"name": "Negociación",
+							"item": [
+								{
+									"name": "Detalle",
+									"item": [
+										{
+											"name": "Detalle",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2,\r\n    \"IDNEGOCIACIONNIVEL\": 30,\r\n    \"IDNIVEL\": 1,\r\n    \"DIAS_INICIO\": 10,\r\n    \"DIAS_FIN\": 20,\r\n    \"VALORPORCENTAJE1\": 80,\r\n    \"PORCENTAJETOTAL\": 80,\r\n    \"DESCRIPCION\": \"pruebaadd\",\r\n    \"CREATED\": \"2022-09-28T14:25:58.670\",\r\n    \"CREATEDBY\": \"AS/CMAYORQUIN\",\r\n    \"UPDATED\": \"2022-09-28T14:25:58.670\",\r\n    \"UPDATEDBY\": \"AS/CMAYORQUIN\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/condicionPago/negociacion/detalle",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"condicionPago",
+														"negociacion",
+														"detalle"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Detalle",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2000,\r\n    \"IDNEGOCIACIONNIVEL\": 2004,\r\n    \"IDNIVEL\": 1,\r\n    \"DIAS_INICIO\": 15,\r\n    \"DIAS_FIN\": 20,\r\n    \"VALORPORCENTAJE1\": 80,\r\n    \"PORCENTAJETOTAL\": 80,\r\n    \"DESCRIPCION\": \"prueba\",\r\n    \"CREATED\": \"2022-09-28T14:25:58.670\",\r\n    \"CREATEDBY\": \"AS/CMAYORQUIN\",\r\n    \"UPDATED\": \"2022-09-28T14:25:58.670\",\r\n    \"UPDATEDBY\": \"AS/CMAYORQUIN\"\r\n}\r\n",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{API_URL}}/v1/condicionPago/negociacion/detalle",
+															"host": [
+																"{{API_URL}}"
+															],
+															"path": [
+																"v1",
+																"condicionPago",
+																"negociacion",
+																"detalle"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Date",
+															"value": "Wed, 27 Jul 2022 16:41:38 GMT"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														},
+														{
+															"key": "Content-Length",
+															"value": "51"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														},
+														{
+															"key": "x-amzn-RequestId",
+															"value": "67988d0e-27e9-4cde-b16a-2feaa122e789"
+														},
+														{
+															"key": "x-amz-apigw-id",
+															"value": "V72eZGVboAMF37A="
+														},
+														{
+															"key": "X-Amzn-Trace-Id",
+															"value": "Root=1-62e16ac2-07f60d014e98216b57efa7f8;Sampled=0"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+												}
+											]
+										},
+										{
+											"name": "Detalle",
+											"request": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2,\r\n    \"IDNEGOCIACIONNIVEL\": 30,\r\n    \"IDNIVEL\": 1,\r\n    \"DIAS_INICIO\": 10,\r\n    \"DIAS_FIN\": 20,\r\n    \"VALORPORCENTAJE1\": 80,\r\n    \"PORCENTAJETOTAL\": 80,\r\n    \"DESCRIPCION\": \"pruebaupdate\",\r\n    \"CREATED\": \"2022-09-28T14:25:58.670\",\r\n    \"CREATEDBY\": \"AS/CMAYORQUIN\",\r\n    \"UPDATED\": \"2022-09-28T14:25:58.670\",\r\n    \"UPDATEDBY\": \"AS/CMAYORQUIN\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/condicionPago/negociacion/detalle",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"condicionPago",
+														"negociacion",
+														"detalle"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Detalle",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2000,\r\n    \"IDNEGOCIACIONNIVEL\": 2004,\r\n    \"IDNIVEL\": 1,\r\n    \"DIAS_INICIO\": 15,\r\n    \"DIAS_FIN\": 20,\r\n    \"VALORPORCENTAJE1\": 80,\r\n    \"PORCENTAJETOTAL\": 80,\r\n    \"DESCRIPCION\": \"prueba\",\r\n    \"CREATED\": \"2022-09-28T14:25:58.670\",\r\n    \"CREATEDBY\": \"AS/CMAYORQUIN\",\r\n    \"UPDATED\": \"2022-09-28T14:25:58.670\",\r\n    \"UPDATEDBY\": \"AS/CMAYORQUIN\"\r\n}\r\n",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{API_URL}}/v1/condicionPago/negociacion/detalle",
+															"host": [
+																"{{API_URL}}"
+															],
+															"path": [
+																"v1",
+																"condicionPago",
+																"negociacion",
+																"detalle"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Date",
+															"value": "Wed, 27 Jul 2022 16:41:38 GMT"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														},
+														{
+															"key": "Content-Length",
+															"value": "51"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														},
+														{
+															"key": "x-amzn-RequestId",
+															"value": "67988d0e-27e9-4cde-b16a-2feaa122e789"
+														},
+														{
+															"key": "x-amz-apigw-id",
+															"value": "V72eZGVboAMF37A="
+														},
+														{
+															"key": "X-Amzn-Trace-Id",
+															"value": "Root=1-62e16ac2-07f60d014e98216b57efa7f8;Sampled=0"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Condición de Pago",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2,\r\n    \"FECHAEFECTIVA\": \"2022-10-26 12:52:01\",\r\n    \"DESCRIPCION\": \"PRUEBA ADD\",\r\n    \"USUARIOCREACION\": \"pruebaadd\",\r\n    \"FECHAUA\": \"2022-10-26 12:52:01\",\r\n    \"USUARIOUA\": \"pruebaadd\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/condicionPago",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"condicionPago"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Condición de Pago - 200 OK (Update)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2,\r\n    \"FECHAEFECTIVA\": \"2022-10-26 12:52:01\",\r\n    \"DESCRIPCION\": \"PRUEBA ADD\",\r\n    \"USUARIOCREACION\": \"pruebaadd\",\r\n    \"FECHAUA\": \"2022-10-26 12:52:01\",\r\n    \"USUARIOUA\": \"pruebaadd\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/condicionPago",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"condicionPago"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Mon, 01 Aug 2022 15:19:50 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "b3bcea26-9f0c-41dc-9d10-74ee9fb1b4e7"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "WMJLiFMBIAMFybg="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62e7ef16-2be65fcd6d236d79198bdcbe;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Condición de Pago",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2,\r\n    \"FECHAEFECTIVA\": \"2022-10-26 00:00:00\",\r\n    \"DESCRIPCION\": \"PRUEBA UPDATE\",\r\n    \"USUARIOCREACION\": \"pruebaUPDATE\",\r\n    \"FECHAUA\": \"2022-10-26 00:00:00\",\r\n    \"USUARIOUA\": \"pruebaUPDATE\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/condicionPago",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"condicionPago"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Negociacion - 200 OK (Updated)",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 2000,\r\n    \"FECHAEFECTIVA\": \"2022-10-03T12:52:01.560\",\r\n    \"DESCRIPCION\": \"CONTADO - PRUEBA PUT\",\r\n    \"USUARIOCREACION\": \"sa\",\r\n    \"FECHAUA\": \"2022-05-19T12:14:04.800\",\r\n    \"USUARIOUA\": \"sa\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/condicionPago/negociacion",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"condicionPago",
+												"negociacion"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 27 Jul 2022 16:39:16 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "ec55bb72-fb71-4d5f-8542-0810f2224ee7"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "V72IQE4SIAMFcYg="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62e16a34-7c7fa77071813ec820e25d3b;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Condición de Pago.\n\nTablas manipuladas DBAFV:\n\n*   negociaciondetalle\n*   negociacionnivel"
+				},
+				{
+					"name": "Distribución Comercial",
+					"item": [
+						{
+							"name": "Rutas Detalles",
+							"item": [
+								{
+									"name": "Rutas Detalles",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDRUTAS\": 1,\r\n    \"IDZONAS\": 2,\r\n    \"IDCLIENTE\": 307\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divComercial/rutasdetalles",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divComercial",
+												"rutasdetalles"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Rutas Detalles - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDRUTAS\": 2,\r\n    \"IDZONAS\": 1,\r\n    \"IDCLIENTE\": 2\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divComercial/rutasdetalles",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divComercial",
+														"rutasdetalles"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 26 Aug 2022 17:57:41 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "57c068bb-d3bb-4b6f-95e1-570396802ba9"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "Xe5vTEVKIAMF9OA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-63090994-413afb0a6ae26d9d793e212c;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Rutas Detalles",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDRUTAS\": 0,\r\n    \"IDZONAS\": 100,\r\n    \"IDCLIENTE\": 307\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divComercial/rutasdetalles",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divComercial",
+												"rutasdetalles"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Rutas Detalles - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDRUTAS\": 2,\r\n    \"IDZONAS\": 1,\r\n    \"IDCLIENTE\": 2\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divComercial/rutasdetalles",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divComercial",
+														"rutasdetalles"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 26 Aug 2022 18:52:36 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "fef973f0-cb08-4d92-924f-3e04494f5f8e"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XfByMFrSIAMFn_w="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-63091674-5ee643b63b7cbf4e7c378e20;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Zonas",
+							"item": [
+								{
+									"name": "Zona Cliente",
+									"item": [
+										{
+											"name": "Zona Cliente",
+											"request": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCLIENTE\": 300000,\r\n    \"IDZONAS\": 2,\r\n    \"FECHAEFECTIVA\": \"2022-10-15\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divComercial/zonas/cliente",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divComercial",
+														"zonas",
+														"cliente"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Zona Cliente",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCLIENTE\": 300000,\r\n    \"IDZONAS\": 3,\r\n    \"FECHAEFECTIVA\": \"2022-10-14\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divComercial/zonas/cliente",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divComercial",
+														"zonas",
+														"cliente"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Zonas",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 400,\r\n    \"NOMBREZONA\": \"prueba400\",\r\n    \"DESCRIPCIONZONA\": \"prueba400\",\r\n    \"IDSTATUS\": \"S\",\r\n    \"IDRUTA\": \"Z400\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divComercial/zonas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divComercial",
+												"zonas"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Zonas - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 91,\r\n    \"NOMBREZONA\": \"Z002\",\r\n    \"DESCRIPCIONZONA\": \"ZONA 2\",\r\n    \"IDSTATUS\": \"S\",\r\n    \"IDRUTA\": \"Z002\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divComercial/zonas",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divComercial",
+														"zonas"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 26 Aug 2022 15:44:14 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "4d187059-c8c9-411c-a5b6-3ae66c672d53"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XemL7H1SIAMF8ZA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-6308ea4c-78d1f0264b7d49e14e8993e3;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Zonas",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 1,\r\n    \"NOMBREZONA\": \"ZONA JSON-02\",\r\n    \"DESCRIPCIONZONA\": \"DESCRIPCION JSON-02\",\r\n    \"IDSTATUS\": \"N\",\r\n    \"IDRUTA\": \"JSN02\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divComercial/zonas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divComercial",
+												"zonas"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Zonas - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 91,\r\n    \"NOMBREZONA\": \"Z003\",\r\n    \"DESCRIPCIONZONA\": \"ZONA 3\",\r\n    \"IDSTATUS\": \"S\",\r\n    \"IDRUTA\": \"Z003\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divComercial/zonas",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divComercial",
+														"zonas"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 26 Aug 2022 18:45:09 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "7584dad4-4b2f-4275-820a-fd10ff817bff"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XfAsTHeWIAMFq7g="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-630914b4-44eae4754de8034b3e64b538;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Rutas",
+							"item": [
+								{
+									"name": "Rutas",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 77,\r\n    \"IDRUTAS\": 4,\r\n    \"NOMBRERUTA\": \"Martes\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divComercial/rutas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divComercial",
+												"rutas"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Rutas - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 100,\r\n    \"IDRUTAS\": 0,\r\n    \"NOMBRERUTA\": \"RUTA PRUEBA 01\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divComercial/rutas",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divComercial",
+														"rutas"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Mon, 10 Oct 2022 18:42:03 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "50"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "c0369db0-d900-44ea-be01-98e1be2078f0"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "ZzUbTE7coAMFYFg="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-6344677b-1305b73e48e5d25737e13692;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"The request has been sent correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Rutas",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 3,\r\n    \"IDRUTAS\": 6,\r\n    \"NOMBRERUTA\": \"RUTA 06\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divComercial/rutas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divComercial",
+												"rutas"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Rutas - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDZONAS\": 100,\r\n    \"IDRUTAS\": 0,\r\n    \"NOMBRERUTA\": \"RUTA PRUEBA 01\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divComercial/rutas",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divComercial",
+														"rutas"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Mon, 10 Oct 2022 18:42:03 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "50"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "c0369db0-d900-44ea-be01-98e1be2078f0"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "ZzUbTE7coAMFYFg="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-6344677b-1305b73e48e5d25737e13692;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"The request has been sent correctly.\"\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "División Geográfica",
+					"item": [
+						{
+							"name": "Ciudad",
+							"item": [
+								{
+									"name": "Ciudad",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCIUDAD\": 17,\r\n    \"NOMBRECIUDAD\": \"BQTO\",\r\n    \"ID_ESTADO\": 18\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divGeografica/ciudad",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divGeografica",
+												"ciudad"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Ciudad - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCIUDAD\": 2,\r\n    \"NOMBRECIUDAD\": \"Guacara\",\r\n    \"ID_ESTADO\": 1000016\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divGeografica/ciudad",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divGeografica",
+														"ciudad"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Wed, 17 Aug 2022 19:36:39 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "d9755a64-8d92-487a-b4b6-0c31b41db4ba"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XBdzCHT7oAMFYjA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62fd4346-3902ea4246f5b5b626a439ee;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Ciudad",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCIUDAD\": 17,\r\n    \"NOMBRECIUDAD\": \"Barquisimeto\",\r\n    \"ID_ESTADO\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divGeografica/ciudad",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divGeografica",
+												"ciudad"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Ciudad - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDCIUDAD\": 2,\r\n    \"NOMBRECIUDAD\": \"Guacara\",\r\n    \"ID_ESTADO\": 1000016\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divGeografica/ciudad",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divGeografica",
+														"ciudad"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Wed, 17 Aug 2022 19:39:42 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "4a0941cc-af43-4406-b963-041ffbe15b2b"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XBePuFAqIAMFcfw="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62fd43fe-153a18416aa1659f47656680;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Estado",
+							"item": [
+								{
+									"name": "Estado",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID_ESTADO\": 20,\r\n    \"ESTADO\": \"Nueva Granada\",\r\n    \"IDPAIS\": 340\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divGeografica/estado",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divGeografica",
+												"estado"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Estado - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID_ESTADO\": 2,\r\n    \"ESTADO\": \"Carabobo Update\",\r\n    \"IDPAIS\": 1\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divGeografica/estado",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divGeografica",
+														"estado"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Wed, 17 Aug 2022 19:53:37 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "6e5fd537-f365-4c9e-a98c-0375bd9be63d"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XBgSIFrsoAMFjDQ="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62fd4740-03d0a3697691a5e5635037e0;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Estado",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID_ESTADO\": 20,\r\n    \"ESTADO\": \"GUAIRA\",\r\n    \"IDPAIS\": 34\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divGeografica/estado",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divGeografica",
+												"estado"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Estado - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID_ESTADO\": 2,\r\n    \"ESTADO\": \"Carabobo Update\",\r\n    \"IDPAIS\": 1\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divGeografica/estado",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divGeografica",
+														"estado"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Wed, 17 Aug 2022 19:54:16 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "78a9af5b-3d5a-4f11-95aa-661de468f5bf"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XBgYTEHIoAMF3DQ="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62fd4768-5ded543e23d032116cec9f63;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "País",
+							"item": [
+								{
+									"name": "País",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDPAIS\": 7,\r\n    \"NOMBREPAIS\": \"USA\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divGeografica/pais",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divGeografica",
+												"pais"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "País - 200 OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDPAIS\": 4,\r\n    \"NOMBREPAIS\": \"España\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divGeografica/pais",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divGeografica",
+														"pais"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Wed, 17 Aug 2022 18:49:12 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "7ff99ea5-8383-4c96-a90a-c6eba575cde3"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XBW2KGkeoAMFhag="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62fd3827-3af374815d378b92103608a2;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "País",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDPAIS\": 340,\r\n    \"NOMBREPAIS\": \"USA PUT\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/divGeografica/pais",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"divGeografica",
+												"pais"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "País - 200 OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDPAIS\": 4,\r\n    \"NOMBREPAIS\": \"España upd\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/divGeografica/pais",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"divGeografica",
+														"pais"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Wed, 17 Aug 2022 18:50:06 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "51"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "e36f7703-90ce-4182-89bf-c85b145cf3e5"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "XBW-pE0hoAMFceA="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-62fd385d-19883d6e1ebc42ce50c00a0b;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+										}
+									]
+								}
+							]
+						}
+					],
+					"description": "Microservicio de División Geográfica.\n\nTablas manipuladas DBAFV:\n\n*   cyc_pais\n*   cyc_estados\n*   cyc_ciudad"
+				},
+				{
+					"name": "Documentos Comerciales",
+					"item": [
+						{
+							"name": "Movimiento Articulos",
+							"item": [
+								{
+									"name": "Mov Articulos",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 100,\r\n    \"DOCUMENTOSCOMERCIALESDETALLE\": [\r\n        {\r\n            \"IDMOVCOMERCIALARTICULO\": 1001,\r\n            \"IDLINEAMOVCOMERCIAL\": 1,\r\n            \"IDARTICULO\": 1080324,\r\n            \"PRECIO_UNITARIO\": 12.5,\r\n            \"CANTIDAD\": 4,\r\n            \"PORCENTAJEDESCUENTO\": 0,\r\n            \"DESC_TOTAL_LINEA\": 0,\r\n            \"PRECIO_TOTAL\": 50,\r\n            \"TOTAL_IMPUESTO1\": 8,\r\n            \"ANULADAS\": \"N\"\r\n        },\r\n        {\r\n            \"IDMOVCOMERCIALARTICULO\": 1002,\r\n            \"IDLINEAMOVCOMERCIAL\": 2,\r\n            \"IDARTICULO\": 1079877,\r\n            \"PRECIO_UNITARIO\": 25,\r\n            \"CANTIDAD\": 2,\r\n            \"PORCENTAJEDESCUENTO\": 0,\r\n            \"DESC_TOTAL_LINEA\": 0,\r\n            \"PRECIO_TOTAL\": 50,\r\n            \"TOTAL_IMPUESTO1\": 8,\r\n            \"ANULADAS\": \"N\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/docComerciales/movArticulos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"docComerciales",
+												"movArticulos"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Mov Articulos - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMOVCOMERCIAL\": 59,\r\n    \"NROMOVFISCAL\": \"05563500\",\r\n    \"DOCUMENTOSCOMERCIALESDETALLE\": [\r\n        {\r\n            \"IDMOVCOMERCIALARTICULO\": 58,\r\n            \"IDLINEAMOVCOMERCIAL\": 10,\r\n            \"IDARTICULO\": 1079379,\r\n            \"PRECIO_UNITARIO\": 15.5,\r\n            \"CANTIDAD\": 15,\r\n            \"PORCENTAJEDESCUENTO\": 15.8,\r\n            \"DESC_TOTAL_LINEA\": 15,\r\n            \"PRECIO_TOTAL\": 1500,\r\n            \"TOTAL_IMPUESTO1\": 150.5,\r\n            \"ANULADAS\": \"N\"\r\n        }\r\n    ]\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/docComerciales/movArticulos",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"docComerciales",
+														"movArticulos"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Thu, 15 Sep 2022 18:43:58 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "50"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "88f5b04b-34a4-4e76-b16e-a6370680b003"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "Yg7RQEL_oAMFlVQ="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-6323726e-30f213ed0672811d3d836c56;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"The request has been sent correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Movimiento Transacciones",
+							"item": [
+								{
+									"name": "Mov Transacciones",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDTRANSACCION\": 59,\r\n    \"DOCUMENTO_ORIGEN\": \"100\",\r\n    \"TIPO\": \"FAC\",\r\n    \"SUBTIPO\": \"MOR\",\r\n    \"NUMEROFISCAL\": \"202210200\",\r\n    \"IDZONA\": 1001120,\r\n    \"VENDEDOR\": 1291334,\r\n    \"CLIENTE\": 1109111,\r\n    \"FECHA_DOCUMENTO\": \"2024-10-12 13:21:09\",\r\n    \"FECHA_VENCE\": \"2022-11-12 12:38:10\",\r\n    \"IDMONEDA\": 100,\r\n    \"MONTO_DOLAR\": 116,\r\n    \"SALDO_DOLAR\": 150,\r\n    \"MONTO_LOCAL\": 952.36,\r\n    \"SALDO_LOCAL\": 1231.5,\r\n    \"TASA_CAMBIO\": 8.21\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/docComerciales/movTransacciones",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"docComerciales",
+												"movTransacciones"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Mov Transacciones - 200 OK FINAL",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDTRANSACCION\": 59,\r\n    \"DOCUMENTO_ORIGEN\": \"01419\",\r\n    \"TIPO\": \"sqs\",\r\n    \"SUBTIPO\": \"120\",\r\n    \"NUMEROFISCAL\": \"03792627\",\r\n    \"U_RUTA\": \"1001280\",\r\n    \"VENDEDOR\": 1,\r\n    \"CLIENTE\": 300008,\r\n    \"FECHA_DOCUMENTO\": \"2024-09-15 00:00:00\",    \r\n    \"FECHA_VENCE\": \"2024-09-30 00:00:00\",    \r\n    \"MONEDA\": 205,\r\n    \"MONTO_DOLAR\": 250,\r\n    \"MONTO_LOCAL\": 550,\r\n    \"SALDO_DOLAR\": 150,\r\n    \"SALDO_LOCAL\": 350,\r\n    \"TASA_CAMBIO\": 8.5\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{API_URL}}/v1/docComerciales/movTransacciones",
+													"host": [
+														"{{API_URL}}"
+													],
+													"path": [
+														"v1",
+														"docComerciales",
+														"movTransacciones"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Date",
+													"value": "Fri, 16 Sep 2022 14:36:51 GMT"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Content-Length",
+													"value": "50"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "x-amzn-RequestId",
+													"value": "8bed6f7c-42a8-4a61-bdf6-48965cdf1d53"
+												},
+												{
+													"key": "x-amz-apigw-id",
+													"value": "YjqAOGmkIAMF1YQ="
+												},
+												{
+													"key": "X-Amzn-Trace-Id",
+													"value": "Root=1-63248a01-3ffc96e80e806a184409cfb3;Sampled=0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"The request has been sent correctly.\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Documentos Comerciales",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 100,\r\n    \"NROMOVFISCAL\": \"202210100\",\r\n    \"CLIENTE\": 1109091,\r\n    \"IDCONDICIONCOBRANZA\": \"9999\",\r\n    \"FECHA_RIGE\": \"2022-10-11 12:38:10\", \r\n    \"FECHA_VENCE\": \"2022-11-11 12:38:10\",\r\n    \"MONTO_DOLAR\": 116.58,\r\n    \"MONTO_LOCAL\": 1025.9,\r\n    \"SALDO_DOLAR\": 50,\r\n    \"SALDO_LOCAL\": 440,\r\n    \"IDMONEDA\": 100,\r\n    \"TASA_CAMBIO\": 8.8,\r\n    \"IDZONA\": 1001095,\r\n    \"VENDEDOR\": 11,\r\n    \"TOTALRENGLONES\": 2,\r\n    \"NUMORDEN\": \"10022\",\r\n    \"IDMOVCOMERCIALREF\": \"2779209\",\r\n    \"IDDOCUMENTOREF\": \"1\",\r\n    \"ESTATUSMOVIMIENTO\": \"V\",\r\n    \"IDINSTRUMENTOPAGO\": \"21\",\r\n    \"IDDOCUMENTO_SFL\": \"123\",\r\n    \"TIPO\": \"FAC\",\r\n    \"SUBTIPO\": \"MOR\",\r\n    \"DOCUMENTOSCOMERCIALESDETALLE\": [\r\n        {\r\n            \"IDMOVCOMERCIALARTICULO\": 1001,\r\n            \"IDLINEAMOVCOMERCIAL\": 1,\r\n            \"IDARTICULO\": 1230029,\r\n            \"PRECIO_UNITARIO\": 50.5,\r\n            \"CANTIDAD\": 1,\r\n            \"PORCENTAJEDESCUENTO\": 0,\r\n            \"DESC_TOTAL_LINEA\": 0,\r\n            \"PRECIO_TOTAL\": 50.5,\r\n            \"TOTAL_IMPUESTO1\": 8.08,\r\n            \"ANULADAS\": \"N\"\r\n        },\r\n        {\r\n            \"IDMOVCOMERCIALARTICULO\": 1002,\r\n            \"IDLINEAMOVCOMERCIAL\": 2,\r\n            \"IDARTICULO\": 1390492,\r\n            \"PRECIO_UNITARIO\": 10,\r\n            \"CANTIDAD\": 5,\r\n            \"PORCENTAJEDESCUENTO\": 0,\r\n            \"DESC_TOTAL_LINEA\": 0,\r\n            \"PRECIO_TOTAL\": 50,\r\n            \"TOTAL_IMPUESTO1\": 8,\r\n            \"ANULADAS\": \"N\"\r\n        }\r\n    ],\r\n    \"SUBTOTAL\": 884.4,\r\n    \"IMPUESTO1\": 141.5,\r\n    \"MONTOBASE_D\": 100.5,\r\n    \"MONTOIMPUESTO_D\": 16.08,\r\n    \"IDTRANSACCION\": 59,\r\n    \"DOCUMENTO_ORIGEN\": \"100\",\r\n    \"NUMEROFISCAL\": \"202210100\",\r\n    \"FECHA_DOCUMENTO\": \"2024-10-12 13:21:09\"    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/docComerciales",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"docComerciales"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Documentos Comerciales - 200 OK FINAL",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMOVCOMERCIAL\": 59,\r\n    \"NROMOVFISCAL\": \"05563500\",\r\n    \"IDRECEPTORMOVIMIENTO\": 300000,\r\n    \"IDCONDICIONCOBRANZA\": \"1234\",\r\n    \"FECHA_RIGE\": \"2022-03-30 04:10:10\", \r\n    \"FECHA_VENCE\": \"2022-03-31 04:10:10\",\r\n    \"MONTO_DOLAR\": 100.1,\r\n    \"MONTO_LOCAL\": 456,\r\n    \"SALDO_DOLAR\": 400.05,\r\n    \"SALDO_LOCAL\": 400,\r\n    \"MONEDA\": 205,\r\n    \"TASA_CAMBIO\": 4.56,\r\n    \"RUTA\": \"052\",\r\n    \"VENDEDOR\": 1,\r\n    \"TOTALRENGLONES\": 12,\r\n    \"NUMORDEN\": \"00512\",\r\n    \"IDMOVCOMERCIALREF\": \"1522\",\r\n    \"IDDOCUMENTOREF\": \"102\",\r\n    \"ESTATUSMOVIMIENTO\": \"V\",\r\n    \"MONTODESCUENTO\": 10.51,\r\n    \"MONTODESCUENTO_D\": 10,\r\n    \"IDINSTRUMENTOPAGO\": \"1232\",\r\n    \"DOCUMENTOSCOMERCIALESDETALLE\": [\r\n        {\r\n            \"IDMOVCOMERCIALARTICULO\": 58,\r\n            \"IDLINEAMOVCOMERCIAL\": 7,\r\n            \"IDARTICULO\": 1079379,\r\n            \"PRECIO_UNITARIO\": 10.52,\r\n            \"CANTIDAD\": 10,\r\n            \"PORCENTAJEDESCUENTO\": 10.2,\r\n            \"DESC_TOTAL_LINEA\": 5.2,\r\n            \"PRECIO_TOTAL\": 1212,\r\n            \"TOTAL_IMPUESTO1\": 152.2,\r\n            \"ANULADAS\": \"N\"\r\n        },\r\n        {\r\n            \"IDMOVCOMERCIALARTICULO\": 59,\r\n            \"IDLINEAMOVCOMERCIAL\": 7,\r\n            \"IDARTICULO\": 1079339,\r\n            \"PRECIO_UNITARIO\": 20.52,\r\n            \"CANTIDAD\": 20,\r\n            \"PORCENTAJEDESCUENTO\": 20.2,\r\n            \"DESC_TOTAL_LINEA\": 10.2,\r\n            \"PRECIO_TOTAL\": 2121,\r\n            \"TOTAL_IMPUESTO1\": 252.2,\r\n            \"ANULADAS\": \"N\"\r\n        }\r\n    ],\r\n    \"IDDOCUMENTO_SFL\": \"123\",\r\n    \"TIPO\": \"sqs\",\r\n    \"SUBTIPO\": \"120\",\r\n    \"CLIENTE\": 300000,\r\n    \"SUBTOTAL\": 10.12,\r\n    \"IMPUESTO1\": 5.15,\r\n    \"MONTOBASE_D\": 10.2,\r\n    \"MONTOIMPUESTO_D\": 1002.05,\r\n    \"IDTRANSACCION\": 59,\r\n    \"DOCUMENTO_ORIGEN\": \"01412\",\r\n    \"NUMEROFISCAL\": \"03792627\",\r\n    \"U_RUTA\": \"1001251\",\r\n    \"FECHA_DOCUMENTO\": \"2024-01-12 13:21:09\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/docComerciales",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"docComerciales"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 29 Jul 2022 18:46:11 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "42605640-8182-4403-ab68-0fcce1984396"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "WCul1GhgoAMFR5g="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62e42af1-4d2ea5675218ba643810aec2;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Documentos Comerciales",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"ID\": 100,\r\n    \"NROMOVFISCAL\": \"202210200\",\r\n    \"CLIENTE\": 1109111,\r\n    \"IDCONDICIONCOBRANZA\": \"8888\",\r\n    \"FECHA_RIGE\": \"2022-10-12 12:38:10\", \r\n    \"FECHA_VENCE\": \"2022-11-12 12:38:10\",\r\n    \"MONTO_DOLAR\": 116,\r\n    \"MONTO_LOCAL\": 952.36,\r\n    \"SALDO_DOLAR\": 150,\r\n    \"SALDO_LOCAL\": 1231.5,\r\n    \"IDMONEDA\": 100,\r\n    \"TASA_CAMBIO\": 8.21,\r\n    \"IDZONA\": 1001120,\r\n    \"VENDEDOR\": 1291334,\r\n    \"TOTALRENGLONES\": 2,\r\n    \"NUMORDEN\": \"11022\",\r\n    \"IDMOVCOMERCIALREF\": \"100\",\r\n    \"IDDOCUMENTOREF\": \"1\",\r\n    \"ESTATUSMOVIMIENTO\": \"V\",\r\n    \"IDINSTRUMENTOPAGO\": \"15\",\r\n    \"IDDOCUMENTO_SFL\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/docComerciales",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"docComerciales"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Documentos Comerciales - 200 OK FINAL",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMOVCOMERCIAL\": 59,\r\n    \"NROMOVFISCAL\": \"05563500\",\r\n    \"IDRECEPTORMOVIMIENTO\": 300000,\r\n    \"IDCONDICIONCOBRANZA\": \"4567\",\r\n    \"FECHA_RIGE\": \"2022-09-15 00:00:00\", \r\n    \"FECHA_VENCE\": \"2022-09-30 00:00:00\",\r\n    \"MONTO_DOLAR\": 200.5,\r\n    \"MONTO_LOCAL\": 250,\r\n    \"SALDO_DOLAR\": 400.5,\r\n    \"SALDO_LOCAL\": 450,\r\n    \"MONEDA\": 205,\r\n    \"TASA_CAMBIO\": 5.5,\r\n    \"RUTA\": \"052\",\r\n    \"VENDEDOR\": 1,\r\n    \"TOTALRENGLONES\": 10,\r\n    \"NUMORDEN\": \"00123\",\r\n    \"IDMOVCOMERCIALREF\": \"1522\",\r\n    \"IDDOCUMENTOREF\": \"102\",\r\n    \"ESTATUSMOVIMIENTO\": \"V\",\r\n    \"MONTODESCUENTO\": 15,\r\n    \"MONTODESCUENTO_D\": 12,\r\n    \"IDINSTRUMENTOPAGO\": \"1234\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/docComerciales",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"docComerciales"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 28 Jul 2022 19:18:45 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "ddeefac7-2c62-431f-a4e1-a397e3833e8a"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "V_gbUFrKoAMFjvg="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62e2e115-1a8645350ee024eb5d8999ee;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Documentos Comerciales.\n\nTablas manipuladas DBAFV:\n\n*   movcomercial\n*   movcomercialarticulo\n*   movcomercialimpuesto\n*   transacciones"
+				},
+				{
+					"name": "Impuestos",
+					"item": [
+						{
+							"name": "Impuestos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDIMPUESTO_SFL\": 100,\r\n    \"ALICUOTA\": 16,\r\n    \"CREATED\": \"2022-10-21 00:00:00\",\r\n    \"RECORDDATE\": \"2022-10-22 00:20:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/impuestos",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"impuestos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Impuestos - 200 OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDIMPUESTO_SFL\": 1,\r\n    \"ALICUOTA\": 0,\r\n    \"CREATED\": \"2022-10-23 00:00:00\",\r\n    \"RECORDDATE\": \"2022-10-23 00:00:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/impuestos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"impuestos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 21 Jul 2022 19:38:44 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "5b2efd23-35c1-4883-83c5-a70be7bced80"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "VoeygFjaoAMFqRA="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62d9ab43-6b30e40e3bb7cbb066d01778;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								},
+								{
+									"name": "Impuestos - 400 ERROR",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"payload\": [\r\n        {\r\n            \"CASA\": 0,\r\n            \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n            \"CREATED\": \"2022-07-15 00:00:00\",\r\n            \"RECORDDATE\": \"2022-07-15 00:00:00\"\r\n        },\r\n        {\r\n            \"CASA\": 10,\r\n            \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n            \"CREATED\": \"2021-07-15 00:00:00\",\r\n            \"RECORDDATE\": \"2021-07-15 00:00:00\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/impuestos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"impuestos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 21 Jul 2022 19:39:59 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "209"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "a8974966-7123-4ab1-aa58-7c1af05254df"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "Voe-cGvuIAMF7kw="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62d9ab8f-01c9f1a26126a7f223a026f9;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Some records could not be processed.\",\n    \"body\": [\n        {\n            \"error\": \"Invalid CASA: 10\",\n            \"record\": {\n                \"CASA\": 10,\n                \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\n                \"CREATED\": \"2021-07-15 00:00:00\",\n                \"RECORDDATE\": \"2021-07-15 00:00:00\"\n            }\n        }\n    ]\n}"
+								},
+								{
+									"name": "Impuestos - 400 ERROR (Payload not found)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"paaayload\": [\r\n        {\r\n            \"CASA\": 0,\r\n            \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n            \"CREATED\": \"2022-07-15 00:00:00\",\r\n            \"RECORDDATE\": \"2022-07-15 00:00:00\"\r\n        },\r\n        {\r\n            \"CASA\": 0,\r\n            \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n            \"CREATED\": \"2021-07-15 00:00:00\",\r\n            \"RECORDDATE\": \"2021-07-15 00:00:00\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/impuestos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"impuestos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 22 Jul 2022 12:41:00 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "39"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "2227cabc-45c4-458c-94d5-d92cecbd3cf4"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "Vq0iYGEBoAMFnLg="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62da9adb-0ceddc925b5f2066318ef85f;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Payload not found in body\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Impuestos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDIMPUESTO_SFL\": 100,\r\n    \"ALICUOTA\": 0,\r\n    \"CREATED\": \"2022-10-21 00:00:00\",\r\n    \"RECORDDATE\": \"2022-10-22 00:20:00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/impuestos",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"impuestos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Impuestos - 200 OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n    \"CREATED\": \"2022-08-15 00:00:00\",\r\n    \"RECORDDATE\": \"2022-08-15 00:00:00\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/impuestos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"impuestos"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 21 Jul 2022 19:40:52 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "ad3bfd3b-bb10-43a0-99ae-f873937d6e57"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "VofGrEA4IAMFXRw="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62d9abc4-58b71c6e0c9bc5ec635514e3;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								},
+								{
+									"name": "Impuestos - 400 ERROR",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"payload\": [\r\n        {\r\n            \"CASA\": 0,\r\n            \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n            \"CREATED\": \"2022-07-15 00:00:00\",\r\n            \"RECORDDATE\": \"2022-07-15 00:00:00\"\r\n        },\r\n        {\r\n            \"CASA\": 10,\r\n            \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n            \"CREATED\": \"2021-07-15 00:00:00\",\r\n            \"RECORDDATE\": \"2021-07-15 00:00:00\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/impuestos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"impuestos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 21 Jul 2022 19:41:15 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "209"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "8c9957db-4f3e-4fd0-be33-89781accd9b1"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "VofKVGd0oAMFjpQ="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62d9abdb-7754bf813550f4931f5834c6;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Some records could not be processed.\",\n    \"body\": [\n        {\n            \"error\": \"Invalid CASA: 10\",\n            \"record\": {\n                \"CASA\": 10,\n                \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\n                \"CREATED\": \"2021-07-15 00:00:00\",\n                \"RECORDDATE\": \"2021-07-15 00:00:00\"\n            }\n        }\n    ]\n}"
+								},
+								{
+									"name": "Impuestos - 400 ERROR (Payload not found)",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"payaload\": [\r\n        {\r\n            \"CASA\": 0,\r\n            \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n            \"CREATED\": \"2022-07-15 00:00:00\",\r\n            \"RECORDDATE\": \"2022-07-15 00:00:00\"\r\n        },\r\n        {\r\n            \"CASA\": 0,\r\n            \"IDIMPUESTO_SFL\": \"IMPUESTO_VZLA\",\r\n            \"CREATED\": \"2021-07-15 00:00:00\",\r\n            \"RECORDDATE\": \"2021-07-15 00:00:00\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/impuestos",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"impuestos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 22 Jul 2022 12:42:47 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "39"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "d23629c9-6b28-4141-99d5-794271739bb2"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "Vq0zMFGZoAMFziQ="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62da9b47-5f6842b14cdf76727205f5b4;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Payload not found in body\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Impuestos.\n\nTablas manipuladas DBAFV:\n\n*   impuestoregion"
+				},
+				{
+					"name": "Monedas",
+					"item": [
+						{
+							"name": "Monedas",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMONEDA\": 220,\r\n    \"DESCRIPCION\": \"Colón Costa Rica\",\r\n    \"ABREVIACION\": \"CRC\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/monedas",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"monedas"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Monedas - 200 OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMONEDA\": \"1\",\r\n    \"DESCRIPCION\": \"Esta es una descripciaaan\",\r\n    \"ABREVIACION\": \"ABCD\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/monedas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"monedas"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 22 Jul 2022 12:46:19 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "a547ad34-97c5-450f-ac81-ac5bdb63133e"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "Vq1UVG19IAMF2Gg="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62da9c1b-037ac1867c33bf482dfd047e;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Monedas",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMONEDA\": 220,\r\n    \"DESCRIPCION\": \"Colón Costa Rica UPDATE\",\r\n    \"ABREVIACION\": \"CRC\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/monedas",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"monedas"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Monedas - 200 OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMONEDA\": \"1\",\r\n    \"DESCRIPCION\": \"Esta es una descripcion\",\r\n    \"ABREVIACION\": \"ABCD\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/monedas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"monedas"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 22 Jul 2022 12:19:25 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "b46e5b83-9c58-45a5-86cf-6e27a16c7dce"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "VqxX0FkeoAMFWDw="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62da95cb-4c6e76b45b2863660d0a48e0;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								},
+								{
+									"name": "Monedas",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 11,\r\n    \"IDMONEDA\": \"1\",\r\n    \"DESCRIPCION\": \"Esta es una descripcion 2\",\r\n    \"ABREVIACION\": \"ABCD\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/monedas",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"monedas"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 22 Jul 2022 12:48:02 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "187"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "873f4f5e-bd50-41f2-8797-6a2744f34b51"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "Vq1kaE-goAMFhkg="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62da9c82-5af7a231609fda903efe520e;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Some records could not be processed.\",\n    \"body\": [\n        {\n            \"error\": \"Invalid CASA: 11\",\n            \"record\": {\n                \"CASA\": 11,\n                \"IDMONEDA\": \"2\",\n                \"DESCRIPCION\": \"Esta es una descripcion 2\",\n                \"ABREVIACION\": \"ABCD\"\n            }\n        }\n    ]\n}"
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Monedas.\n\nTablas manipuladas DBAFV:\n\n*   monedas"
+				},
+				{
+					"name": "Tasa de Cambio",
+					"item": [
+						{
+							"name": "Tasa de Cambio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMONEDA_ORIGEN\": 100,\r\n    \"IDMONEDA_DESTINO\": 205,\r\n    \"TASA\": 8.20870000,\r\n    \"FECHACREACION\": \"2022-10-06T08:35:01.470\",\r\n    \"ESTATUSREGISTRO\": \"V\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/tasaCambio",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"tasaCambio"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Tasa de Cambio - 200 OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMONEDA_ORIGEN\": 100,\r\n    \"IDMONEDA_DESTINO\": 205,\r\n    \"TASA\": 5,\r\n    \"FECHACREACION\": \"2021-07-15 00:00:00\",\r\n    \"ESTATUSREGISTRO\": \"V\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/tasaCambio",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"tasaCambio"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 11 Aug 2022 13:58:48 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "3afa723c-3683-467d-886e-960a6e7409f8"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "Ws6rzHlZoAMF5Ig="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62f50b18-3a822799045cf2d74205b187;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Tasa de Cambio",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMONEDA_ORIGEN\": 100,\r\n    \"IDMONEDA_DESTINO\": 205,\r\n    \"TASA\": 9.99,\r\n    \"FECHACREACION\": \"2022-10-07T08:35:01.470\",\r\n    \"ESTATUSREGISTRO\": \"V\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/v1/tasaCambio",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"v1",
+										"tasaCambio"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Tasa de Cambio - 200 OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CASA\": 0,\r\n    \"IDMONEDA_ORIGEN\": 100,\r\n    \"IDMONEDA_DESTINO\": 205,\r\n    \"TASA\": 15,\r\n    \"FECHACREACION\": \"2021-07-15 00:00:00\",\r\n    \"ESTATUSREGISTRO\": \"V\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/v1/tasaCambio",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"v1",
+												"tasaCambio"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Fri, 12 Aug 2022 17:19:22 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "x-amzn-RequestId",
+											"value": "87738d57-d19b-4c85-b406-a1204b2631d4"
+										},
+										{
+											"key": "x-amz-apigw-id",
+											"value": "Wwq_-FvFIAMFUWA="
+										},
+										{
+											"key": "X-Amzn-Trace-Id",
+											"value": "Root=1-62f68b99-0fd51733521fc179766bc9dd;Sampled=0"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All records were processed correctly.\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Microservicio de Tasa de Cambio\n\nTablas manipuladas DBAFV:\n\n*   tasa_cambio"
+				}
+			],
+			"description": "Primera versión de la colección de APIs SFL-AFV."
+		},
+		{
+			"name": "On testing",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "https://7fdy8ul725.execute-api.us-east-1.amazonaws.com/MaVE-int-SFL-AFV",
+			"type": "string"
+		}
+	]
+}

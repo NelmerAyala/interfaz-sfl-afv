@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers msped
+
+Parameters:
+  BussPedLambdaArn:
+    Type: String
+  DMPedLambdaArn:
+    Type: String
+
+  BussAddEventArn:
+    Type: String
+
+  PedidosSQSArn:
+    Type: String
+
+Resources:
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref BussPedLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref BussAddEventArn
+
+  LambdaEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      Enabled: true
+      EventSourceArn: !Ref PedidosSQSArn
+      FunctionName: !Ref DMPedLambdaArn
+      MaximumBatchingWindowInSeconds: 0

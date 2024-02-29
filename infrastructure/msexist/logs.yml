@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msexist
+
+Resources:
+  ETLUpdateCompletedExistLog: #LogsLogGroup2
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msexist-even-PullSQS-ETL-existencia-completed
+
+  ETLUpdateFailedExistLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msexist-even-PullSQS-ETL-existencia-failed
+
+Outputs:
+  ETLUpdateCompletedExistLogArn:
+    Value: !GetAtt ETLUpdateCompletedExistLog.Arn
+
+  ETLUpdateFailedExistLogArn:
+    Value: !GetAtt ETLUpdateFailedExistLog.Arn

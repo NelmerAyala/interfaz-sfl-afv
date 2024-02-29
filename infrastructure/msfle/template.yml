@@ -1,0 +1,139 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack ms fletes
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ApiGatewayTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        FletesSQSArn: !GetAtt SQSTemplate.Outputs.FletesSQSArn
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+    DependsOn:
+      - SQSTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerDMFormatter: !Ref LayerDMFormatter
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretArnFebeca: !Ref SecretArnFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+
+        ApiGatewayAPIDmFletes: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDmFletes
+        StageAPIDmFletes: !GetAtt ApiGatewayTemplate.Outputs.StageAPIDmFletes
+
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+
+    DependsOn:
+      - ApiGatewayTemplate
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        ETLAddFleLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddFleLambdaArn
+        ETLInactiveFleLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLInactiveFleLambdaArn
+        ETLUpdateFleLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateFleLambdaArn
+
+        ETLAddCompletedFleLogArn: !GetAtt LogsTemplate.Outputs.ETLAddCompletedFleLogArn
+        ETLInactivateCompletedFleLogArn: !GetAtt LogsTemplate.Outputs.ETLInactivateCompletedFleLogArn
+        ETLUpdateCompletedFleLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateCompletedFleLogArn
+
+        ETLAddFailedFleLogArn: !GetAtt LogsTemplate.Outputs.ETLAddFailedFleLogArn
+        ETLUpdateFailedFleLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateFailedFleLogArn
+        ETLInactivateFailedFleLogArn: !GetAtt LogsTemplate.Outputs.ETLInactivateFailedFleLogArn
+
+        PullSQSAddFleLogArn: !GetAtt LogsTemplate.Outputs.PullSQSAddFleLogArn
+        PullSQSInactivateFleLogArn: !GetAtt LogsTemplate.Outputs.PullSQSInactivateFleLogArn
+        PullSQSUpdateFleLogArn: !GetAtt LogsTemplate.Outputs.PullSQSUpdateFleLogArn
+
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        ETLAddFleLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddFleLambdaArn
+        ETLInactiveFleLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLInactiveFleLambdaArn
+        ETLUpdateFleLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateFleLambdaArn
+
+        PullSQSAddFleEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSAddFleEventArn
+        PullSQSInactivateFleEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSInactivateFleEventArn
+        PullSQSUpdateFleEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSUpdateFleEventArn
+
+        DMReglaDescuentoFleLambdaArn: !GetAtt LambdasTemplate.Outputs.DMReglaDescuentoFleLambdaArn
+        DMExtFreightRuleFleLambdaArn: !GetAtt LambdasTemplate.Outputs.DMExtFreightRuleFleLambdaArn
+        DMExtFreighrCircularLineFleLambdaArn: !GetAtt LambdasTemplate.Outputs.DMExtFreighrCircularLineFleLambdaArn
+        DMReglaDescuentoDetalleFleLambdaArn: !GetAtt LambdasTemplate.Outputs.DMReglaDescuentoDetalleFleLambdaArn
+
+        PullSQSFleLambdaArn: !GetAtt LambdasTemplate.Outputs.PullSQSFleLambdaArn
+
+        ApiGatewayAPIDmFletes: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDmFletes
+        FletesSQSArn: !GetAtt SQSTemplate.Outputs.FletesSQSArn
+    DependsOn:
+      - ApiGatewayTemplate
+      - EventRulesTemplate
+      - SQSTemplate

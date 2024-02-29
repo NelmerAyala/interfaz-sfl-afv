@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers ms distribucion geografica
+
+Parameters:
+  ETLAddDistGeoLambdaArn:
+    Type: String
+  ETLUpdateDistGeoLambdaArn:
+    Type: String
+
+  DMCiudadesDistGeoLambdaArn:
+    Type: String
+  DmEstadosDistGeoLambdaArn:
+    Type: String
+  DMPaisesDistGeoLambdaArn:
+    Type: String
+
+  PullSQSDistGeoLambdaArn:
+    Type: String
+
+  PullSQSAddDistGeoEventArn:
+    Type: String
+  PullSQSUpdateDistGeoEventArn:
+    Type: String
+
+  ApiGatewayAPIDmDistGeo:
+    Type: String
+
+  DistGeograficaSQSArn:
+    Type: String
+
+Resources:
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMCiudadesDistGeoLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmDistGeo}/*/POST/city
+
+  LambdaPermission2:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DmEstadosDistGeoLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmDistGeo}/*/POST/state
+
+  LambdaPermission3:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMPaisesDistGeoLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmDistGeo}/*/POST/country
+
+  LambdaPermission4:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLUpdateDistGeoLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSUpdateDistGeoEventArn
+
+  LambdaPermission5:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLAddDistGeoLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSAddDistGeoEventArn
+
+  LambdaEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      EventSourceArn: !Ref DistGeograficaSQSArn
+      FunctionName: !Ref PullSQSDistGeoLambdaArn
+      Enabled: true
+      MaximumBatchingWindowInSeconds: 0

@@ -1,0 +1,128 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack msdcom
+
+Parameters:
+  #LAYERS
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  # Adds
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+  ApiGatewayAPICliente:
+    Type: String
+
+Resources:
+  ApiGatewayTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        ETLAddCompletedLogArn: !GetAtt LogsTemplate.Outputs.ETLAddCompletedLogArn
+        ETLAddFailedLogArn: !GetAtt LogsTemplate.Outputs.ETLAddFailedLogArn
+        ETLInactivateCompletedLogArn: !GetAtt LogsTemplate.Outputs.ETLInactivateCompletedLogArn
+        ETLInactivateFailedLogArn: !GetAtt LogsTemplate.Outputs.ETLInactivateFailedLogArn
+        ETLUpdateCompletedLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateCompletedLogArn
+        ETLUpdateFailedLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateFailedLogArn
+        ETLAddDcomLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddDcomLambdaArn
+        ETLInactivateDcomLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLInactivateDcomLambdaArn
+        ETLUpdateDcomLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateDcomLambdaArn
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretARNFebeca: !Ref SecretARNFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+        ApiGatewayAPIDivComercial: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDivComercial
+        ApiGatewayAPICliente: !Ref ApiGatewayAPICliente
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+    DependsOn:
+      - ApiGatewayTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        DMClientezonaLambdaArn: !GetAtt LambdasTemplate.Outputs.DMClientezonaLambdaArn
+        DMCoordinacionesLambdaArn: !GetAtt LambdasTemplate.Outputs.DMCoordinacionesLambdaArn
+        DMRegionesLambdaArn: !GetAtt LambdasTemplate.Outputs.DMRegionesLambdaArn
+        DMRutasLambdaArn: !GetAtt LambdasTemplate.Outputs.DMRutasLambdaArn
+        DMRutasdetalleLambdaArn: !GetAtt LambdasTemplate.Outputs.DMRutasdetalleLambdaArn
+        DMZonasLambdaArn: !GetAtt LambdasTemplate.Outputs.DMZonasLambdaArn
+        PullSQSDcomLambdaArn: !GetAtt LambdasTemplate.Outputs.PullSQSDcomLambdaArn
+        ETLAddDcomLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddDcomLambdaArn
+        ETLInactivateDcomLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLInactivateDcomLambdaArn
+        ETLUpdateDcomLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateDcomLambdaArn
+        ApiGatewayAPIDivComercial: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDivComercial
+        DivComercialSQSArn: !GetAtt SQSTemplate.Outputs.DivComercialSQSArn
+        PullSQSAddEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSAddEventArn
+        PullSQSUpdateEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSUpdateEventArn
+        PullSQSInactivateEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSInactivateEventArn
+    DependsOn:
+      - EventRulesTemplate
+      - SQSTemplate
+
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        DivComercialSQSArn: !GetAtt SQSTemplate.Outputs.DivComercialSQSArn
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+    DependsOn:
+      - SQSTemplate
+
+Outputs:
+  ApiGatewayAPIDivComercial:
+    Value: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDivComercial

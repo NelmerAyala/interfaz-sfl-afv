@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack sqs msped
+
+Parameters:
+  BusPeticionesAfvSflSNSTopicArn:
+    Type: String
+
+Resources:
+  PedidosSQS:
+    Type: AWS::SQS::Queue
+    Properties:
+      ContentBasedDeduplication: false
+      DelaySeconds: 0
+      FifoQueue: true
+      MaximumMessageSize: 262144
+      MessageRetentionPeriod: 345600
+      ReceiveMessageWaitTimeSeconds: 3
+      VisibilityTimeout: 30
+      QueueName: mave-msped-sqs-pedidos.fifo
+
+  SQSQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - SQS:*
+            Effect: Allow
+            Resource: !GetAtt PedidosSQS.Arn
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
+          - Action:
+              - SQS:SendMessage
+            Effect: Allow
+            Resource: !GetAtt PedidosSQS.Arn
+            Principal:
+              AWS:
+                - "*"
+            Condition:
+              ArnLike:
+                aws:SourceArn: !Ref BusPeticionesAfvSflSNSTopicArn
+
+      Queues:
+        - !Ref PedidosSQS
+
+Outputs:
+  PedidosSQSArn:
+    Value: !GetAtt PedidosSQS.Arn

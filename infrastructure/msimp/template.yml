@@ -1,0 +1,115 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack msimp
+
+Parameters:
+  #LAYERS
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  # Adds
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ApiGatewayTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        ETLAddCompletedLogArn: !GetAtt LogsTemplate.Outputs.ETLAddCompletedLogArn
+        ETLAddFailedLogArn: !GetAtt LogsTemplate.Outputs.ETLAddFailedLogArn
+        ETLUpdateCompletedLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateCompletedLogArn
+        ETLUpdateFailedLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateFailedLogArn
+        ETLAddImpLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddImpLambdaArn
+        ETLUpdateImpLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateImpLambdaArn
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretARNFebeca: !Ref SecretARNFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+        ApiGatewayAPIImpuesto: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIImpuesto
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+    DependsOn:
+      - ApiGatewayTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        DMImpuestoregionLambdaArn: !GetAtt LambdasTemplate.Outputs.DMImpuestoregionLambdaArn
+        DMTaxruleLambdaArn: !GetAtt LambdasTemplate.Outputs.DMTaxruleLambdaArn
+        PullSQSImpLambdaArn: !GetAtt LambdasTemplate.Outputs.PullSQSImpLambdaArn
+        ETLAddImpLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddImpLambdaArn
+        ETLUpdateImpLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateImpLambdaArn
+        ApiGatewayAPIImpuesto: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIImpuesto
+        ImpuestosSQSArn: !GetAtt SQSTemplate.Outputs.ImpuestosSQSArn
+        PullSQSAddEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSAddEventArn
+        PullSQSUpdateEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSUpdateEventArn
+    DependsOn:
+      - EventRulesTemplate
+      - SQSTemplate
+
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        ImpuestosSQSArn: !GetAtt SQSTemplate.Outputs.ImpuestosSQSArn
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+    DependsOn:
+      - SQSTemplate
+
+Outputs:
+  ApiGatewayAPIImpuesto:
+    Value: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIImpuesto

@@ -1,0 +1,151 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers msart
+
+Parameters:
+  ETLAddArtLambdaArn:
+    Type: String
+  ETLInactiveArtLambdaArn:
+    Type: String
+  ETLUpdateArtLambdaArn:
+    Type: String
+  DMArticulosArtLambdaArn:
+    Type: String
+  DMReferenciaArtLambdaArn:
+    Type: String
+  DMArticulosLpvArtLambdaArn:
+    Type: String
+  DMCategoriaCatalogoArtLambdaArn:
+    Type: String
+  DMCategoriaArticuloCatalogoArtLambdaArn:
+    Type: String
+  DMMarcasArtLambdaArn:
+    Type: String
+  DMTransactionAddArtLambdaArn:
+    Type: String
+  DMTransactionInactiveArtLambdaArn:
+    Type: String
+  RuleUpdateLambdaArtLambdaArn:
+    Type: String
+  RuleAddLambdaArtLambdaArn:
+    Type: String
+  PullSQSArtLambdaArn:
+    Type: String
+  ArticulosSQSArn:
+    Type: String
+  
+#REVISAR  
+Resources:
+  LambdaPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction.Arn
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt EventsRule20.Arn
+
+  LambdaPermission2:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction7.Arn
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt EventsRule.Arn
+
+  LambdaPermission3:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction8.Arn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/*/POST/category-catalog"
+
+  LambdaPermission4:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction9.Arn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/*/POST/reference"
+
+  LambdaPermission5:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction4.Arn
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt EventsRule11.Arn
+
+  LambdaPermission6:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction2.Arn
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt EventsRule15.Arn
+
+  LambdaPermission7:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction10.Arn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/*/POST/article"
+
+  LambdaPermission8:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction11.Arn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/*/POST/category-article-catalog"
+
+  LambdaPermission9:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction12.Arn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/*/POST/article-lpv"
+
+  LambdaPermission10:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction3.Arn
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt EventsRule14.Arn
+
+  LambdaPermission11:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction13.Arn
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/*/POST/mark"
+
+  LambdaPermission12:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction6.Arn
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt EventsRule2.Arn
+
+  LambdaPermission13:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt LambdaFunction5.Arn
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt EventsRule4.Arn
+  
+  LambdaEventSourceMapping:
+    Type: "AWS::Lambda::EventSourceMapping"
+    Properties:
+      BatchSize: 10
+      EventSourceArn: !Ref ArticulosSQSArn
+      FunctionName: !Ref PullSQSArtLambdaArtLambdaArn
+      Enabled: true
+      MaximumBatchingWindowInSeconds: 0
+  

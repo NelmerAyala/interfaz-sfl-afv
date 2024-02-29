@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIMigrationAfvSfl:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ResourceV1: #ApiGatewayResource2
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref ApiGatewayAPIMigrationAfvSfl
+      PathPart: v1
+      ParentId: !Ref ApiGatewayRestApiRoot
+
+  # AnexossCuentasResource:
+  #   Type: AWS::Serverless::Application
+  #   Properties:
+  #     Location: ./resources/bancos-cuentas.yml
+  #     Parameters:
+  #       ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+  #       ResourceV1: !Ref ResourceV1
+
+  PedidosResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/monedas.yml
+      Parameters:
+        ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+        ResourceV1: !Ref ResourceV1
+
+  # RecibosResource:
+  #   Type: AWS::Serverless::Application
+  #   Properties:
+  #     Location: ./resources/division-geografica.yml
+  #     Parameters:
+  #       ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+  #       ResourceV1: !Ref ResourceV1
+
+  # RetencionesResource:
+  #   Type: AWS::Serverless::Application
+  #   Properties:
+  #     Location: ./resources/fletes.yml
+  #     Parameters:
+  #       ApiGatewayAPIMigrationAfvSfl: !Ref ApiGatewayAPIMigrationAfvSfl
+  #       ResourceV1: !Ref ResourceV1

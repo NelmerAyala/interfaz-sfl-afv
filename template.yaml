@@ -1,0 +1,432 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: interface SFL-AFV (flow SFL-AFV and AFV-SFL)
+
+Parameters:
+  # ---------------------------------------------
+  # VPC
+  SecurityGroupIds:
+    Type: String
+    NoEcho: true
+    Default: sg-072fe4f1acbfa5adb
+  SubnetId1:
+    Type: String
+    NoEcho: true
+    Default: subnet-0df8b0f021801834f
+  # END VPC -------------------------------------
+
+  # ---------------------------------------------
+  # DB Credentials
+  # AFV DB Credentials by Company
+  # -- BEVAL ------------------------------------
+  afvBevalDbHost:
+    NoEcho: true
+    Default: "0.0.0.0"
+    Type: String
+  afvBevalDbPort:
+    NoEcho: true
+    Default: "0"
+    Type: String
+  afvBevalDbUser:
+    NoEcho: true
+    Default: "JonhDoe"
+    Type: String
+  afvBevalDbPassword:
+    NoEcho: true
+    Default: "pass"
+    Type: String
+  afvBevalDbSchema:
+    NoEcho: true
+    Default: "db"
+    Type: String
+
+  # -- FEBECA -----------------------------------
+  afvFebecaDbHost:
+    NoEcho: true
+    Default: "0.0.0.0"
+    Type: String
+  afvFebecaDbPort:
+    NoEcho: true
+    Default: "0"
+    Type: String
+  afvFebecaDbUser:
+    NoEcho: true
+    Default: "JonhDoe"
+    Type: String
+  afvFebecaDbPassword:
+    NoEcho: true
+    Default: "pass"
+    Type: String
+  afvFebecaDbSchema:
+    NoEcho: true
+    Default: "db"
+    Type: String
+
+  # -- SILLACA ----------------------------------
+  afvSillacaDbHost:
+    Default: "0.0.0.0"
+    Type: String
+    NoEcho: true
+  afvSillacaDbPort:
+    Default: "0"
+    Type: String
+    NoEcho: true
+  afvSillacaDbUser:
+    Default: "JonhDoe"
+    Type: String
+    NoEcho: true
+  afvSillacaDbPassword:
+    Default: "pass"
+    Type: String
+    NoEcho: true
+  afvSillacaDbSchema:
+    Default: "db"
+    Type: String
+    NoEcho: true
+
+  # END DB Credentials -------------------------
+
+Resources:
+  # ---------------------------------------------
+  # Policies
+  InterfazSflAfvRolesAndPolicies:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/iam/template.yml
+
+  # END Policies --------------------------------
+
+  # ---------------------------------------------
+  # Layers
+  InterfazSflAfvLayers:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/layers/template.yml
+
+  InterfazSflAfvSecrets:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/secrets/template.yml
+      Parameters:
+        afvBevalDbHost: !Ref afvBevalDbHost
+        afvBevalDbPort: !Ref afvBevalDbPort
+        afvBevalDbUser: !Ref afvBevalDbUser
+        afvBevalDbPassword: !Ref afvBevalDbPassword
+        afvBevalDbSchema: !Ref afvBevalDbSchema
+
+        afvFebecaDbHost: !Ref afvFebecaDbHost
+        afvFebecaDbPort: !Ref afvFebecaDbPort
+        afvFebecaDbUser: !Ref afvFebecaDbUser
+        afvFebecaDbPassword: !Ref afvFebecaDbPassword
+        afvFebecaDbSchema: !Ref afvFebecaDbSchema
+
+        afvSillacaDbHost: !Ref afvSillacaDbHost
+        afvSillacaDbPort: !Ref afvSillacaDbPort
+        afvSillacaDbUser: !Ref afvSillacaDbUser
+        afvSillacaDbPassword: !Ref afvSillacaDbPassword
+        afvSillacaDbSchema: !Ref afvSillacaDbSchema
+
+  # END Layers ----------------------------------
+
+  # ---------------------------------------------
+  # APIs
+  MaveApiMigrationSflAfv:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/API-SFL-AFV/template.yml
+      Parameters:
+        LayerSendSNSSQS: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendSNSSQS
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+
+  # END APIs ------------------------------------
+
+  # ---------------------------------------------
+  # Microservices
+  MSMonedas:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/msmon/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerDMFormatter: !GetAtt InterfazSflAfvLayers.Outputs.LayerDMFormatter
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretArnFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        BusPeticionesSflAfvSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+
+  MSBancosCuentas:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/msban/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerDMFormatter: !GetAtt InterfazSflAfvLayers.Outputs.LayerDMFormatter
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerAxiosGraphql: !GetAtt InterfazSflAfvLayers.Outputs.LayerAxiosGraphql
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretArnFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        BusPeticionesSflAfvSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+
+  MSDistribucionGeografica:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/msdgeo/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerDMFormatter: !GetAtt InterfazSflAfvLayers.Outputs.LayerDMFormatter
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerAxiosGraphql: !GetAtt InterfazSflAfvLayers.Outputs.LayerAxiosGraphql
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretArnFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        BusPeticionesSflAfvSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+
+  MSFletes:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/msfle/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerDMFormatter: !GetAtt InterfazSflAfvLayers.Outputs.LayerDMFormatter
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerAxiosGraphql: !GetAtt InterfazSflAfvLayers.Outputs.LayerAxiosGraphql
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretArnFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        BusPeticionesSflAfvSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+
+  MSTasaDeCambio:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/mstcam/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerDMFormatter: !GetAtt InterfazSflAfvLayers.Outputs.LayerDMFormatter
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerAxiosGraphql: !GetAtt InterfazSflAfvLayers.Outputs.LayerAxiosGraphql
+        LayerJsonSchema: !GetAtt InterfazSflAfvLayers.Outputs.LayerJsonSchema
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretArnFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        BusPeticionesSflAfvSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+        ApiGatewayAPIDMMon: !GetAtt MSMonedas.Outputs.ApiGatewayAPIDMMon
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+      - MSMonedas
+
+  MSImpuestos:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/msimp/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerAxiosGraphql: !GetAtt InterfazSflAfvLayers.Outputs.LayerAxiosGraphql
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretARNFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca #TODO cambiar de Arn a ARN
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        BusPeticionesSflAfvSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+
+  MSDivisionComercial:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/msdcom/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerAxiosGraphql: !GetAtt InterfazSflAfvLayers.Outputs.LayerAxiosGraphql
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretARNFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca #TODO cambiar de ARN a Arn
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        BusPeticionesSflAfvSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+        #! REMOVE
+        ApiGatewayAPICliente: "!GetAtt Msclientes.Outputs.ApiGatewayAPICliente"
+        #! REMOVE
+
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+      # - MSClientes
+
+  MSColaboradores:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/mscolab/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerAxiosGraphql: !GetAtt InterfazSflAfvLayers.Outputs.LayerAxiosGraphql
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretARNFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca #TODO cambiar de ARN a Arn
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        ApiGatewayAPIDivComercial: !GetAtt MSDivisionComercial.Outputs.ApiGatewayAPIDivComercial
+
+        BusPeticionesSflAfvSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+      - MSDivisionComercial
+
+  MSExistencia:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/msexist/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerSendSNSSQS: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendSNSSQS
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretArnFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        ApiGatewayAPIMigrationSflAfv: !GetAtt MaveApiMigrationSflAfv.Outputs.ApiGatewayAPIMigrationSflAfv
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      - InterfazSflAfvSecrets
+      - MaveApiMigrationSflAfv
+
+  MSPedidos:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: infrastructure/msped/template.yml
+      Parameters:
+        LayerMySQL: !GetAtt InterfazSflAfvLayers.Outputs.LayerMySQL
+        LayerSecretManager: !GetAtt InterfazSflAfvLayers.Outputs.LayerSecretManager
+        LayerDMFormatter: !GetAtt InterfazSflAfvLayers.Outputs.LayerDMFormatter
+        LayerSendEvent: !GetAtt InterfazSflAfvLayers.Outputs.LayerSendEvent
+        LayerAxiosGraphql: !GetAtt InterfazSflAfvLayers.Outputs.LayerAxiosGraphql
+
+        SecretARNBeval: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNBeval
+        SecretArnFebeca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretArnFebeca
+        SecretARNSillaca: !GetAtt InterfazSflAfvSecrets.Outputs.SecretARNSillaca
+
+        #! - must add MaveApiMigrationAfvSfl
+        # BusPeticionesAfvSflSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesAfvSflSNSTopicArn
+        # SoftlandAPI: !GetAtt MaveApiMigrationSflAfv.Outputs.SoftlandAPI
+        BusPeticionesAfvSflSNSTopicArn: !GetAtt MaveApiMigrationSflAfv.Outputs.BusPeticionesSflAfvSNSTopicArn
+        SoftlandAPI: "!GetAtt MaveApiMigrationSflAfv.Outputs.SoftlandAPI"
+        #! - must add MaveApiMigrationAfvSfl
+
+        RoleLambdaGlobalSflAfvArn: !GetAtt InterfazSflAfvRolesAndPolicies.Outputs.RoleLambdaGlobalSflAfvArn
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+    DependsOn:
+      - InterfazSflAfvRolesAndPolicies
+      - InterfazSflAfvLayers
+      #! - MaveApiMigrationAfvSfl
+      - InterfazSflAfvSecrets
+# END Microservices ----------------------------

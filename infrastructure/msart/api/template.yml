@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIArticulos:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: mave-msart-api-articulos
+      Description: API - Microservicio Articulos
+      ApiKeySourceType: HEADER
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIArticulos: !Ref ApiGatewayAPIArticulos
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIArticulos.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIArticulos
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIArticulos: !Ref ApiGatewayAPIArticulos
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIArticulos:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIArticulos

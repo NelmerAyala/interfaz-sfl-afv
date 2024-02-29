@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msimp
+
+Resources:
+  ETLAddCompletedLog: #LogsLogGroup3
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msimp-even-etl-add-completed 
+  
+  ETLAddFailedLog: #LogsLogGroup4
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msimp-even-etl-add-failed 
+
+  ETLUpdateCompletedLog: #LogsLogGroup5
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msimp-even-etl-update-completed 
+
+  ETLUpdateFailedLog: #LogsLogGroup6
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msimp-even-etl-update-failed 
+  
+Outputs:
+  ETLAddCompletedLogArn:
+    Value: !GetAtt ETLAddCompletedLog.Arn
+  ETLAddFailedLogArn:
+    Value: !GetAtt ETLAddFailedLog.Arn
+  ETLUpdateCompletedLogArn:
+    Value: !GetAtt ETLUpdateCompletedLog.Arn
+  ETLUpdateFailedLogArn:
+    Value: !GetAtt ETLUpdateFailedLog.Arn

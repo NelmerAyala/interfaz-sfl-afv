@@ -1,0 +1,117 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack Lambda permission and triggers ms fletes
+
+Parameters:
+  ETLAddFleLambdaArn:
+    Type: String
+  ETLInactiveFleLambdaArn:
+    Type: String
+  ETLUpdateFleLambdaArn:
+    Type: String
+
+  DMReglaDescuentoFleLambdaArn:
+    Type: String
+  DMExtFreightRuleFleLambdaArn:
+    Type: String
+  DMExtFreighrCircularLineFleLambdaArn:
+    Type: String
+  DMReglaDescuentoDetalleFleLambdaArn:
+    Type: String
+
+  PullSQSAddFleEventArn:
+    Type: String
+  PullSQSInactivateFleEventArn:
+    Type: String
+  PullSQSUpdateFleEventArn:
+    Type: String
+
+  PullSQSFleLambdaArn:
+    Type: String
+
+  ApiGatewayAPIDmFletes:
+    Type: String
+  FletesSQSArn:
+    Type: String
+
+Resources:
+  LambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMExtFreightRuleFleLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmFletes}/*/POST/freightrule"
+
+  LambdaPermission2:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMReglaDescuentoFleLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmFletes}/*/POST/regla_descuento"
+
+  LambdaPermission4:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLInactiveFleLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSInactivateFleEventArn
+
+  LambdaPermission3:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMReglaDescuentoFleLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmFletes}/*/GET/regla_descuento"
+
+  LambdaPermission5:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMExtFreightRuleFleLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmFletes}/*/POST/freightrule"
+
+  LambdaPermission6:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMExtFreighrCircularLineFleLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmFletes}/*/POST/circularline"
+
+  LambdaPermission7:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref DMReglaDescuentoDetalleFleLambdaArn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayAPIDmFletes}/*/POST/regla_descuento_detalle"
+
+  LambdaPermission8:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLUpdateFleLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSUpdateFleEventArn
+
+  LambdaPermission9:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref ETLAddFleLambdaArn
+      Principal: events.amazonaws.com
+      SourceArn: !Ref PullSQSAddFleEventArn
+
+  LambdaEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      EventSourceArn: !Ref FletesSQSArn
+      FunctionName: !Ref PullSQSFleLambdaArn
+      Enabled: true
+      MaximumBatchingWindowInSeconds: 0

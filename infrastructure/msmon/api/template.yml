@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIDmMon:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: mave-msmon-api-monedas
+      Description: API - Microservicio Monedas
+      ApiKeySourceType: HEADER
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIDmMon: !Ref ApiGatewayAPIDmMon
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIDmMon.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIDmMon
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIDmMon: !Ref ApiGatewayAPIDmMon
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIDMMon:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIDmMon

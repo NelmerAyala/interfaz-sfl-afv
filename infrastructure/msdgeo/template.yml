@@ -1,0 +1,130 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack ms distribucion geografica
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  ApiGatewayTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./api/template.yml
+
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        DistGeograficaSQSArn: !GetAtt SQSTemplate.Outputs.DistGeograficaSQSArn
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+    DependsOn:
+      - SQSTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerDMFormatter: !Ref LayerDMFormatter
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretArnFebeca: !Ref SecretArnFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+
+        ApiGatewayAPIDmDistGeo: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDmDistGeo
+        StageAPIDmDistGeo: !GetAtt ApiGatewayTemplate.Outputs.StageAPIDmDistGeo
+
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+
+    DependsOn:
+      - ApiGatewayTemplate
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        ETLAddDistGeoLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddDistGeoLambdaArn
+        ETLUpdateDistGeoLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateDistGeoLambdaArn
+
+        ETLAddCompletedDistGeoLogArn: !GetAtt LogsTemplate.Outputs.ETLAddCompletedDistGeoLogArn
+        ETLUpdateCompletedDistGeoLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateCompletedDistGeoLogArn
+        ETLAddFailedDistGeoLogArn: !GetAtt LogsTemplate.Outputs.ETLAddFailedDistGeoLogArn
+        ETLUpdateFailedDistGeoLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateFailedDistGeoLogArn
+
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        ETLAddDistGeoLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddDistGeoLambdaArn
+        ETLUpdateDistGeoLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateDistGeoLambdaArn
+
+        DMCiudadesDistGeoLambdaArn: !GetAtt LambdasTemplate.Outputs.DMCiudadesDistGeoLambdaArn
+        DmEstadosDistGeoLambdaArn: !GetAtt LambdasTemplate.Outputs.DmEstadosDistGeoLambdaArn
+        DMPaisesDistGeoLambdaArn: !GetAtt LambdasTemplate.Outputs.DMPaisesDistGeoLambdaArn
+
+        PullSQSDistGeoLambdaArn: !GetAtt LambdasTemplate.Outputs.PullSQSDistGeoLambdaArn
+
+        PullSQSAddDistGeoEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSAddDistGeoEventArn
+        PullSQSUpdateDistGeoEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSUpdateDistGeoEventArn
+
+        ApiGatewayAPIDmDistGeo: !GetAtt ApiGatewayTemplate.Outputs.ApiGatewayAPIDmDistGeo
+
+        DistGeograficaSQSArn: !GetAtt SQSTemplate.Outputs.DistGeograficaSQSArn
+
+    DependsOn:
+      - ApiGatewayTemplate
+      - EventRulesTemplate
+      - SQSTemplate

@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack events msanex
+
+Resources:
+  BussAddFailedLog: #LogsLogGroup
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msanex-rule-buss-add-failed
+
+  BussAddSuccessLog: #LogsLogGroup2
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msanex-rule-buss-add-success
+
+Outputs:
+  BussAddFailedLogArn:
+    Value: !GetAtt BussAddFailedLog.Arn
+  BussAddSuccessLogArn:
+    Value: !GetAtt BussAddSuccessLog.Arn

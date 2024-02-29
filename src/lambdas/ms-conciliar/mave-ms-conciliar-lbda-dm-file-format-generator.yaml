@@ -1,0 +1,121 @@
+# Esta plantilla de AWS SAM se ha generado a partir de la configuración de su
+# función. Si su función tiene uno o más desencadenadores, tenga en cuenta que los
+# recursos de AWS asociados a estos desencadenadores no están completamente
+# especificados en esta plantilla e incluyen valores de marcadores de posición.
+# Abra esta plantilla en AWS Application Composer o en su IDE favorito y
+# modifíquela para especificar una aplicación sin servidor con otros recursos de
+# AWS.
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application Model template describing your function.
+Resources:
+  mavemsconciliarlbdadmfileformatgenerator:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: ''
+      MemorySize: 512
+      Timeout: 600
+      Handler: index.handler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      EphemeralStorage:
+        Size: 512
+      Environment:
+        Variables:
+          BUCKET_NAME: s3interfacesxrtshare
+          MONITORING_FOLDER: Zabbix_XRT
+          LAMBDA_METADATA: mave-ms-conciliar-lbda-obtener-configuracion-documento
+          MONITORING_BUCKET_NAME: s3backupsflmpcpg
+          BACKUP_FOLDER: respaldos
+          ROOT_FOLDER: InterfacesXRT
+          LAMBDA_CHECK_DOCUMENTOS: mave-ms-conciliar-lbda-check-unique-documents-before-create-file
+          BUCKET_BACKUP_NAME: s3interfacesxrtshare
+          LAMBDA_RECIBOS: mave-ms-conciliar-lbda-obtener-recibos-internal
+          LAMBDA_UPDATE_FILE_STATUS: mave-ms-conciliar-lbda-notify-documents-to-file-dao
+          LAMBDA_DOCUMENTOS: mave-ms-conciliar-lbda-get-docs-by-type-company-and-many-status
+          LAMBDA_ANEXOS: mave-ms-conciliar-lbda-obtener-anexos-internal
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      Layers:
+        - >-
+          arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-node-conciliacion-util:9
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-dm-formater:1
+        - arn:aws:lambda:us-east-1:490598428640:layer:mave-layer-Axios-graphql:1
+      PackageType: Zip
+      Policies:
+        - Statement:
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+                - secretsmanager:DescribeSecret
+              Resource: arn:aws:secretsmanager:*:490598428640:secret:*
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - events:PutEvents
+              Resource: arn:aws:events:us-east-1:490598428640:event-bus/*
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - sqs:DeleteMessage
+                - sqs:ReceiveMessage
+                - sqs:SendMessage
+                - sqs:GetQueueAttributes
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - ec2:CreateNetworkInterface
+                - ec2:DeleteNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+              Resource: '*'
+            - Sid: VisualEditor0
+              Effect: Allow
+              Action:
+                - sns:Publish
+              Resource: arn:aws:sns:us-east-1:490598428640:*
+            - Sid: AWSLambdaVPCAccessExecutionPermissions
+              Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+                - ec2:CreateNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+                - ec2:DescribeSubnets
+                - ec2:DeleteNetworkInterface
+                - ec2:AssignPrivateIpAddresses
+                - ec2:UnassignPrivateIpAddresses
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource:
+                - '*'
+            - Effect: Allow
+              Action:
+                - s3:*
+                - s3-object-lambda:*
+              Resource: '*'
+      SnapStart:
+        ApplyOn: None
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 * * * ? *)
+        Schedule2:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 * * * ? *)
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto

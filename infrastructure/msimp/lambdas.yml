@@ -1,0 +1,145 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas msimp
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 600
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  # LAYERS
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  ApiGatewayAPIImpuesto:
+    Type: String
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  DMImpuestoregionLambda: #LambdaFunction
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Impuestos | Procesamiento de Datos | Impuestoregion"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "impuestoregion"
+      FunctionName: mave-msimp-lbda-dm-impuestoregion
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msimp/mave-msimp-lbda-dm-impuestoregion/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMTaxruleLambda: #LambdaFunction2
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Impuestos | Procesamiento de Datos | Taxrule"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "taxrule"
+      FunctionName: mave-msimp-lbda-dm-taxrule
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msimp/mave-msimp-lbda-dm-taxrule/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  PullSQSImpLambda: #LambdaFunction3
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Impuestos | Pull de Cola SQS"
+      FunctionName: mave-msimp-lbda-pullSQS
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msimp/mave-msimp-lbda-pullSQS/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+  ETLAddImpLambda: #LambdaFunction4
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Impuestos | ETL Add"
+      Environment:
+        Variables:
+          API_URL: !Sub "https://${ApiGatewayAPIImpuesto}.execute-api.${AWS::Region}.amazonaws.com/taxes"
+      FunctionName: mave-msimp-lbda-etl-Add
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msimp/mave-msimp-lbda-etl-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  ETLUpdateImpLambda: #LambdaFunction5
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Impuestos | ETL Update"
+      Environment:
+        Variables:
+          API_URL: !Sub "https://${ApiGatewayAPIImpuesto}.execute-api.${AWS::Region}.amazonaws.com/taxes"
+      FunctionName: mave-msimp-lbda-etl-Update
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/msimp/mave-msimp-lbda-etl-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+Outputs:
+  DMImpuestoregionLambdaArn:
+    Description: DMImpuestoregionLambda Arn
+    Value: !GetAtt DMImpuestoregionLambda.Arn
+  DMTaxruleLambdaArn:
+    Description: DMTaxruleLambda Arn
+    Value: !GetAtt DMTaxruleLambda.Arn
+  PullSQSImpLambdaArn:
+    Description: DMTaxruleLambda Arn
+    Value: !GetAtt DMTaxruleLambda.Arn
+  ETLAddImpLambdaArn:
+    Description: ETLAddImpLambda Arn
+    Value: !GetAtt ETLAddImpLambda.Arn
+  ETLUpdateImpLambdaArn:
+    Description: ETLUpdateImpLambda Arn
+    Value: !GetAtt ETLUpdateImpLambda.Arn

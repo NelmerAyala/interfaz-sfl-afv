@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API resources
+
+Parameters:
+  ApiGatewayAPIDivComercial:
+    Type: String
+  ApiGatewayRestApiRoot:
+    Type: String
+
+Resources:
+  ClientezonaResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/client-zone.yml
+      Parameters:
+        ApiGatewayAPIDivComercial: !Ref ApiGatewayAPIDivComercial
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+  
+  CoordinacionResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/coordinations.yml
+      Parameters:
+        ApiGatewayAPIDivComercial: !Ref ApiGatewayAPIDivComercial
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  RegionesResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/regions.yml
+      Parameters:
+        ApiGatewayAPIDivComercial: !Ref ApiGatewayAPIDivComercial
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  RutasResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/routes.yml
+      Parameters:
+        ApiGatewayAPIDivComercial: !Ref ApiGatewayAPIDivComercial
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  RutasdetalleResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/detail-routes.yml
+      Parameters:
+        ApiGatewayAPIDivComercial: !Ref ApiGatewayAPIDivComercial
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot
+
+  ZonasdetalleResource:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources/zones.yml
+      Parameters:
+        ApiGatewayAPIDivComercial: !Ref ApiGatewayAPIDivComercial
+        ApiGatewayRestApiRoot: !Ref ApiGatewayRestApiRoot

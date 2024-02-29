@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack log groups ms distribucion geografica
+
+Resources:
+  ETLAddCompletedDistGeoLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdgeo-even-etl-add-completed
+
+  ETLUpdateCompletedDistGeoLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdgeo-even-etl-update-completed
+
+  ETLAddFailedDistGeoLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdgeo-even-etl-add-failed
+
+  ETLUpdateFailedDistGeoLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/events/mave-msdgeo-even-etl-update-failed
+
+Outputs:
+  ETLAddCompletedDistGeoLogArn:
+    Value: !GetAtt ETLAddCompletedDistGeoLog.Arn
+  ETLUpdateCompletedDistGeoLogArn:
+    Value: !GetAtt ETLUpdateCompletedDistGeoLog.Arn
+
+  ETLAddFailedDistGeoLogArn:
+    Value: !GetAtt ETLAddFailedDistGeoLog.Arn
+  ETLUpdateFailedDistGeoLogArn:
+    Value: !GetAtt ETLUpdateFailedDistGeoLog.Arn

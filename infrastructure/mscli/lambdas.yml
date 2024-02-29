@@ -1,0 +1,341 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack lambdas mscli
+
+Globals:
+  Function:
+    MemorySize: 128
+    Tracing: PassThrough
+    Timeout: 600
+    Runtime: nodejs16.x
+    EphemeralStorage:
+      Size: 512
+    Architectures:
+      - "x86_64"
+    # VpcConfig:
+    #   SubnetIds:
+    #     - !Ref SubnetId1
+    #   SecurityGroupIds:
+    #     - !Ref SecurityGroupIds
+
+Parameters:
+  # LAYERS
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+  # VPC
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+  # SECRETS
+  SecretARNBeval:
+    Type: String
+  SecretARNFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+  # APIS
+  ApiGatewayAPICliente:
+    Type: String
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+Resources:
+  DMCliente:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Clientes"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "clientes"
+      FunctionName: mave-mscli-lbda-dm-clientes
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-clientes/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMClienteDireccion:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Cliente Direccion"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "clientedireccion"
+      FunctionName: mave-mscli-lbda-dm-clientedireccion
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-clientedireccion/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMClienteRepresentante:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Cliente Representante"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "cyc_clienterepresentante"
+      FunctionName: mave-mscli-lbda-dm-cyc_clienterepresentante
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-cyc_clienterepresentante/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMClienteTelefono:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Cliente Telefono"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "cyc_clientetelefonos"
+      FunctionName: mave-mscli-lbda-dm-cyc_clientetelefonos
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-cyc_clientetelefonos/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMConceptoTriCli:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Concepto Tributario Cliente"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "cyc_conceptotributariocliente"
+      FunctionName: mave-mscli-lbda-dm-cyc_conceptotributariocliente
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-cyc_conceptotributariocliente/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMConceptoTriDet:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Concepto Tributario Detalle"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "cyc_conceptotributariodetalle"
+      FunctionName: mave-mscli-lbda-dm-cyc_conceptotributariodetalle
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-cyc_conceptotributariodetalle/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMLimiteCredito:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Limite de credito"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "cyc_limitedecredito"
+      FunctionName: mave-mscli-lbda-dm-cyc_limitedecredito
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-cyc_limitedecredito/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMTipoCliente:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Tipo Cliente"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "cyc_tipocliente"
+      FunctionName: mave-mscli-lbda-dm-cyc_tipocliente
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-cyc_tipocliente/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMTipoTelefono:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Tipo Telefono"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "cyc_tipotelefono"
+      FunctionName: mave-mscli-lbda-dm-cyc_tipotelefono
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-cyc_tipotelefono/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  DMGrupoCliente:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Procesamiento de Datos | Grupo Cliente"
+      Environment:
+        Variables:
+          REGION: !Ref AWS::Region
+          SECRET_ARN_BEVAL: !Ref SecretARNBeval
+          SECRET_ARN_FEBECA: !Ref SecretARNFebeca
+          SECRET_ARN_SILLACA: !Ref SecretARNSillaca
+          TABLE: "grupo_cliente"
+      FunctionName: mave-mscli-lbda-dm-grupo_cliente
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-dm-grupo_cliente/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerMySQL
+        - !Ref LayerSecretManager
+
+  ETLAddClienteLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | ETL Add"
+      Environment:
+        Variables:
+          URL_DM_CLIENTE: !Sub "https://${ApiGatewayAPICliente}.execute-api.${AWS::Region}.amazonaws.com/clients"
+      FunctionName: mave-mscli-lbda-etl-Add
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-etl-Add/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  ETLInactivateClienteLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | ETL Inactivate"
+      Environment:
+        Variables:
+          URL_DM_CLIENTE: !Sub "https://${ApiGatewayAPICliente}.execute-api.${AWS::Region}.amazonaws.com/clients"
+      FunctionName: mave-mscli-lbda-etl-Inactive
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-etl-Inactive/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  ETLUpdateClienteLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | ETL Update"
+      Environment:
+        Variables:
+          URL_DM_CLIENTE: !Sub "https://${ApiGatewayAPICliente}.execute-api.${AWS::Region}.amazonaws.com/clients"
+      FunctionName: mave-mscli-lbda-etl-Update
+      ReservedConcurrentExecutions: 1
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-etl-Update/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerAxiosGraphql
+        - !Ref LayerSendEvent
+
+  PullSQSClienteLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "SFL-AFV | Microservicio Cliente | Pull de Cola SQS"
+      FunctionName: mave-mscli-lbda-pullSQS
+      Handler: index.handler
+      CodeUri: ../../src/lambdas/mscli/mave-mscli-lbda-pullSQS/
+      Role: !Ref RoleLambdaGlobalSflAfvArn
+      Layers:
+        - !Ref LayerSendEvent
+
+Outputs:
+  DMClienteArn:
+    Description: DMCliente Arn
+    Value: !GetAtt DMCliente.Arn
+  DMClienteDireccionArn:
+    Description: DMClienteDireccion Arn
+    Value: !GetAtt DMClienteDireccion.Arn
+  DMClienteRepresentanteArn:
+    Description: DMClienteRepresentante Arn
+    Value: !GetAtt DMClienteRepresentante.Arn
+  DMClienteTelefonoArn:
+    Description: DMClienteTelefono Arn
+    Value: !GetAtt DMClienteTelefono.Arn
+  DMConceptoTriCliArn:
+    Description: DMConceptoTriCli Arn
+    Value: !GetAtt DMConceptoTriCli.Arn
+  DMConceptoTriDetArn:
+    Description: DMConceptoTriDet Arn
+    Value: !GetAtt DMConceptoTriDet.Arn
+  DMLimiteCreditoArn:
+    Description: DMLimiteCredito Arn
+    Value: !GetAtt DMLimiteCredito.Arn
+  DMTipoClienteArn:
+    Description: DMTipoCliente Arn
+    Value: !GetAtt DMTipoCliente.Arn
+  DMTipoTelefonoArn:
+    Description: DMTipoTelefono Arn
+    Value: !GetAtt DMTipoTelefono.Arn
+  DMGrupoClienteArn:
+    Description: DMGrupoCliente Arn
+    Value: !GetAtt DMGrupoCliente.Arn    
+  ETLAddClienteLambdaArn:
+    Description: ETLAddClienteLambda Arn
+    Value: !GetAtt ETLAddClienteLambda.Arn
+  ETLInactivateClienteLambdaArn:
+    Description: ETLInactivateClienteLambda Arn
+    Value: !GetAtt ETLInactivateClienteLambda.Arn
+  ETLUpdateClienteLambdaArn:
+    Description: ETLUpdateClienteLambda Arn
+    Value: !GetAtt ETLUpdateClienteLambda.Arn
+  PullSQSClienteLambdaArn:
+    Description: PullSQSClienteLambda Arn
+    Value: !GetAtt PullSQSClienteLambda.Arn

@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIDmFletes:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: mave-msfle-api-flete
+      Description: API - Microservicio Fletes
+      ApiKeySourceType: HEADER
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIDmFletes: !Ref ApiGatewayAPIDmFletes
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIDmFletes.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIDmFletes
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIDmFletes: !Ref ApiGatewayAPIDmFletes
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIDmFletes:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIDmFletes
+  StageAPIDmFletes:
+    Value: !GetAtt ApiDeploymentTemplate.Outputs.StageAPIDmFletes

@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack API
+
+Resources:
+  ApiGatewayAPIDmDistGeo:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: mave-msdgeo-api-dist-geografica
+      Description: API - Microservicio Distribucion Geografica
+      ApiKeySourceType: HEADER
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+
+  ApiResourcesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./resources.yml
+      Parameters:
+        ApiGatewayAPIDmDistGeo: !Ref ApiGatewayAPIDmDistGeo
+        ApiGatewayRestApiRoot: !GetAtt ApiGatewayAPIDmDistGeo.RootResourceId
+    DependsOn:
+      - ApiGatewayAPIDmDistGeo
+
+  ApiDeploymentTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./deployment.yml
+      Parameters:
+        ApiGatewayAPIDmDistGeo: !Ref ApiGatewayAPIDmDistGeo
+    DependsOn:
+      - ApiResourcesTemplate
+
+Outputs:
+  ApiGatewayAPIDmDistGeo:
+    Description: API ID
+    Value: !Ref ApiGatewayAPIDmDistGeo
+  StageAPIDmDistGeo:
+    Value: !GetAtt ApiDeploymentTemplate.Outputs.StageAPIDmDistGeo

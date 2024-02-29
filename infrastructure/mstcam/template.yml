@@ -1,0 +1,160 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: stack ms tasa de cambio
+
+Parameters:
+  LayerMySQL:
+    Type: String
+  LayerSecretManager:
+    Type: String
+  LayerDMFormatter:
+    Type: String
+  LayerSendEvent:
+    Type: String
+  LayerJsonSchema:
+    Type: String
+  LayerAxiosGraphql:
+    Type: String
+
+  SecurityGroupIds:
+    Type: String
+  SubnetId1:
+    Type: String
+
+  SecretARNBeval:
+    Type: String
+  SecretArnFebeca:
+    Type: String
+  SecretARNSillaca:
+    Type: String
+
+  BusPeticionesSflAfvSNSTopicArn:
+    Type: String
+
+  RoleLambdaGlobalSflAfvArn:
+    Type: String
+
+  ApiGatewayAPIDMMon:
+    Type: String
+
+Resources:
+  LogsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./logs.yml
+
+  SQSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sqs.yml
+      Parameters:
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+
+  SNSTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./sns.yml
+      Parameters:
+        TasaCambioSQSArn: !GetAtt SQSTemplate.Outputs.TasaCambioSQSArn
+        BusPeticionesSflAfvSNSTopicArn: !Ref BusPeticionesSflAfvSNSTopicArn
+    DependsOn:
+      - SQSTemplate
+
+  LambdasTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdas.yml
+      Parameters:
+        LayerMySQL: !Ref LayerMySQL
+        LayerSecretManager: !Ref LayerSecretManager
+        LayerDMFormatter: !Ref LayerDMFormatter
+        LayerSendEvent: !Ref LayerSendEvent
+        LayerJsonSchema: !Ref LayerJsonSchema
+        LayerAxiosGraphql: !Ref LayerAxiosGraphql
+
+        SecurityGroupIds: !Ref SecurityGroupIds
+        SubnetId1: !Ref SubnetId1
+
+        SecretARNBeval: !Ref SecretARNBeval
+        SecretArnFebeca: !Ref SecretArnFebeca
+        SecretARNSillaca: !Ref SecretARNSillaca
+
+        ApiGatewayAPIDMMon: !Ref ApiGatewayAPIDMMon
+
+        RoleLambdaGlobalSflAfvArn: !Ref RoleLambdaGlobalSflAfvArn
+
+  EventRulesTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./events.yml
+      Parameters:
+        DMTCambioLambdaArn: !GetAtt LambdasTemplate.Outputs.DMTCambioLambdaArn
+
+        BussAddTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.BussAddTCamLambdaArn
+        BussInactiveTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.BussInactiveTCamLambdaArn
+        BussUpdateTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.BussUpdateTCamLambdaArn
+
+        ETLAddTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddTCamLambdaArn
+        ETLInactiveTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLInactiveTCamLambdaArn
+        ETLUpdateTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateTCamLambdaArn
+
+        BussAddCompletedTCamLogArn: !GetAtt LogsTemplate.Outputs.BussAddCompletedTCamLogArn
+        BussInactivateCompletedTCamLogArn: !GetAtt LogsTemplate.Outputs.BussInactivateCompletedTCamLogArn
+        BussUpdateCompletedTCamLogArn: !GetAtt LogsTemplate.Outputs.BussUpdateCompletedTCamLogArn
+
+        BussAddFailedTCamLogArn: !GetAtt LogsTemplate.Outputs.BussAddFailedTCamLogArn
+        BussInactivateFailedTCamLogArn: !GetAtt LogsTemplate.Outputs.BussInactivateFailedTCamLogArn
+        BussUpdateFailedTCamLogArn: !GetAtt LogsTemplate.Outputs.BussUpdateFailedTCamLogArn
+
+        ETLAddCompletedTCamLogArn: !GetAtt LogsTemplate.Outputs.ETLAddCompletedTCamLogArn
+        ETLInactivateCompletedTCamLogArn: !GetAtt LogsTemplate.Outputs.ETLInactivateCompletedTCamLogArn
+        ETLUpdateCompletedTCamLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateCompletedTCamLogArn
+
+        ETLAddFailedTCamLogArn: !GetAtt LogsTemplate.Outputs.ETLAddFailedTCamLogArn
+        ETLUpdateFailedTCamLogArn: !GetAtt LogsTemplate.Outputs.ETLUpdateFailedTCamLogArn
+        ETLInactivateFailedTCamLogArn: !GetAtt LogsTemplate.Outputs.ETLInactivateFailedTCamLogArn
+
+        PullSQSAddTCamLogArn: !GetAtt LogsTemplate.Outputs.PullSQSAddTCamLogArn
+        PullSQSInactivateTCamLogArn: !GetAtt LogsTemplate.Outputs.PullSQSInactivateTCamLogArn
+        PullSQSUpdateTCamLogArn: !GetAtt LogsTemplate.Outputs.PullSQSUpdateTCamLogArn
+
+    DependsOn:
+      - LambdasTemplate
+      - LogsTemplate
+
+  LambdaPermissionsTemplate:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./lambdaTriggers.yml
+      Parameters:
+        PullSQSTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.PullSQSTCamLambdaArn
+
+        DMTCambioLambdaArn: !GetAtt LambdasTemplate.Outputs.DMTCambioLambdaArn
+
+        BussAddTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.BussAddTCamLambdaArn
+        BussInactiveTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.BussInactiveTCamLambdaArn
+        BussUpdateTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.BussUpdateTCamLambdaArn
+
+        ETLAddTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLAddTCamLambdaArn
+        ETLInactiveTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLInactiveTCamLambdaArn
+        ETLUpdateTCamLambdaArn: !GetAtt LambdasTemplate.Outputs.ETLUpdateTCamLambdaArn
+
+        BussAddCompletedTCamEventArn: !GetAtt EventRulesTemplate.Outputs.BussAddCompletedTCamEventArn
+        BussInactivateCompletedTCamEventArn: !GetAtt EventRulesTemplate.Outputs.BussInactivateCompletedTCamEventArn
+        BussUpdateCompletedTCamEventArn: !GetAtt EventRulesTemplate.Outputs.BussUpdateCompletedTCamEventArn
+
+        ETLAddCompletedTCamEventArn: !GetAtt EventRulesTemplate.Outputs.ETLAddCompletedTCamEventArn
+        ETLInactivateCompletedTCamEventArn: !GetAtt EventRulesTemplate.Outputs.ETLInactivateCompletedTCamEventArn
+        ETLUpdateCompletedTCamEventArn: !GetAtt EventRulesTemplate.Outputs.ETLUpdateCompletedTCamEventArn
+
+        PullSQSAddTCamEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSAddTCamEventArn
+        PullSQSInactivateTCamEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSInactivateTCamEventArn
+        PullSQSUpdateTCamEventArn: !GetAtt EventRulesTemplate.Outputs.PullSQSUpdateTCamEventArn
+
+        TasaCambioSQSArn: !GetAtt SQSTemplate.Outputs.TasaCambioSQSArn
+
+        ApiGatewayAPIDMMon: !Ref ApiGatewayAPIDMMon
+
+    DependsOn:
+      - EventRulesTemplate
+      - SQSTemplate
